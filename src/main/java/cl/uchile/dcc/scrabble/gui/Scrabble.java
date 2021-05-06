@@ -31,7 +31,7 @@ public class Scrabble extends Application {
     Scene scene = new Scene(label, 400, 200);
     primaryStage.setScene(scene);
 
-    
+
     primaryStage.show();
   }
 }
