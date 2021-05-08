@@ -33,5 +33,8 @@ public class Scrabble extends Application {
 
 
     primaryStage.show();
+
+
+
   }
 }

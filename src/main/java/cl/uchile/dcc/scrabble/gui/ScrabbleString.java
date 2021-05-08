@@ -1,7 +1,9 @@
 package cl.uchile.dcc.scrabble.gui;
 
+import java.util.Objects;
+
 public class ScrabbleString extends AbstractScrabbleType {
-    private String content;
+    protected String content;
 
     public ScrabbleString(String javastr){
         this.content = javastr;
@@ -13,12 +15,17 @@ public class ScrabbleString extends AbstractScrabbleType {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(ScrabbleString.class);
+    }
+
+    @Override
     public boolean equals(Object obj) {
-        if obj instanceof ScrabbleString{
+        if (obj instanceof ScrabbleString) {
             var o = (ScrabbleString) obj;
-            return o.content == content;
+            return o.content.equals(this.content);
 
         }
-
+        return false;
     }
 }
