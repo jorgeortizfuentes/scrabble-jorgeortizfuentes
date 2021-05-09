@@ -1,15 +1,19 @@
 package cl.uchile.dcc.scrabble.gui;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Main {
     public static void main(String[] args) {
-        ScrabbleInt intScr;
-        int exampleInt1 = 10;
-        String exampleStrInt1 = "10";
-        intScr = new ScrabbleInt(exampleInt1);
-        System.out.println(intScr.toString().getClass());
+        ScrabbleBinary scrBin;
 
-        int exampleInt2 = 10;
-        System.out.println(exampleInt1 == exampleInt2);
+        String str = "01010101";
+        scrBin = new ScrabbleBinary(str);
+        System.out.println("Resultados");
+
+
+
+
 
     }
 }

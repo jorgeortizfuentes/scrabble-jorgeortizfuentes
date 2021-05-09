@@ -31,18 +31,24 @@ class ScrabbleBooleanTest {
     }
 
     @Test
-    void ToString(){
+    void testToString(){
         assertEquals(exampleBooleanStr1, boolScr.toString());
         assertNotEquals(exampleBooleanStr2, boolScr.toString());
     }
 
     @Test
-    void getContent() {
+    void testgetContent() {
         assertEquals(exampleBoolean1, boolScr.getContent());
         assertNotEquals(exampleBoolean2, boolScr.getContent());
 
     }
 
+    @Test
+    void testToBool() {
+        assertEquals(exampleBoolean1, boolScr.toBool());
+        assertNotEquals(exampleBoolean2, boolScr.toBool());
+
+    }
 
     @Test
     void testHashCode() {

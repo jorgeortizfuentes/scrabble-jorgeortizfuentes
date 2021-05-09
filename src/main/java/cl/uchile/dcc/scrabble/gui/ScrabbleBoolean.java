@@ -33,5 +33,7 @@ public class ScrabbleBoolean extends AbstractScrabbleType {
         return false;
     }
 
-
+    public boolean toBool(){
+        return this.content;
+    }
 }

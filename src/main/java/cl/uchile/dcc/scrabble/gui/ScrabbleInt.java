@@ -18,6 +18,10 @@ public class ScrabbleInt extends AbstractScrabbleType{
         return Integer.toString(this.content);
     }
 
+    public double toFloat(){
+        return (double) this.content;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(ScrabbleInt.class);

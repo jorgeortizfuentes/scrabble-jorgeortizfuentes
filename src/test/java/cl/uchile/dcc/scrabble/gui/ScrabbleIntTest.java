@@ -12,6 +12,7 @@ class ScrabbleIntTest {
     private int exampleInt1 = 10;
     private String exampleStrInt1 = "10";
     private int exampleInt2 = 20;
+    private double exampleFloat1 = 10;
 
     @BeforeEach
     void setUp() {
@@ -32,6 +33,11 @@ class ScrabbleIntTest {
     @Test
     void testToString() {
         assertEquals(exampleStrInt1, intScr.toString());
+    }
+
+    @Test
+    void testToFloat(){
+        assertEquals(intScr.toFloat(), exampleFloat1);
     }
 
     @Test

@@ -13,6 +13,10 @@ public class ScrabbleFloat extends AbstractScrabbleType{
         return this.content;
     }
 
+    public double toFloat() {
+        return this.content;
+    }
+
     @Override
     public String toString(){
         return Double.toString(this.content);
