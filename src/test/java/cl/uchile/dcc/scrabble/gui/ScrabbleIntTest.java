@@ -13,7 +13,9 @@ class ScrabbleIntTest {
     private int exampleInt1 = 10;
     private String exampleStrInt1 = "10";
     private int exampleInt2 = 20;
+    private String exampleStrInt2 = "20";
     private double exampleFloat1 = 10;
+    private double exampleFloat2 = 20;
 
 
     @BeforeEach
@@ -32,14 +34,24 @@ class ScrabbleIntTest {
     }
 
     @Test
-    void testToString() {
-        assertEquals(exampleStrInt1, intScr.toString());
+    void testAsString() {
+        assertEquals(new ScrabbleString(exampleStrInt1), intScr.asString());
+        assertNotEquals(new ScrabbleString(exampleStrInt2), intScr.asString());
+
     }
 
     @Test
-    void testToFloat(){
-        assertEquals(intScr.toFloat(), exampleFloat1);
+    void testAsFloat(){
+        assertEquals(new ScrabbleFloat(exampleFloat1), intScr.asFloat());
+        assertNotEquals(new ScrabbleFloat(exampleFloat2), intScr.asFloat());
     }
+
+    @Test
+    void testAsInt(){
+        assertEquals(new ScrabbleInt(exampleInt1), intScr.asInt());
+        assertNotEquals(new ScrabbleInt(exampleInt2), intScr.asInt());
+    }
+
 
     @Test
     void getContent() {

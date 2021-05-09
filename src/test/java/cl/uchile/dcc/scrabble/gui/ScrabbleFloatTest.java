@@ -10,6 +10,7 @@ class ScrabbleFloatTest {
     private double exampleFloat1 = 10.55;
     private String exampleStrFloat1 = "10.55";
     private double exampleFloat2 = 20.111;
+    private String exampleStrFloat2 = "20.111";
 
     @BeforeEach
     void setUp() {
@@ -34,15 +35,16 @@ class ScrabbleFloatTest {
 
     }
     @Test
-    void testToFloat() {
-        assertEquals(exampleFloat1, floatScr.getContent());
-        assertNotEquals(exampleFloat2, floatScr.getContent());
+    void testAsFloat() {
+        assertEquals(new ScrabbleFloat(exampleFloat1), floatScr.asFloat());
+        assertNotEquals(new ScrabbleFloat(exampleFloat2), floatScr.asFloat());
 
     }
 
     @Test
-    void testToString() {
-        assertEquals(exampleStrFloat1, floatScr.toString());
+    void testAsString() {
+        assertEquals(new ScrabbleString(exampleStrFloat1), floatScr.asString());
+        assertNotEquals(new ScrabbleString(exampleStrFloat2), floatScr.asString());
     }
 
     @Test

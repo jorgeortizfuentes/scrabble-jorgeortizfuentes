@@ -23,13 +23,13 @@ public class ScrabbleBinary extends AbstractScrabbleType {
     }
 
     @Override
-    public String toString(){
-        return this.content;
+    public ScrabbleString asString(){
+        return new ScrabbleString(this.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ScrabbleBinary.class);
+        return Objects.hash(getContent());
     }
 
     @Override

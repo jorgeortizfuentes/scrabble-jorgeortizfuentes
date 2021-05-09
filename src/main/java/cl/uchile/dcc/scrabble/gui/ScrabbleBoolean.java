@@ -14,13 +14,14 @@ public class ScrabbleBoolean extends AbstractScrabbleType {
     }
 
     @Override
-    public String toString(){
-        return Boolean.toString(this.content);
+    public ScrabbleString asString(){
+        String str = Boolean.toString(this.content);
+        return new ScrabbleString(str);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ScrabbleBoolean.class);
+        return Objects.hash(getContent());
     }
 
     @Override
@@ -33,7 +34,7 @@ public class ScrabbleBoolean extends AbstractScrabbleType {
         return false;
     }
 
-    public boolean toBool(){
-        return this.content;
+    public ScrabbleBoolean asBool(){
+        return new ScrabbleBoolean(this.content);
     }
 }

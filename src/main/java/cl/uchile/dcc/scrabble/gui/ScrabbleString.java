@@ -13,14 +13,13 @@ public class ScrabbleString extends AbstractScrabbleType {
         return this.content;
     }
 
-    @Override
-    public String toString(){
-        return this.content;
+    public ScrabbleString asString(){
+        return new ScrabbleString(this.content);
     }
 
     @Override
     public int hashCode() {
-         return Objects.hash(ScrabbleString.class);
+         return Objects.hash(getContent());
     }
 
     @Override

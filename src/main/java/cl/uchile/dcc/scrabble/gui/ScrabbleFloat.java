@@ -13,18 +13,19 @@ public class ScrabbleFloat extends AbstractScrabbleType{
         return this.content;
     }
 
-    public double toFloat() {
-        return this.content;
+    public ScrabbleFloat asFloat() {
+        return new ScrabbleFloat(this.content);
     }
 
-    @Override
-    public String toString(){
-        return Double.toString(this.content);
+    public ScrabbleString asString(){
+        String str = Double.toString(this.content);
+        return new ScrabbleString(str);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ScrabbleFloat.class);
+        return Objects.hash(getContent());
     }
 
     @Override

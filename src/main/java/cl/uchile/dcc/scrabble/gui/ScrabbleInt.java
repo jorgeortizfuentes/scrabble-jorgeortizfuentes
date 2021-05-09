@@ -13,18 +13,23 @@ public class ScrabbleInt extends AbstractScrabbleType{
         return this.content;
     }
 
-    @Override
-    public String toString(){
-        return Integer.toString(this.content);
+    public ScrabbleString asString(){
+        String str = Integer.toString(this.content);
+        return new ScrabbleString(str);
     }
 
-    public double toFloat(){
-        return (double) this.content;
+    public ScrabbleFloat asFloat(){
+        double n_float = this.content;
+        return new ScrabbleFloat(n_float);
+    }
+
+    public ScrabbleInt asInt(){
+        return new ScrabbleInt(this.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ScrabbleInt.class);
+        return Objects.hash(getContent());
     }
 
     @Override
