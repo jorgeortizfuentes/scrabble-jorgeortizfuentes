@@ -12,8 +12,9 @@ public class ScrabbleBinary extends AbstractScrabbleType {
         Pattern pattern = Pattern.compile("[^0-1]");
         Matcher matcher = pattern.matcher(javaStr);
         boolean isBinary = !matcher.find();
-        if (!isBinary) throw new AssertionError("The string is not a binary");
+        if (!isBinary) throw new AssertionError("The string is not a binary.");
         this.content = javaStr;
+
 
     }
 

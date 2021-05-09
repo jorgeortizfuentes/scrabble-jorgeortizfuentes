@@ -1,6 +1,7 @@
 package cl.uchile.dcc.scrabble.gui;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +12,8 @@ class ScrabbleBinaryTest {
 
     private String exampleString1 = "10101011100";
     private String exampleString2 = "11110111";
-    private String exampleString3 = RandomStringUtils.random(10);
     private ScrabbleBinary strScr;
+    private String randomString1 = RandomStringUtils.random(10);
 
     @BeforeEach
     void setUp(){
@@ -30,6 +31,16 @@ class ScrabbleBinaryTest {
         assertNotEquals(noExpected, strScr);
 
         }
+
+    @Test
+    void exceptionConstructorTesting() {
+
+        AssertionError error = Assertions.assertThrows(AssertionError.class, () -> {
+            new ScrabbleBinary(randomString1);
+        });
+        Assertions.assertEquals("The string is not a binary.", error.getMessage());
+    }
+
 
     @Test
     void testToString(){

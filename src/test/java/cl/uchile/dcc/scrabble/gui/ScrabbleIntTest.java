@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.gui;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +15,11 @@ class ScrabbleIntTest {
     private int exampleInt2 = 20;
     private double exampleFloat1 = 10;
 
+
     @BeforeEach
     void setUp() {
         intScr = new ScrabbleInt(exampleInt1);
     }
-
 
     @Test
     void testConstructor(){
