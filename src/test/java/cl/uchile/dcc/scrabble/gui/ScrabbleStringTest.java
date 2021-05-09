@@ -35,4 +35,32 @@ class ScrabbleStringTest {
         assertEquals(exampleString1, strScr.toString());
         assertNotEquals(exampleString2, strScr.toString());
     }
+
+    @Test
+    void getContent() {
+        assertEquals(exampleString1, strScr.getContent());
+        assertNotEquals(exampleString2, strScr.getContent());
+
+    }
+
+
+    @Test
+    void testHashCode() {
+        var expected = new ScrabbleString(exampleString1);
+        var noExpected = new ScrabbleString(exampleString2);
+
+        assertEquals(strScr.hashCode(), expected.hashCode());
+        assertNotEquals(strScr.hashCode(), noExpected.hashCode());
+    }
+
+    @Test
+    void testEquals() {
+        var expected = new ScrabbleString(exampleString1);
+        var noExpected = new ScrabbleString(exampleString2);
+
+        assertEquals(expected.hashCode(), strScr.hashCode());
+        assertEquals(expected, strScr);
+        assertNotEquals(noExpected, strScr);
+
+    }
 }
