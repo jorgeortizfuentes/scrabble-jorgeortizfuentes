@@ -15,10 +15,14 @@ public class ScrabbleBinary extends AbstractScrabbleType {
         if (!isBinary) throw new AssertionError("The string is not a binary.");
         this.content = javaStr;
 
-
     }
 
     public String getContent() {
+        return this.content;
+    }
+
+    @Override
+    public String toString(){
         return this.content;
     }
 

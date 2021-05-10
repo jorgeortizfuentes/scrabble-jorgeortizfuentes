@@ -13,6 +13,11 @@ public class ScrabbleString extends AbstractScrabbleType {
         return this.content;
     }
 
+    @Override
+    public String toString(){
+        return this.content;
+    }
+
     public ScrabbleString asString(){
         return new ScrabbleString(this.content);
     }

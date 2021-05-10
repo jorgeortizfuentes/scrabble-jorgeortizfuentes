@@ -13,8 +13,13 @@ public class ScrabbleInt extends AbstractScrabbleType{
         return this.content;
     }
 
+    @Override
+    public String toString(){
+        return Integer.toString(this.content);
+    }
+
     public ScrabbleString asString(){
-        String str = Integer.toString(this.content);
+        String str = this.toString();
         return new ScrabbleString(str);
     }
 

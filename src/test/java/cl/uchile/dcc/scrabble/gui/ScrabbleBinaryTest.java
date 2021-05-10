@@ -41,6 +41,11 @@ class ScrabbleBinaryTest {
         Assertions.assertEquals("The string is not a binary.", error.getMessage());
     }
 
+    @Test
+    void testToString(){
+        assertEquals(exampleString1, strScr.toString());
+        assertNotEquals(exampleString2, strScr.toString());
+    }
 
     @Test
     void testAsString(){

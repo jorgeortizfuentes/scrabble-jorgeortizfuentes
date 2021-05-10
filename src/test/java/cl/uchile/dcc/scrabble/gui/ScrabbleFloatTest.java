@@ -29,6 +29,13 @@ class ScrabbleFloatTest {
     }
 
     @Test
+    void testToString() {
+        assertEquals(exampleStrFloat1, floatScr.toString());
+        assertNotEquals(exampleStrFloat1, floatScr.toString());
+
+    }
+
+    @Test
     void testGetContent() {
         assertEquals(exampleFloat1, floatScr.getContent());
         assertNotEquals(exampleFloat2, floatScr.getContent());

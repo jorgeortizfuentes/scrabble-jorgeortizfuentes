@@ -14,8 +14,13 @@ public class ScrabbleBoolean extends AbstractScrabbleType {
     }
 
     @Override
+    public String toString(){
+        return Boolean.toString(this.content);
+    }
+
+    @Override
     public ScrabbleString asString(){
-        String str = Boolean.toString(this.content);
+        String str = this.toString();
         return new ScrabbleString(str);
     }
 

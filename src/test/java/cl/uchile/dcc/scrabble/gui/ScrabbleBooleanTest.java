@@ -31,6 +31,12 @@ class ScrabbleBooleanTest {
     }
 
     @Test
+    void testToString(){
+        assertEquals(exampleBooleanStr1, boolScr.toString());
+        assertNotEquals(exampleBooleanStr2, boolScr.toString());
+    }
+
+    @Test
     void testAsString(){
         assertEquals(new ScrabbleString(exampleBooleanStr1), boolScr.asString());
         assertNotEquals(new ScrabbleString(exampleBooleanStr2), boolScr.asString());

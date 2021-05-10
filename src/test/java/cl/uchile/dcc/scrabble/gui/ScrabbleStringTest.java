@@ -31,6 +31,12 @@ class ScrabbleStringTest {
     }
 
     @Test
+    void ToString(){
+        assertEquals(exampleString1, strScr.toString());
+        assertNotEquals(exampleString2, strScr.toString());
+    }
+
+    @Test
     void testAsString(){
         assertEquals(new ScrabbleString(exampleString1), strScr.asString());
         assertNotEquals(new ScrabbleString(exampleString2), strScr.asString());

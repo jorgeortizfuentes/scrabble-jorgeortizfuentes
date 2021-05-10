@@ -9,6 +9,11 @@ public class ScrabbleFloat extends AbstractScrabbleType{
         this.content = javaDouble;
     }
 
+    @Override
+    public String toString(){
+        return Double.toString(this.content);
+    }
+
     public double getContent() {
         return this.content;
     }
@@ -18,7 +23,7 @@ public class ScrabbleFloat extends AbstractScrabbleType{
     }
 
     public ScrabbleString asString(){
-        String str = Double.toString(this.content);
+        String str = this.toString();
         return new ScrabbleString(str);
 
     }
