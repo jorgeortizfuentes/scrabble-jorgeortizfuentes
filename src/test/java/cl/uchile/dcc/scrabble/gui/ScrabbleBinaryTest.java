@@ -24,13 +24,17 @@ class ScrabbleBinaryTest {
     void testConstructor() {
         var expected = new ScrabbleBinary(exampleString1);
         var noExpected = new ScrabbleBinary(exampleString2);
+        var noExpected2 = new ScrabbleInt(1010);
+
 
         assertEquals(expected, strScr);
         assertEquals(expected.hashCode(), strScr.hashCode());
 
         assertNotEquals(noExpected, strScr);
+        assertNotEquals(strScr, noExpected2);
 
-        }
+
+    }
 
     @Test
     void exceptionConstructorTesting() {

@@ -23,11 +23,14 @@ class ScrabbleStringTest {
     void testConstructor() {
         var expected = new ScrabbleString(exampleString1);
         var noExpected = new ScrabbleString(exampleString2);
+        var noExpected2 = new ScrabbleFloat(1.5);
 
         assertEquals(expected, strScr);
         assertEquals(expected.hashCode(), strScr.hashCode());
 
         assertNotEquals(noExpected, strScr);
+
+        assertNotEquals(strScr, noExpected2);
     }
 
     @Test

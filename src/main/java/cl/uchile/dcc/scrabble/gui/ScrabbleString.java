@@ -24,7 +24,7 @@ public class ScrabbleString extends AbstractScrabbleType {
 
     @Override
     public int hashCode() {
-         return Objects.hash(getContent());
+         return Objects.hash(ScrabbleString.class, content);
     }
 
     @Override

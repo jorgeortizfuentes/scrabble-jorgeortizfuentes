@@ -33,7 +33,7 @@ public class ScrabbleBinary extends AbstractScrabbleType {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getContent());
+        return Objects.hash(ScrabbleBinary.class, content);
     }
 
     @Override

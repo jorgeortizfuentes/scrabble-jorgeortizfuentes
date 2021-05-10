@@ -30,7 +30,9 @@ class ScrabbleIntTest {
 
         assertEquals(expected, intScr);
         assertEquals(expected.hashCode(), intScr.hashCode());
+
         assertNotEquals(noExpected, intScr);
+        assertNotEquals(intScr, intScr.asFloat());
     }
 
     @Test

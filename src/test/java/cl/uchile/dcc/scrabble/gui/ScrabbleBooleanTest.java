@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class ScrabbleBooleanTest {
 
@@ -28,6 +29,8 @@ class ScrabbleBooleanTest {
         assertEquals(expected.hashCode(), boolScr.hashCode());
 
         assertNotEquals(noExpected, boolScr);
+        assertNotEquals(boolScr, noExpected.asString());
+
     }
 
     @Test

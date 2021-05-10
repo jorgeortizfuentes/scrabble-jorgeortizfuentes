@@ -21,17 +21,20 @@ class ScrabbleFloatTest {
     void testConstructor(){
         var expected = new ScrabbleFloat(exampleFloat1);
         var noExpected = new ScrabbleFloat(exampleFloat2);
+        var noExpected2 = new ScrabbleInt(20);
 
         assertEquals(expected.hashCode(), floatScr.hashCode());
         assertEquals(expected, floatScr);
+
         assertNotEquals(noExpected, floatScr);
+        assertNotEquals(floatScr, noExpected2);
 
     }
 
     @Test
     void testToString() {
         assertEquals(exampleStrFloat1, floatScr.toString());
-        assertNotEquals(exampleStrFloat1, floatScr.toString());
+        assertNotEquals(exampleStrFloat2, floatScr.toString());
 
     }
 
