@@ -4,19 +4,34 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class ScrabbleBooleanTest {
 
-    private boolean exampleBoolean1 = true;
-    private boolean exampleBoolean2 = false;
-    private String exampleBooleanStr1 = "true";
-    private String exampleBooleanStr2 = "false";
+    private boolean exampleBoolean1;
+    private boolean exampleBoolean2;
+    private String exampleBooleanStr1;
+    private String exampleBooleanStr2;
     private ScrabbleBoolean boolScr;
+
+    private int seed;
+    private Random rndm;
 
     @BeforeEach
     void setUp() {
+        seed = new Random().nextInt();
+        Random rndm = new Random(seed);
+        exampleBoolean1 = rndm.nextBoolean();
+        do{
+            exampleBoolean2 = rndm.nextBoolean();
+        } while (exampleBoolean1 == exampleBoolean2);
+
+        exampleBooleanStr1 = Boolean.toString(exampleBoolean1);
+        exampleBooleanStr2 = Boolean.toString(exampleBoolean2);
+
         boolScr = new ScrabbleBoolean(exampleBoolean1);
     }
 

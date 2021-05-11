@@ -1,6 +1,5 @@
 package cl.uchile.dcc.scrabble.gui;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,16 +9,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ScrabbleIntTest {
     private ScrabbleInt intScr;
-    private int exampleInt1 = 10;
-    private String exampleStrInt1 = "10";
-    private int exampleInt2 = 20;
-    private String exampleStrInt2 = "20";
-    private double exampleFloat1 = 10;
-    private double exampleFloat2 = 20;
-
+    private int exampleInt1;
+    private int exampleInt2;
+    private String exampleStrInt1;
+    private String exampleStrInt2;
+    private double exampleFloat1;
+    private double exampleFloat2;
+    private int seed;
+    private Random rndm;
 
     @BeforeEach
     void setUp() {
+        seed = new Random().nextInt();
+        Random rndm = new Random(seed);
+        exampleInt1 = rndm.nextInt(8);
+
+        do{
+            exampleInt2 = rndm.nextInt(8);
+        } while (exampleInt1 == exampleInt2);
+
+
+        exampleStrInt1 = Integer.toString(exampleInt1);
+        exampleStrInt2 = Integer.toString(exampleInt2);
+
+        exampleFloat1 = (float) exampleInt1;
+        exampleFloat2 = (float) exampleInt2;
+
         intScr = new ScrabbleInt(exampleInt1);
     }
 

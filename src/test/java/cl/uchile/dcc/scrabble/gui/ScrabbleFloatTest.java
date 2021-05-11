@@ -3,17 +3,33 @@ package cl.uchile.dcc.scrabble.gui;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScrabbleFloatTest {
     private ScrabbleFloat floatScr;
-    private double exampleFloat1 = 10.55;
-    private String exampleStrFloat1 = "10.55";
-    private double exampleFloat2 = 20.111;
-    private String exampleStrFloat2 = "20.111";
+    private double exampleFloat1;
+    private String exampleStrFloat1;
+    private double exampleFloat2;
+    private String exampleStrFloat2;
+
+    private int seed;
+    private Random rndm;
 
     @BeforeEach
     void setUp() {
+        seed = new Random().nextInt();
+        Random rndm = new Random(seed);
+        exampleFloat1 = rndm.nextDouble();
+
+        do{
+            exampleFloat2 = rndm.nextDouble();
+        } while (exampleFloat1 == exampleFloat2);
+
+        exampleStrFloat1 = Double.toString(exampleFloat1);
+        exampleStrFloat2 = Double.toString(exampleFloat2);
+
         floatScr = new ScrabbleFloat(exampleFloat1);
     }
 

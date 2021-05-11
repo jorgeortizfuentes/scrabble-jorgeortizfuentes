@@ -5,18 +5,36 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class ScrabbleBinaryTest {
 
-    private String exampleString1 = "10101011100";
-    private String exampleString2 = "11110111";
+    private String exampleString1;
+    private String exampleString2;
     private ScrabbleBinary strScr;
-    private String randomString1 = RandomStringUtils.random(10);
+    private String randomStringNonBinary;
+
+    private int seed;
+    private Random rndm;
 
     @BeforeEach
     void setUp(){
+        seed = new Random().nextInt();
+        Random rndm = new Random(seed);
+        int strSize = rndm.nextInt(12);
+
+        exampleString1 = RandomStringUtils.random(rndm.nextInt(20), "01");
+
+        do{
+            exampleString2 = RandomStringUtils.random(rndm.nextInt(20), "01");
+
+        } while (exampleString1.equals(exampleString2));
+
+        randomStringNonBinary = RandomStringUtils.random(10);
+
         strScr = new ScrabbleBinary(exampleString1);
     }
 
@@ -40,7 +58,7 @@ class ScrabbleBinaryTest {
     void exceptionConstructorTesting() {
 
         AssertionError error = Assertions.assertThrows(AssertionError.class, () -> {
-            new ScrabbleBinary(randomString1);
+            new ScrabbleBinary(randomStringNonBinary);
         });
         Assertions.assertEquals("The string is not a binary.", error.getMessage());
     }

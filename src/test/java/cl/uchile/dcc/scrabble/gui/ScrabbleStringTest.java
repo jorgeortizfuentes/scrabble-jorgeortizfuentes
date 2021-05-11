@@ -4,19 +4,37 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class ScrabbleStringTest {
 
-    private String exampleString1 = "example1";
-    private String exampleString2 = "example2";
-    private String exampleString3 = RandomStringUtils.random(10);
+    private String exampleString1;
+    private String exampleString2;
     private ScrabbleString strScr;
+
+    private int seed;
+    private Random rndm;
+
+
 
     @BeforeEach
      void setUp(){
-         strScr = new ScrabbleString(exampleString1);
+        seed = new Random().nextInt();
+        Random rndm = new Random(seed);
+        int strSize = rndm.nextInt(12);
+
+        exampleString1 = RandomStringUtils.random(rndm.nextInt(20), 0, Character.MAX_CODE_POINT, true,
+                true, null, rndm);
+
+        do{
+            exampleString2 = RandomStringUtils.random(rndm.nextInt(20), 0, Character.MAX_CODE_POINT, true,
+                    true, null, rndm);
+        } while (exampleString1.equals(exampleString2));
+
+        strScr = new ScrabbleString(exampleString1);
     }
 
     @Test
