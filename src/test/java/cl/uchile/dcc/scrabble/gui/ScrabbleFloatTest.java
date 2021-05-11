@@ -1,0 +1,95 @@
+package cl.uchile.dcc.scrabble.gui;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ScrabbleFloatTest {
+    private ScrabbleFloat floatScr;
+    private double exampleFloat1;
+    private String exampleStrFloat1;
+    private double exampleFloat2;
+    private String exampleStrFloat2;
+
+    private int seed;
+    private Random rndm;
+
+    @BeforeEach
+    void setUp() {
+        seed = new Random().nextInt();
+        Random rndm = new Random(seed);
+        exampleFloat1 = rndm.nextDouble();
+
+        do{
+            exampleFloat2 = rndm.nextDouble();
+        } while (exampleFloat1 == exampleFloat2);
+
+        exampleStrFloat1 = Double.toString(exampleFloat1);
+        exampleStrFloat2 = Double.toString(exampleFloat2);
+
+        floatScr = new ScrabbleFloat(exampleFloat1);
+    }
+
+    @Test
+    void testConstructor(){
+        var expected = new ScrabbleFloat(exampleFloat1);
+        var noExpected = new ScrabbleFloat(exampleFloat2);
+        var noExpected2 = new ScrabbleInt(20);
+
+        assertEquals(expected.hashCode(), floatScr.hashCode());
+        assertEquals(expected, floatScr);
+
+        assertNotEquals(noExpected, floatScr);
+        assertNotEquals(floatScr, noExpected2);
+
+    }
+
+    @Test
+    void testToString() {
+        assertEquals(exampleStrFloat1, floatScr.toString());
+        assertNotEquals(exampleStrFloat2, floatScr.toString());
+
+    }
+
+    @Test
+    void testGetContent() {
+        assertEquals(exampleFloat1, floatScr.getContent());
+        assertNotEquals(exampleFloat2, floatScr.getContent());
+
+    }
+    @Test
+    void testAsFloat() {
+        assertEquals(new ScrabbleFloat(exampleFloat1), floatScr.asFloat());
+        assertNotEquals(new ScrabbleFloat(exampleFloat2), floatScr.asFloat());
+
+    }
+
+    @Test
+    void testAsString() {
+        assertEquals(new ScrabbleString(exampleStrFloat1), floatScr.asString());
+        assertNotEquals(new ScrabbleString(exampleStrFloat2), floatScr.asString());
+    }
+
+    @Test
+    void testHashCode() {
+        var expected = new ScrabbleFloat(exampleFloat1);
+        var noExpected = new ScrabbleFloat(exampleFloat2);
+
+        assertEquals(floatScr.hashCode(), expected.hashCode());
+        assertNotEquals(floatScr.hashCode(), noExpected.hashCode());
+    }
+
+    @Test
+    void testEquals() {
+        var expected = new ScrabbleFloat(exampleFloat1);
+        var noExpected = new ScrabbleFloat(exampleFloat2);
+
+        assertEquals(expected.hashCode(), floatScr.hashCode());
+        assertEquals(expected, floatScr);
+        assertNotEquals(noExpected, floatScr);
+
+    }
+}
