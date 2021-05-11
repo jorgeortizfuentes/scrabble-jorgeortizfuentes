@@ -34,6 +34,9 @@ public class Scrabble extends Application {
 
     primaryStage.show();
 
+    ScrabbleBinary sb = new ScrabbleBinary("1101010");
+    System.out.println("hola");
+    System.out.println(sb.toInt("1101010"));
 
   }
 }
