@@ -32,6 +32,10 @@ public class ScrabbleInt extends AbstractScrabbleType{
         return new ScrabbleInt(this.content);
     }
 
+    public ScrabbleBinary asBinary(){
+        String b_int = BinUtilities.intToBinary(this.content);
+        return new ScrabbleBinary(b_int);
+    }
 
     @Override
     public int hashCode() {

@@ -41,40 +41,14 @@ public class ScrabbleBinary extends AbstractScrabbleType {
         if (obj instanceof ScrabbleBinary) {
             var o = (ScrabbleBinary) obj;
             return o.getContent().equals(this.content);
-
         }
         return false;
     }
 
-    public int toInt(String binary) {
-        if (bitToInt(binary.charAt(0)) == 0) {
-            return positiveBinToInt(binary);
-        } else {
-            return negativeBinaryToInt(binary);
-        }
+    public ScrabbleInt asInt(){
+        int binInt = BinUtilities.toInt(this.content);
+        return new ScrabbleInt(binInt);
     }
-
-    private int negativeBinaryToInt(String binary) {
-        int n = binary.length() - 1;
-        int w = -bitToInt(binary.charAt(0)) * (int) Math.pow(2, n);
-        for (int i = n, j = 0; i > 0; i--, j++) {
-            w += (int) Math.pow(2, j) * (binary.charAt(i) == '1' ? 1 : 0);
-        }
-        return w;
-    }
-
-    private int positiveBinToInt(String binary) {
-        int w = 0;
-        for (int i = binary.length() - 1, j = 0; i > 0; i--, j++) {
-            w += (int) Math.pow(2, j) * bitToInt(binary.charAt(i));
-        }
-        return w;
-    }
-
-    private int bitToInt(char bit) {
-        return bit == '0' ? 0 : 1;
-    }
-
 
 }
 
