@@ -36,11 +36,31 @@ public class Scrabble extends Application {
 
 
     //System.out.println(Integer.toBinaryString(-22));
-    System.out.println(BinUtilities.intToBinary(-33));
+    //System.out.println(BinUtilities.intToBinary(-33));
 
+    var a = new ScrabbleString("Pandi");
+    var a2 = new ScrabbleString("Linda Hermosa");
+    var b = new ScrabbleBinary("101110");
+    var b2 = new ScrabbleBinary("111111");
+    var c = new ScrabbleBoolean(true);
+    var c2 = new ScrabbleBoolean(false);
 
+    var d = new ScrabbleFloat(1.5);
+    var e = new ScrabbleInt(13);
+    //System.out.println(a.add(b));
+    //System.out.println(a.add(c));
+    //System.out.println(a.add(d));
+    //System.out.println(a.add(e));
+    System.out.println(c.conjunctionWith(b));
+    System.out.println(c.conjunctionWith(b2));
+    System.out.println(c.conjunctionWith(c2));
+    System.out.println(c.conjunctionWith(c));
+    System.out.println(b.conjunctionWith(c));
+    System.out.println(b2.conjunctionWith(c));
+    //System.out.println(b.negation());
+    //System.out.println(c.negation());
 
-
+    System.out.println(a.addWith(d));
 
   }
 }

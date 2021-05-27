@@ -6,7 +6,8 @@ public abstract class AbstractScrabbleType implements ScrabbleType {
     }
 
 
-
-
+//    public ScrabbleString stringAddedBy(ScrabbleString c) {
+//        return null;
+//    }
 }
 

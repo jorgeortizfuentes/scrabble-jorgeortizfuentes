@@ -93,4 +93,56 @@ class ScrabbleBooleanTest {
         assertNotEquals(noExpected, boolScr);
 
     }
+
+    @Test
+    void negation() {
+    }
+
+    @Test
+    void conjunctionWith() {
+    }
+
+    @Test
+    void conjunctionByBoolean() {
+    }
+
+    @Test
+    void conjunctionByBinary() {
+    }
+
+    @Test
+    void disjunctionWith() {
+    }
+
+    @Test
+    void disjunctionByBoolean() {
+    }
+
+    @Test
+    void disjunctionByBinary() {
+    }
+
+    @Test
+    void addWith() {
+    }
+
+    @Test
+    void addedByString() {
+    }
+
+    @Test
+    void addedByInt() {
+    }
+
+    @Test
+    void addedByFloat() {
+    }
+
+    @Test
+    void addedByBinary() {
+    }
+
+    @Test
+    void addedByBool() {
+    }
 }

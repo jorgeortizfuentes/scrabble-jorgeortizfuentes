@@ -103,4 +103,103 @@ class ScrabbleBinaryTest {
     }
 
 
+    @Test
+    void negation() {
+    }
+
+    @Test
+    void conjunctionWith() {
+    }
+
+    @Test
+    void conjunctionByBoolean() {
+    }
+
+    @Test
+    void conjunctionByBinary() {
+    }
+
+    @Test
+    void disjunctionWith() {
+    }
+
+    @Test
+    void disjunctionByBoolean() {
+    }
+
+    @Test
+    void disjunctionByBinary() {
+    }
+
+    @Test
+    void addWith() {
+    }
+
+    @Test
+    void addedByString() {
+    }
+
+    @Test
+    void addedByInt() {
+    }
+
+    @Test
+    void addedByFloat() {
+    }
+
+    @Test
+    void addedByBinary() {
+    }
+
+    @Test
+    void addedByBool() {
+    }
+
+    @Test
+    void subtractWith() {
+    }
+
+    @Test
+    void subtractedByInt() {
+    }
+
+    @Test
+    void subtractedByFloat() {
+    }
+
+    @Test
+    void subtractedByBinary() {
+    }
+
+    @Test
+    void multiplyWith() {
+    }
+
+    @Test
+    void multipliedByInt() {
+    }
+
+    @Test
+    void multipliedByFloat() {
+    }
+
+    @Test
+    void multipliedByBinary() {
+    }
+
+    @Test
+    void divideWith() {
+    }
+
+    @Test
+    void dividedByInt() {
+    }
+
+    @Test
+    void dividedByFloat() {
+    }
+
+    @Test
+    void dividedByBinary() {
+    }
 }

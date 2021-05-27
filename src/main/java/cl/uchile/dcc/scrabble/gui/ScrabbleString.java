@@ -2,7 +2,7 @@ package cl.uchile.dcc.scrabble.gui;
 
 import java.util.Objects;
 
-public class ScrabbleString extends AbstractScrabbleType {
+public class ScrabbleString implements ScrabbleType{
     protected String content;
 
     public ScrabbleString(String javaStr){
@@ -18,6 +18,7 @@ public class ScrabbleString extends AbstractScrabbleType {
         return this.content;
     }
 
+    @Override
     public ScrabbleString asString(){
         return new ScrabbleString(this.content);
     }
@@ -37,5 +38,38 @@ public class ScrabbleString extends AbstractScrabbleType {
         return false;
     }
 
+    @Override
+    public ScrabbleType addWith(ScrabbleType c) {
+        return c.addedByString(this);
+    }
 
+    @Override
+    public ScrabbleType addedByString(ScrabbleString c) {
+        String addedString =  c.getContent()+ this.content;
+        return new ScrabbleString(addedString);
+    }
+
+    @Override
+    public ScrabbleType addedByInt(ScrabbleInt c) {
+        // Invalid operation
+        return null;
+    }
+
+    @Override
+    public ScrabbleType addedByFloat(ScrabbleFloat c) {
+        // Invalid operation
+        return null;
+    }
+
+    @Override
+    public ScrabbleType addedByBinary(ScrabbleBinary c) {
+        // Invalid operation
+        return null;
+    }
+
+    @Override
+    public ScrabbleType addedByBool(ScrabbleBoolean c) {
+        // Invalid operation
+        return null;
+    }
 }
