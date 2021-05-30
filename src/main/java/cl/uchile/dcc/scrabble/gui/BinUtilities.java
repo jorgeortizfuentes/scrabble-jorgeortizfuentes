@@ -68,7 +68,6 @@ public class BinUtilities {
     public static String intToBinary(int n){
         int absN = Math.abs(n);
         String binary = BinUtilities.positiveIntToBinary(absN);
-        int len = binary.length();
 
         if (n < 0){
             String new_binary = BinUtilities.twosComplement(binary);

@@ -89,50 +89,16 @@ class ScrabbleStringTest {
     @RepeatedTest(20)
     void addWith() {
         strScr2 = new ScrabbleString(exampleString2);
-        ScrabbleString expected1 = (ScrabbleString) strScr.addWith(strScr2);
+        var expected1 = strScr.addWith(strScr2);
         ScrabbleString solution1 = new ScrabbleString(exampleString1+exampleString2);
         assertEquals(expected1, solution1);
-
-
-        seed = new Random().nextInt();
-        Random rndm = new Random(seed);
-        var exampleInt1 = rndm.nextInt(8);
-        var exampleFloat1 = (float) exampleInt1;
-        var exampleBoolean1 = rndm.nextBoolean();
-
-        int strSize = Math.abs(rndm.nextInt(16));
-        var exampleBinary1 = RandomStringUtils.random(strSize, "01");
-
-
-        ScrabbleInt sInt1 = new ScrabbleInt(exampleInt1);
-        ScrabbleFloat sFloat1 = new ScrabbleFloat(exampleFloat1);
-        ScrabbleBoolean sBool1 = new ScrabbleBoolean(exampleBoolean1);
-        ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
-
-
-        ScrabbleString expected2 = (ScrabbleString) strScr.addWith(sInt1);
-        ScrabbleString solution2 = new ScrabbleString(exampleString1+exampleInt1);
-        assertEquals(expected2, solution2);
-
-        ScrabbleString expected3 = (ScrabbleString) strScr.addWith(sFloat1);
-        ScrabbleString solution3 = new ScrabbleString(exampleString1+exampleFloat1);
-        assertEquals(expected3, solution3);
-
-        ScrabbleString expected4 = (ScrabbleString) strScr.addWith(sBool1);
-        ScrabbleString solution4 = new ScrabbleString(exampleString1+sBool1.toString());
-        assertEquals(expected4, solution4);
-
-        ScrabbleString expected5 = (ScrabbleString) strScr.addWith(sBin1);
-        ScrabbleString solution5 = new ScrabbleString(exampleString1+exampleBinary1);
-        assertEquals(expected5, solution5);
 
     }
 
     @RepeatedTest(20)
     void addedByString() {
-        strScr = new ScrabbleString(exampleString1);
         strScr2 = new ScrabbleString(exampleString2);
-        ScrabbleString expected1 = (ScrabbleString) strScr.addWith(strScr2);
+        var expected1 = strScr2.addedByString(strScr);
         ScrabbleString solution1 = new ScrabbleString(exampleString1+exampleString2);
         assertEquals(expected1, solution1);
 
@@ -142,7 +108,7 @@ class ScrabbleStringTest {
     void addedByInt() {
         var exampleInt1 = rndm.nextInt();
         var sInt = new ScrabbleInt(exampleInt1);
-        var solution = sInt.addWith(strScr);
+        var solution = strScr.addedByInt(sInt);
         assertNull(solution);
 
     }
@@ -151,7 +117,7 @@ class ScrabbleStringTest {
     void addedByFloat() {
         var exampleFloat1 = rndm.nextDouble();
         var sFloat = new ScrabbleFloat(exampleFloat1);
-        var solution = sFloat.addWith(strScr);
+        var solution = strScr.addedByFloat(sFloat);
         assertNull(solution);
 
     }
@@ -160,7 +126,7 @@ class ScrabbleStringTest {
     void addedByBinary() {
         String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1)+1), "01");
         var sBin = new ScrabbleBinary(exampleBinary1);
-        var solution = sBin.addWith(strScr);
+        var solution = strScr.addedByBinary(sBin);
         assertNull(solution);
 
     }
@@ -169,7 +135,7 @@ class ScrabbleStringTest {
     void addedByBool() {
         var exampleBoolean1 = rndm.nextBoolean();
         ScrabbleBoolean sBool = new ScrabbleBoolean(exampleBoolean1);
-        var solution = sBool.addWith(strScr);
+        var solution = strScr.addedByBool(sBool);
         assertNull(solution);
 
     }

@@ -55,19 +55,19 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber {
 
     @Override
     public ScrabbleType addedByInt(ScrabbleInt c) {
-        double sum = c.getContent()+this.content;
-        return new ScrabbleFloat(sum);
+        double result = c.getContent()+this.content;
+        return new ScrabbleFloat(result);
     }
 
     @Override
     public ScrabbleType addedByFloat(ScrabbleFloat c) {
-        double sum = c.getContent()+this.content;
-        return new ScrabbleFloat(sum);
+        double result = c.getContent()+this.content;
+        return new ScrabbleFloat(result);
     }
 
     @Override
     public ScrabbleType addedByBinary(ScrabbleBinary c) {
-        // pendiente
+        // Invalid operation
         return null;
     }
 
@@ -89,13 +89,13 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber {
 
     @Override
     public ScrabbleNumber subtractedByFloat(ScrabbleFloat c) {
-        double sum = c.getContent()-this.content;
-        return new ScrabbleFloat(sum);
+        double result = c.getContent()-this.content;
+        return new ScrabbleFloat(result);
     }
 
     @Override
     public ScrabbleNumber subtractedByBinary(ScrabbleBinary c) {
-        // pendiente
+        // Invalid operation
         return null;
     }
 
@@ -106,19 +106,19 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber {
 
     @Override
     public ScrabbleNumber multipliedByInt(ScrabbleInt c) {
-        double sum = c.getContent()*this.content;
-        return new ScrabbleFloat(sum);
+        double result = c.getContent()*this.content;
+        return new ScrabbleFloat(result);
     }
 
     @Override
     public ScrabbleNumber multipliedByFloat(ScrabbleFloat c) {
-        double sum = c.getContent()*this.content;
-        return new ScrabbleFloat(sum);
+        double result = c.getContent()*this.content;
+        return new ScrabbleFloat(result);
     }
 
     @Override
     public ScrabbleNumber multipliedByBinary(ScrabbleBinary c) {
-        // pendiente
+        // Invalid operation
         return null;
     }
 
@@ -129,19 +129,19 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber {
 
     @Override
     public ScrabbleNumber dividedByInt(ScrabbleInt c) {
-        double sum = c.getContent()/this.content;
-        return new ScrabbleFloat(sum);
+        double result = c.getContent()/this.content;
+        return new ScrabbleFloat(result);
     }
 
     @Override
     public ScrabbleNumber dividedByFloat(ScrabbleFloat c) {
-        double sum = c.getContent()/this.content;
-        return new ScrabbleFloat(sum);
+        double result = c.getContent()/this.content;
+        return new ScrabbleFloat(result);
     }
 
     @Override
     public ScrabbleNumber dividedByBinary(ScrabbleBinary c) {
-        // pendiente
+        // Invalid operation
         return null;
     }
 }

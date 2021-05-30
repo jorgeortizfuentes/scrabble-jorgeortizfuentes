@@ -111,7 +111,7 @@ class ScrabbleFloatTest {
         ScrabbleString sString1 = new ScrabbleString(exampleString1);
 
 
-        ScrabbleString expected2 = (ScrabbleString) sString1.addWith(sFloat);
+        var expected2 = sFloat.addedByString(sString1);
         ScrabbleString solution2 = new ScrabbleString(exampleString1+exampleFloat1);
         assertEquals(expected2, solution2);
     }
@@ -121,7 +121,7 @@ class ScrabbleFloatTest {
         Random rndm = new Random(seed);
         int exampleInt1 = rndm.nextInt(100000);
         ScrabbleInt sInt = new ScrabbleInt(exampleInt1);
-        var expected1 = sInt.addWith(sFloat);
+        var expected1 = sFloat.addedByInt(sInt);
         ScrabbleFloat actual = new ScrabbleFloat (exampleFloat1+exampleInt1);
         assertEquals(expected1, actual);
     }
@@ -129,7 +129,7 @@ class ScrabbleFloatTest {
     @RepeatedTest(20)
     void addedByFloat() {
         ScrabbleFloat sFloat2 = new ScrabbleFloat(exampleFloat2);
-        ScrabbleFloat expected1 = (ScrabbleFloat) sFloat.addWith(sFloat2);
+        var expected1 = sFloat.addWith(sFloat2);
         ScrabbleFloat actual = new ScrabbleFloat(exampleFloat1+exampleFloat2);
         assertEquals(expected1, actual);
     }
@@ -140,7 +140,7 @@ class ScrabbleFloatTest {
         String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
         ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
 
-        var solution = sBin1.addWith(sFloat);
+        var solution = sFloat.addedByBinary(sBin1);
         assertNull(solution);
     }
 
@@ -149,14 +149,14 @@ class ScrabbleFloatTest {
         rndm = new Random(seed);
         boolean exampleBoolean1 = rndm.nextBoolean();
         ScrabbleBoolean sBool1 = new ScrabbleBoolean(exampleBoolean1);
-        var solution = sBool1.addWith(sFloat);
+        var solution = sFloat.addedByBool(sBool1);
         assertNull(solution);
     }
 
     @RepeatedTest(20)
     void subtractWith() {
         ScrabbleFloat sFloat2 = new ScrabbleFloat(exampleFloat2);
-        ScrabbleFloat expected1 = (ScrabbleFloat) sFloat.subtractWith(sFloat2);
+        var expected1 = sFloat.subtractWith(sFloat2);
         ScrabbleFloat actual = new ScrabbleFloat(exampleFloat1-exampleFloat2);
         assertEquals(expected1, actual);
     }
@@ -166,7 +166,7 @@ class ScrabbleFloatTest {
         Random rndm = new Random(seed);
         int exampleInt1 = rndm.nextInt(100000);
         ScrabbleInt sInt = new ScrabbleInt(exampleInt1);
-        var expected1 = sInt.subtractWith(sFloat);
+        var expected1 = sFloat.subtractedByInt(sInt);
         double doubleResult = exampleInt1-exampleFloat1;
         ScrabbleFloat actual = new ScrabbleFloat(doubleResult);
         assertEquals(expected1, actual);
@@ -175,7 +175,7 @@ class ScrabbleFloatTest {
     @RepeatedTest(20)
     void subtractedByFloat() {
         ScrabbleFloat sFloat2 = new ScrabbleFloat(exampleFloat2);
-        ScrabbleFloat expected1 = (ScrabbleFloat) sFloat.subtractWith(sFloat2);
+        var expected1 = sFloat.subtractWith(sFloat2);
         ScrabbleFloat actual = new ScrabbleFloat(exampleFloat1-exampleFloat2);
         assertEquals(expected1, actual);
     }
@@ -185,14 +185,14 @@ class ScrabbleFloatTest {
         rndm = new Random(seed);
         String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
         ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
-        var solution = sBin1.subtractWith(sFloat);
+        var solution = sFloat.subtractedByBinary(sBin1);
         assertNull(solution);
     }
 
     @RepeatedTest(20)
     void multiplyWith() {
         ScrabbleFloat sFloat2 = new ScrabbleFloat(exampleFloat2);
-        ScrabbleFloat expected1 = (ScrabbleFloat) sFloat.multiplyWith(sFloat2);
+        var expected1 = sFloat.multiplyWith(sFloat2);
         ScrabbleFloat actual = new ScrabbleFloat(exampleFloat1*exampleFloat2);
         assertEquals(expected1, actual);
     }
@@ -202,7 +202,7 @@ class ScrabbleFloatTest {
         Random rndm = new Random(seed);
         int exampleInt1 = rndm.nextInt(100000);
         ScrabbleInt sInt = new ScrabbleInt(exampleInt1);
-        var expected1 = sInt.multiplyWith(sFloat);
+        var expected1 = sFloat.multipliedByInt(sInt);
         double doubleResult = exampleInt1*exampleFloat1;
         ScrabbleFloat actual = new ScrabbleFloat(doubleResult);
         assertEquals(expected1, actual);
@@ -211,7 +211,7 @@ class ScrabbleFloatTest {
     @RepeatedTest(20)
     void multipliedByFloat() {
         ScrabbleFloat sFloat2 = new ScrabbleFloat(exampleFloat2);
-        ScrabbleFloat expected1 = (ScrabbleFloat) sFloat.multiplyWith(sFloat2);
+        var expected1 = sFloat.multipliedByFloat(sFloat2);
         ScrabbleFloat actual = new ScrabbleFloat(exampleFloat1*exampleFloat2);
         assertEquals(expected1, actual);
     }
@@ -221,8 +221,46 @@ class ScrabbleFloatTest {
         rndm = new Random(seed);
         String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
         ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
-        var solution = sBin1.multiplyWith(sFloat);
+        var solution = sFloat.multipliedByBinary(sBin1);
         assertNull(solution);
     }
 
+    @RepeatedTest(20)
+    void divideWith() {
+        if (exampleFloat2 ==0){
+            exampleFloat2 += 1;
+        }
+        ScrabbleFloat sFloat2 = new ScrabbleFloat(exampleFloat2);
+        var expected1 = sFloat.divideWith(sFloat2);
+        ScrabbleFloat actual = new ScrabbleFloat(exampleFloat1/exampleFloat2);
+        assertEquals(expected1, actual);
+    }
+
+    @RepeatedTest(20)
+    void dividedByInt() {
+        Random rndm = new Random(seed);
+        int exampleInt1 = rndm.nextInt(100000);
+        ScrabbleInt sInt = new ScrabbleInt(exampleInt1);
+        var expected1 = sFloat.dividedByInt(sInt);
+        double doubleResult = exampleInt1/exampleFloat1;
+        ScrabbleFloat actual = new ScrabbleFloat(doubleResult);
+        assertEquals(expected1, actual);
+    }
+
+    @RepeatedTest(20)
+    void dividedByFloat() {
+        ScrabbleFloat sFloat2 = new ScrabbleFloat(exampleFloat2);
+        var expected1 = sFloat.dividedByFloat(sFloat2);
+        ScrabbleFloat actual = new ScrabbleFloat(exampleFloat2/exampleFloat1);
+        assertEquals(expected1, actual);
+    }
+
+    @RepeatedTest(20)
+    void dividedByBinary() {
+        rndm = new Random(seed);
+        String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+        ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
+        var solution = sFloat.dividedByBinary(sBin1);
+        assertNull(solution);
+    }
 }

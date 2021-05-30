@@ -116,7 +116,7 @@ class ScrabbleBooleanTest {
     @RepeatedTest(20)
     void conjunctionByBoolean() {
         var boolScr2 = new ScrabbleBoolean(exampleBoolean2);
-        var conjunction = boolScr.conjunctionWith(boolScr2);
+        var conjunction = boolScr2.conjunctionByBoolean(boolScr);
         var expected = new ScrabbleBoolean(exampleBoolean1 && exampleBoolean2);
         var noExpected = new ScrabbleBoolean(!(exampleBoolean1 && exampleBoolean2));
 
@@ -129,7 +129,7 @@ class ScrabbleBooleanTest {
         String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1)+1), "01");
 
         ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
-        var conjunction = sBin1.conjunctionWith(boolScr);
+        var conjunction = boolScr.conjunctionByBinary(sBin1);
         ScrabbleBinary expected;
         if (!exampleBoolean1) {
             expected = new ScrabbleBinary(exampleBinary1.replace("1", "0"));
@@ -154,7 +154,7 @@ class ScrabbleBooleanTest {
     @Test
     void disjunctionByBoolean() {
         var boolScr2 = new ScrabbleBoolean(exampleBoolean2);
-        var conjunction = boolScr.disjunctionWith(boolScr2);
+        var conjunction = boolScr2.disjunctionByBoolean(boolScr);
         var expected = new ScrabbleBoolean(exampleBoolean1 || exampleBoolean2);
         var noExpected = new ScrabbleBoolean(!(exampleBoolean1 || exampleBoolean2));
 
@@ -166,7 +166,7 @@ class ScrabbleBooleanTest {
     void disjunctionByBinary() {
         String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1)+1), "01");
         ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
-        var disjunction = sBin1.disjunctionWith(boolScr);
+        var disjunction = boolScr.disjunctionByBinary(sBin1);
         ScrabbleBinary expected;
 
         if (exampleBoolean1) {
@@ -194,9 +194,9 @@ class ScrabbleBooleanTest {
 
         ScrabbleBoolean sInt1 = new ScrabbleBoolean(exampleBoolean1);
         ScrabbleString strScrabble = new ScrabbleString(exampleString1);
-        ScrabbleString expected2 = (ScrabbleString) strScrabble.addWith(sInt1);
-        ScrabbleString solution2 = new ScrabbleString(exampleString1+exampleBoolean1);
-        assertEquals(expected2, solution2);
+        var expected = sInt1.addedByString(strScrabble);
+        ScrabbleString actual = new ScrabbleString(exampleString1+exampleBoolean1);
+        assertEquals(expected, actual);
     }
 
     @RepeatedTest(20)
@@ -204,7 +204,7 @@ class ScrabbleBooleanTest {
         var exampleInt1 = rndm.nextInt();
         var sInt = new ScrabbleInt(exampleInt1);
 
-        var expected = sInt.addWith(boolScr);
+        var expected = boolScr.addedByInt(sInt);
         assertNull(expected);
 
 
@@ -215,7 +215,7 @@ class ScrabbleBooleanTest {
         var exampleFloat1 = rndm.nextDouble();
         var sFloat = new ScrabbleFloat(exampleFloat1);
 
-        var expected = sFloat.addWith(boolScr);
+        var expected = boolScr.addedByFloat(sFloat);
         assertNull(expected);
     }
 
@@ -225,13 +225,14 @@ class ScrabbleBooleanTest {
 
         var sBin = new ScrabbleBinary(exampleBinary1);
 
-        var expected = sBin.addWith(boolScr);
+        var expected = boolScr.addedByBinary(sBin);
         assertNull(expected);
     }
 
     @RepeatedTest(20)
     void addedByBool() {
-        var expected = boolScr.addWith(boolScr);
+        var boolScr2 = new ScrabbleBoolean(exampleBoolean2);
+        var expected = boolScr.addedByBool(boolScr2);
         assertNull(expected);
 
 
