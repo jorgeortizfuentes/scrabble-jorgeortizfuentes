@@ -72,9 +72,9 @@ public class BinUtilities {
 
         if (n < 0){
             String new_binary = BinUtilities.twosComplement(binary);
-            binary = "1".repeat(16-len) + new_binary;
+            binary = "1" + new_binary;
         } else {
-            binary = "0".repeat(16-len) + binary;
+            binary = "0" + binary;
         }
         return binary;
     }

@@ -51,16 +51,16 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
 
     @Override
     public ScrabbleBinary negation(){
-        String newContent = "";
+        StringBuilder newContent = new StringBuilder();
         for (int i = 0; i < this.content.length(); i++) {
             if (this.content.charAt(i) == '0'){
-                newContent = newContent + "1";
+                newContent.append("1");
             } else{
-                newContent = newContent + "0";
+                newContent.append("0");
             }
 
         }
-        return new ScrabbleBinary(newContent);
+        return new ScrabbleBinary(newContent.toString());
     }
 
     @Override
@@ -70,14 +70,19 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
 
     @Override
     public ScrabbleLogic conjunctionByBoolean(ScrabbleBoolean c) {
-        // esto hay que arreglarlo
+        StringBuilder newBinary = new StringBuilder();
         for (int i = 0; i < this.content.length(); i++) {
-            if (this.content.charAt(i) == '0' || !c.getContent()){
-                return new ScrabbleBinary(this.content);
+            if (this.content.charAt(i) == '0') {
+                newBinary.append("0");
+            } else {
+                if (!c.getContent()) {
+                    newBinary.append("0");
+                } else {
+                    newBinary.append("1");
+                }
             }
         }
-        //String trueString = this.content.replace("0", "1");
-        return new ScrabbleBinary(this.content);
+        return new ScrabbleBinary(newBinary.toString());
     }
 
     @Override
@@ -88,24 +93,24 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
 
     @Override
     public ScrabbleLogic disjunctionWith(ScrabbleLogic c) {
-        return c.conjunctionByBinary(this);
+        return c.disjunctionByBinary(this);
     }
 
     @Override
     public ScrabbleLogic disjunctionByBoolean(ScrabbleBoolean c) {
-        boolean trueFound = false;
+        StringBuilder newBinary = new StringBuilder();
         for (int i = 0; i < this.content.length(); i++) {
             if (this.content.charAt(i) == '1') {
-                trueFound = true;
-                break;
+                newBinary.append("1");
+            } else {
+                if (c.getContent()) {
+                    newBinary.append("1");
+                } else {
+                    newBinary.append("0");
+                }
             }
         }
-        if (trueFound) {
-            String trueString = this.content.replace("0", "1");
-            return new ScrabbleBinary(trueString);
-        } else {
-            return new ScrabbleBinary(this.content);
-        }
+        return new ScrabbleBinary(newBinary.toString());
     }
 
     @Override
@@ -158,12 +163,12 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
     }
 
     @Override
-    public ScrabbleType subtractWith(ScrabbleNumber c) {
-        return c.addedByBinary(this);
+    public ScrabbleNumber subtractWith(ScrabbleNumber c) {
+        return c.subtractedByBinary(this);
     }
 
     @Override
-    public ScrabbleType subtractedByInt(ScrabbleInt c) {
+    public ScrabbleNumber subtractedByInt(ScrabbleInt c) {
         ScrabbleInt binarySInt = this.asInt();
         int binaryInt = binarySInt.getContent();
         int sum = c.getContent()-binaryInt;
@@ -172,13 +177,13 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
     }
 
     @Override
-    public ScrabbleType subtractedByFloat(ScrabbleFloat c) {
+    public ScrabbleNumber subtractedByFloat(ScrabbleFloat c) {
         // pendiente
         return null;
     }
 
     @Override
-    public ScrabbleType subtractedByBinary(ScrabbleBinary c) {
+    public ScrabbleNumber subtractedByBinary(ScrabbleBinary c) {
         ScrabbleInt binarySInt1 = this.asInt();
         int binaryInt1 = binarySInt1.getContent();
         ScrabbleInt binarySInt2 = c.asInt();
@@ -189,12 +194,12 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
     }
 
     @Override
-    public ScrabbleType multiplyWith(ScrabbleNumber c) {
-        return c.addedByBinary(this);
+    public ScrabbleNumber multiplyWith(ScrabbleNumber c) {
+        return c.multipliedByBinary(this);
     }
 
     @Override
-    public ScrabbleType multipliedByInt(ScrabbleInt c) {
+    public ScrabbleNumber multipliedByInt(ScrabbleInt c) {
         ScrabbleInt binarySInt = this.asInt();
         int binaryInt = binarySInt.getContent();
         int sum = c.getContent()*binaryInt;
@@ -203,13 +208,13 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
     }
 
     @Override
-    public ScrabbleType multipliedByFloat(ScrabbleFloat c) {
+    public ScrabbleNumber multipliedByFloat(ScrabbleFloat c) {
         // pendiente
         return null;
     }
 
     @Override
-    public ScrabbleType multipliedByBinary(ScrabbleBinary c) {
+    public ScrabbleNumber multipliedByBinary(ScrabbleBinary c) {
         ScrabbleInt binarySInt1 = this.asInt();
         int binaryInt1 = binarySInt1.getContent();
         ScrabbleInt binarySInt2 = c.asInt();
@@ -220,12 +225,12 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
     }
 
     @Override
-    public ScrabbleType divideWith(ScrabbleNumber c) {
-        return c.addedByBinary(this);
+    public ScrabbleNumber divideWith(ScrabbleNumber c) {
+        return c.dividedByBinary(this);
     }
 
     @Override
-    public ScrabbleType dividedByInt(ScrabbleInt c) {
+    public ScrabbleNumber dividedByInt(ScrabbleInt c) {
         ScrabbleInt binarySInt = this.asInt();
         int binaryInt = binarySInt.getContent();
         int sum = c.getContent()/binaryInt;
@@ -234,13 +239,13 @@ public class ScrabbleBinary implements  ScrabbleType, ScrabbleLogic, ScrabbleNum
     }
 
     @Override
-    public ScrabbleType dividedByFloat(ScrabbleFloat c) {
+    public ScrabbleNumber dividedByFloat(ScrabbleFloat c) {
         // pendiente
         return null;
     }
 
     @Override
-    public ScrabbleType dividedByBinary(ScrabbleBinary c) {
+    public ScrabbleNumber dividedByBinary(ScrabbleBinary c) {
         ScrabbleInt binarySInt1 = this.asInt();
         int binaryInt1 = binarySInt1.getContent();
         ScrabbleInt binarySInt2 = c.asInt();

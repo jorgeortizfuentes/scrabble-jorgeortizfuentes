@@ -78,70 +78,69 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber {
     }
 
     @Override
-    public ScrabbleType subtractWith(ScrabbleNumber c) {
-        return c.addedByFloat(this);
+    public ScrabbleNumber subtractWith(ScrabbleNumber c) {
+        return c.subtractedByFloat(this);
     }
 
     @Override
-    public ScrabbleType subtractedByInt(ScrabbleInt c) {
+    public ScrabbleNumber subtractedByInt(ScrabbleInt c) {
+        return c.asFloat().subtractWith(this);
+    }
+
+    @Override
+    public ScrabbleNumber subtractedByFloat(ScrabbleFloat c) {
         double sum = c.getContent()-this.content;
         return new ScrabbleFloat(sum);
     }
 
     @Override
-    public ScrabbleType subtractedByFloat(ScrabbleFloat c) {
-        double sum = c.getContent()-this.content;
-        return new ScrabbleFloat(sum);
-    }
-
-    @Override
-    public ScrabbleType subtractedByBinary(ScrabbleBinary c) {
+    public ScrabbleNumber subtractedByBinary(ScrabbleBinary c) {
         // pendiente
         return null;
     }
 
     @Override
-    public ScrabbleType multiplyWith(ScrabbleNumber c) {
-        return c.addedByFloat(this);
+    public ScrabbleNumber multiplyWith(ScrabbleNumber c) {
+        return c.multipliedByFloat(this);
     }
 
     @Override
-    public ScrabbleType multipliedByInt(ScrabbleInt c) {
+    public ScrabbleNumber multipliedByInt(ScrabbleInt c) {
         double sum = c.getContent()*this.content;
         return new ScrabbleFloat(sum);
     }
 
     @Override
-    public ScrabbleType multipliedByFloat(ScrabbleFloat c) {
+    public ScrabbleNumber multipliedByFloat(ScrabbleFloat c) {
         double sum = c.getContent()*this.content;
         return new ScrabbleFloat(sum);
     }
 
     @Override
-    public ScrabbleType multipliedByBinary(ScrabbleBinary c) {
+    public ScrabbleNumber multipliedByBinary(ScrabbleBinary c) {
         // pendiente
         return null;
     }
 
     @Override
-    public ScrabbleType divideWith(ScrabbleNumber c) {
-        return c.addedByFloat(this);
+    public ScrabbleNumber divideWith(ScrabbleNumber c) {
+        return c.dividedByFloat(this);
     }
 
     @Override
-    public ScrabbleType dividedByInt(ScrabbleInt c) {
+    public ScrabbleNumber dividedByInt(ScrabbleInt c) {
         double sum = c.getContent()/this.content;
         return new ScrabbleFloat(sum);
     }
 
     @Override
-    public ScrabbleType dividedByFloat(ScrabbleFloat c) {
+    public ScrabbleNumber dividedByFloat(ScrabbleFloat c) {
         double sum = c.getContent()/this.content;
         return new ScrabbleFloat(sum);
     }
 
     @Override
-    public ScrabbleType dividedByBinary(ScrabbleBinary c) {
+    public ScrabbleNumber dividedByBinary(ScrabbleBinary c) {
         // pendiente
         return null;
     }

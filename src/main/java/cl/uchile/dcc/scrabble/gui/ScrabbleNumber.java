@@ -9,18 +9,18 @@ public interface ScrabbleNumber {
     ScrabbleType addedByBinary(ScrabbleBinary c);
     ScrabbleType addedByBool(ScrabbleBoolean c);
 
-    ScrabbleType subtractWith(ScrabbleNumber c);
-    ScrabbleType subtractedByInt(ScrabbleInt c);
-    ScrabbleType subtractedByFloat(ScrabbleFloat c);
-    ScrabbleType subtractedByBinary(ScrabbleBinary c);
+    ScrabbleNumber subtractWith(ScrabbleNumber c);
+    ScrabbleNumber subtractedByInt(ScrabbleInt c);
+    ScrabbleNumber subtractedByFloat(ScrabbleFloat c);
+    ScrabbleNumber subtractedByBinary(ScrabbleBinary c);
 
-    ScrabbleType multiplyWith(ScrabbleNumber c);
-    ScrabbleType multipliedByInt(ScrabbleInt c);
-    ScrabbleType multipliedByFloat(ScrabbleFloat c);
-    ScrabbleType multipliedByBinary(ScrabbleBinary c);
+    ScrabbleNumber multiplyWith(ScrabbleNumber c);
+    ScrabbleNumber multipliedByInt(ScrabbleInt c);
+    ScrabbleNumber multipliedByFloat(ScrabbleFloat c);
+    ScrabbleNumber multipliedByBinary(ScrabbleBinary c);
 
-    ScrabbleType divideWith(ScrabbleNumber c);
-    ScrabbleType dividedByInt(ScrabbleInt c);
-    ScrabbleType dividedByFloat(ScrabbleFloat c);
-    ScrabbleType dividedByBinary(ScrabbleBinary c);
+    ScrabbleNumber divideWith(ScrabbleNumber c);
+    ScrabbleNumber dividedByInt(ScrabbleInt c);
+    ScrabbleNumber dividedByFloat(ScrabbleFloat c);
+    ScrabbleNumber dividedByBinary(ScrabbleBinary c);
 }

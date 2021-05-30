@@ -2,311 +2,322 @@ package cl.uchile.dcc.scrabble.gui;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScrabbleIntTest {
-    private ScrabbleInt intScr;
+    private ScrabbleInt sInt;
     private int exampleInt1;
     private int exampleInt2;
-    private String exampleStrInt1;
-    private String exampleStrInt2;
-    private double exampleFloat1;
-    private double exampleFloat2;
-    private boolean exampleBoolean1;
-    private boolean exampleBoolean2;
-    private String exampleBinary1;
-    private String exampleBinary2;
-    private String exampleString1;
-    private String exampleString2;
+
     private int seed;
     private Random rndm;
-
-
 
     @BeforeEach
     void setUp() {
         seed = new Random().nextInt();
         Random rndm = new Random(seed);
-        exampleInt1 = rndm.nextInt(8);
+        exampleInt1 = rndm.nextInt(100000);
 
         do{
-            exampleInt2 = rndm.nextInt(8);
+            exampleInt2 = rndm.nextInt(100000);
         } while (exampleInt1 == exampleInt2);
 
-
-        exampleStrInt1 = Integer.toString(exampleInt1);
-        exampleStrInt2 = Integer.toString(exampleInt2);
-
-        exampleFloat1 = rndm.nextDouble();
-        do{
-            exampleFloat2 = rndm.nextDouble();
-        } while (exampleFloat1 == exampleFloat2);
-
-        exampleBoolean1 = rndm.nextBoolean();
-        do{
-            exampleBoolean2 = rndm.nextBoolean();
-        } while (exampleBoolean1 == exampleBoolean2);
-
-
-        exampleBinary1 = RandomStringUtils.random(rndm.nextInt(16), "01");
-        do{
-            exampleBinary2 = RandomStringUtils.random(rndm.nextInt(16), "01");
-
-        } while (exampleBinary1.equals(exampleBinary2));
-
-        int strSize = rndm.nextInt(12);
-
-        exampleString1 = RandomStringUtils.random(rndm.nextInt(20), 0, Character.MAX_CODE_POINT, true,
-                true, null, rndm);
-
-        do{
-            exampleString2 = RandomStringUtils.random(rndm.nextInt(20), 0, Character.MAX_CODE_POINT, true,
-                    true, null, rndm);
-        } while (exampleString1.equals(exampleString2));
-
-        intScr = new ScrabbleInt(exampleInt1);
+        sInt = new ScrabbleInt(exampleInt1);
     }
 
-    @Test
+    @RepeatedTest(20)
     void testConstructor(){
         var expected = new ScrabbleInt(exampleInt1);
         var noExpected = new ScrabbleInt(exampleInt2);
 
-        assertEquals(expected, intScr);
-        assertEquals(expected.hashCode(), intScr.hashCode());
+        assertEquals(expected, sInt);
+        assertEquals(expected.hashCode(), sInt.hashCode());
 
-        assertNotEquals(noExpected, intScr);
-        assertNotEquals(intScr, intScr.asFloat());
+        assertNotEquals(noExpected, sInt);
+        assertNotEquals(sInt, sInt.asFloat());
     }
 
-    @Test
+    @RepeatedTest(20)
     void testToString() {
-        assertEquals(exampleStrInt1, intScr.toString());
-        assertNotEquals(exampleStrInt2, intScr.toString());
+        String exampleStrInt1 = Integer.toString(exampleInt1);
+        String exampleStrInt2 = Integer.toString(exampleInt2);
+
+        assertEquals(exampleStrInt1, sInt.toString());
+        assertNotEquals(exampleStrInt2, sInt.toString());
 
     }
 
-    @Test
+    @RepeatedTest(20)
     void testAsString() {
-        assertEquals(new ScrabbleString(exampleStrInt1), intScr.asString());
-        assertNotEquals(new ScrabbleString(exampleStrInt2), intScr.asString());
+        String exampleStrInt1 = Integer.toString(exampleInt1);
+        String exampleStrInt2 = Integer.toString(exampleInt2);
+        assertEquals(new ScrabbleString(exampleStrInt1), sInt.asString());
+        assertNotEquals(new ScrabbleString(exampleStrInt2), sInt.asString());
 
     }
 
-    @Test
+    @RepeatedTest(20)
     void testAsFloat(){
-        assertEquals(new ScrabbleFloat(exampleFloat1), intScr.asFloat());
-        assertNotEquals(new ScrabbleFloat(exampleFloat2), intScr.asFloat());
+        ScrabbleFloat actual = sInt.asFloat();
+
+        double int1LikeFloat = exampleInt1;
+        ScrabbleFloat expected = new ScrabbleFloat(int1LikeFloat);
+
+        double int2LikeFloat = exampleInt2;
+        ScrabbleFloat noExpected = new ScrabbleFloat(int2LikeFloat);
+
+        assertEquals(expected,actual);
+        assertNotEquals(noExpected,actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void testAsInt(){
-        assertEquals(new ScrabbleInt(exampleInt1), intScr.asInt());
-        assertNotEquals(new ScrabbleInt(exampleInt2), intScr.asInt());
+        assertEquals(sInt, sInt.asInt());
+        assertNotEquals(new ScrabbleInt(exampleInt2), sInt.asInt());
     }
 
 
-    @Test
+    @RepeatedTest(20)
     void getContent() {
-        assertEquals(exampleInt1, intScr.getContent());
-        assertNotEquals(exampleInt2, intScr.getContent());
+        assertEquals(exampleInt1, sInt.getContent());
+        assertNotEquals(exampleInt2, sInt.getContent());
 
     }
 
-    @Test
+    @RepeatedTest(20)
     void testHashCode() {
         var expected = new ScrabbleInt(exampleInt1);
         var noExpected = new ScrabbleInt(exampleInt2);
 
-        assertEquals(intScr.hashCode(), expected.hashCode());
-        assertNotEquals(intScr.hashCode(), noExpected.hashCode());
+        assertEquals(sInt.hashCode(), expected.hashCode());
+        assertNotEquals(sInt.hashCode(), noExpected.hashCode());
     }
 
-    @Test
+    @RepeatedTest(20)
     void testEquals() {
         var expected = new ScrabbleInt(exampleInt1);
         var noExpected = new ScrabbleInt(exampleInt2);
 
-        assertEquals(expected.hashCode(), intScr.hashCode());
-        assertEquals(expected, intScr);
-        assertNotEquals(noExpected, intScr);
+        assertEquals(expected.hashCode(), sInt.hashCode());
+        assertEquals(expected, sInt);
+        assertNotEquals(noExpected, sInt);
 
     }
 
-    @Test
+    @RepeatedTest(20)
     void asBinary() {
         ScrabbleBinary BinScr1 = new ScrabbleBinary(BinUtilities.intToBinary(exampleInt1));
         ScrabbleBinary BinScr2 = new ScrabbleBinary(BinUtilities.intToBinary(exampleInt2));
-        assertEquals(BinScr1, intScr.asBinary());
-        assertNotEquals(BinScr2, intScr.asBinary());
+        assertEquals(BinScr1, sInt.asBinary());
+        assertNotEquals(BinScr2, sInt.asBinary());
     }
 
-    @Test
+    @RepeatedTest(20)
     void addWith() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intScr2 = new ScrabbleInt(exampleInt2);
-        ScrabbleInt expected1 = (ScrabbleInt) intScr1.addWith(intScr2);
-        ScrabbleInt solution1 = new ScrabbleInt(exampleInt1+exampleInt2);
-        assertEquals(expected1, solution1);
+        var sInt1 = new ScrabbleInt(exampleInt1);
+        var sInt2 = new ScrabbleInt(exampleInt2);
+        ScrabbleInt expected = (ScrabbleInt) sInt1.addWith(sInt2);
+        ScrabbleInt actual = new ScrabbleInt(exampleInt1+exampleInt2);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void addedByString() {
-        ScrabbleInt sInt1 = new ScrabbleInt(exampleInt1);
-        ScrabbleString strScrabble = new ScrabbleString(exampleString1);
-        ScrabbleString expected2 = (ScrabbleString) strScrabble.addWith(sInt1);
-        ScrabbleString solution2 = new ScrabbleString(exampleString1+exampleInt1);
-        assertEquals(expected2, solution2);
+        rndm = new Random(seed);
+        String  exampleString1 = RandomStringUtils.random(Math.abs(rndm.nextInt(20)), 0, Character.MAX_CODE_POINT, true,
+                true, null, rndm);
+        ScrabbleString sString1 = new ScrabbleString(exampleString1);
+
+        ScrabbleString actual = (ScrabbleString) sString1.addWith(sInt);
+        ScrabbleString expected = new ScrabbleString(exampleString1+exampleInt1);
+
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void addedByInt() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intScr2 = new ScrabbleInt(exampleInt2);
-        ScrabbleInt expected1 = (ScrabbleInt) intScr1.addWith(intScr2);
-        ScrabbleInt solution1 = new ScrabbleInt(exampleInt1+exampleInt2);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        var sInt2 = new ScrabbleInt(exampleInt2);
+        ScrabbleInt expected = (ScrabbleInt) sInt.addWith(sInt2);
+        ScrabbleInt actual = new ScrabbleInt(exampleInt1+exampleInt2);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void addedByFloat() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intFloat1 = new ScrabbleFloat(exampleFloat1);
-        ScrabbleFloat expected1 = (ScrabbleFloat) intFloat1.addWith(intScr1);
-        ScrabbleFloat solution1 = new ScrabbleFloat(exampleInt1+exampleFloat1);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        var exampleFloat1 = rndm.nextDouble();
+        ScrabbleFloat sFloat1 = new ScrabbleFloat(exampleFloat1);
+
+        var sInt1 = new ScrabbleInt(exampleInt1);
+        ScrabbleFloat expected = (ScrabbleFloat) sFloat1.addWith(sInt1);
+        ScrabbleFloat actual = new ScrabbleFloat(exampleInt1+exampleFloat1);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void addedByBinary() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var binScr1 = new ScrabbleBinary(exampleBinary1);
-        ScrabbleBinary expected1 = (ScrabbleBinary) binScr1.addWith(intScr1);
-        int sum = binScr1.asInt().getContent()+exampleInt1;
-        ScrabbleBinary solution1 = new ScrabbleBinary(BinUtilities.intToBinary(sum));
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+        ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
+
+        var expected = sBin1.addWith(sInt);
+        int sum = sBin1.asInt().getContent()+exampleInt1;
+        ScrabbleBinary actual = new ScrabbleBinary(BinUtilities.intToBinary(sum));
+        assertEquals(expected, actual,"Error ");
     }
 
-    @Test
+    @RepeatedTest(20)
     void addedByBool() {
+        rndm = new Random(seed);
+        boolean exampleBoolean1 = rndm.nextBoolean();
         ScrabbleBoolean sBool1 = new ScrabbleBoolean(exampleBoolean1);
-        var solution = sBool1.addWith(intScr);
+
+        var solution = sBool1.addWith(sInt);
         assertNull(solution);
     }
 
-    @Test
+    @RepeatedTest(20)
     void subtractWith() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intScr2 = new ScrabbleInt(exampleInt2);
-        ScrabbleInt expected1 = (ScrabbleInt) intScr1.subtractWith(intScr2);
-        ScrabbleInt solution1 = new ScrabbleInt(exampleInt1-exampleInt2);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        var sInt1 = new ScrabbleInt(exampleInt1);
+        var sInt2 = new ScrabbleInt(exampleInt2);
+        ScrabbleInt expected = (ScrabbleInt) sInt1.subtractWith(sInt2);
+        ScrabbleInt actual = new ScrabbleInt(exampleInt1-exampleInt2);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void subtractedByInt() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intScr2 = new ScrabbleInt(exampleInt2);
-        ScrabbleInt expected1 = (ScrabbleInt) intScr1.subtractWith(intScr2);
-        ScrabbleInt solution1 = new ScrabbleInt(exampleInt1-exampleInt2);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        var sInt2 = new ScrabbleInt(exampleInt2);
+        var expected = sInt.subtractWith(sInt2);
+        ScrabbleInt actual = new ScrabbleInt(exampleInt1-exampleInt2);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void subtractedByFloat() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intFloat1 = new ScrabbleFloat(exampleFloat1);
-        ScrabbleFloat expected1 = (ScrabbleFloat) intFloat1.subtractWith(intScr1);
-        ScrabbleFloat solution1 = new ScrabbleFloat(exampleInt1-exampleFloat1);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        double exampleFloat1 = rndm.nextDouble();
+        ScrabbleFloat sFloat1 = new ScrabbleFloat(exampleFloat1);
+
+        System.out.println(exampleFloat1);
+        System.out.println(exampleInt1);
+        double subtraction = exampleFloat1-exampleInt1;
+        System.out.println("expected");
+        System.out.println(subtraction);
+        var actual = sFloat1.subtractWith(sInt);
+        ScrabbleFloat expected = new ScrabbleFloat(subtraction);
+        assertEquals(expected,actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void subtractedByBinary() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var binScr1 = new ScrabbleBinary(exampleBinary1);
-        ScrabbleBinary expected1 = (ScrabbleBinary) binScr1.subtractWith(intScr1);
-        int sum = binScr1.asInt().getContent()-exampleInt1;
-        System.out.println(sum);
-        ScrabbleBinary solution1 = new ScrabbleBinary(BinUtilities.intToBinary(sum));
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+        ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
+
+        ScrabbleBinary expected = (ScrabbleBinary) sBin1.subtractWith(sInt);
+        int sum = sBin1.asInt().getContent()-exampleInt1;
+        ScrabbleBinary actual = new ScrabbleBinary(BinUtilities.intToBinary(sum));
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void multiplyWith() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intScr2 = new ScrabbleInt(exampleInt2);
-        ScrabbleInt expected1 = (ScrabbleInt) intScr1.multipliedByInt(intScr2);
-        ScrabbleInt solution1 = new ScrabbleInt(exampleInt1*exampleInt2);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        var sInt1 = new ScrabbleInt(exampleInt1);
+        var sInt2 = new ScrabbleInt(exampleInt2);
+        ScrabbleInt expected = (ScrabbleInt) sInt1.multipliedByInt(sInt2);
+        ScrabbleInt actual = new ScrabbleInt(exampleInt1*exampleInt2);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void multipliedByInt() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intScr2 = new ScrabbleInt(exampleInt2);
-        ScrabbleInt expected1 = (ScrabbleInt) intScr1.multipliedByInt(intScr2);
-        ScrabbleInt solution1 = new ScrabbleInt(exampleInt1*exampleInt2);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        var sInt2 = new ScrabbleInt(exampleInt2);
+        ScrabbleInt expected = (ScrabbleInt) sInt.multipliedByInt(sInt2);
+        ScrabbleInt actual = new ScrabbleInt(exampleInt1*exampleInt2);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void multipliedByFloat() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intFloat1 = new ScrabbleFloat(exampleFloat1);
-        ScrabbleFloat expected1 = (ScrabbleFloat) intFloat1.multiplyWith(intScr1);
-        ScrabbleFloat solution1 = new ScrabbleFloat(exampleInt1*exampleFloat1);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        double exampleFloat1 = rndm.nextDouble();
+        ScrabbleFloat sFloat1 = new ScrabbleFloat(exampleFloat1);
+
+        ScrabbleFloat expected = (ScrabbleFloat) sFloat1.multiplyWith(sInt);
+        ScrabbleFloat actual = new ScrabbleFloat(exampleInt1*exampleFloat1);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void multipliedByBinary() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var binScr1 = new ScrabbleBinary(exampleBinary1);
-        ScrabbleBinary expected1 = (ScrabbleBinary) binScr1.multiplyWith(intScr1);
-        int sum = binScr1.asInt().getContent()*exampleInt1;
-        ScrabbleBinary solution1 = new ScrabbleBinary(BinUtilities.intToBinary(sum));
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+        ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
+
+        ScrabbleBinary expected = (ScrabbleBinary) sBin1.multiplyWith(sInt);
+        int sum = sBin1.asInt().getContent()*exampleInt1;
+        ScrabbleBinary actual = new ScrabbleBinary(BinUtilities.intToBinary(sum));
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void divideWith() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intScr2 = new ScrabbleInt(exampleInt2);
-        ScrabbleInt expected1 = (ScrabbleInt) intScr1.dividedByInt(intScr2);
-        ScrabbleInt solution1 = new ScrabbleInt(exampleInt1/exampleInt2);
-        assertEquals(expected1, solution1);
+        if (exampleInt2 ==0){
+            exampleInt2 += 1;
+        }
+        var sInt2 = new ScrabbleInt(exampleInt2);
+        int division = Math.round(exampleInt1/exampleInt2);
+        var expected = new ScrabbleInt(division);
+        var actual = sInt.divideWith(sInt2);
+
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void dividedByInt() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intScr2 = new ScrabbleInt(exampleInt2);
-        ScrabbleInt expected1 = (ScrabbleInt) intScr1.dividedByInt(intScr2);
-        ScrabbleInt solution1 = new ScrabbleInt(exampleInt1/exampleInt2);
-        assertEquals(expected1, solution1);
+        if (exampleInt2 ==0){
+            exampleInt2 += 1;
+        }
+        var sInt2 = new ScrabbleInt(exampleInt2);
+        int division = Math.round(exampleInt1/exampleInt2);
+        var expected = new ScrabbleInt(division);
+        var actual = sInt.divideWith(sInt2);
+
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void dividedByFloat() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var intFloat1 = new ScrabbleFloat(exampleFloat1);
-        ScrabbleFloat expected1 = (ScrabbleFloat) intFloat1.dividedByInt(intScr1);
-        ScrabbleFloat solution1 = new ScrabbleFloat(exampleInt1/exampleFloat1);
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        double exampleFloat1 = rndm.nextDouble();
+        if (exampleInt1 ==0){
+            exampleInt1 += 1;
+        }
+        ScrabbleFloat sFloat1 = new ScrabbleFloat(exampleFloat1);
+        ScrabbleFloat expected = (ScrabbleFloat) sFloat1.divideWith(sInt);
+        ScrabbleFloat actual = new ScrabbleFloat(exampleFloat1/exampleInt1);
+        assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(20)
     void dividedByBinary() {
-        var intScr1 = new ScrabbleInt(exampleInt1);
-        var binScr1 = new ScrabbleBinary(exampleBinary1);
-        ScrabbleBinary expected1 = (ScrabbleBinary) binScr1.multiplyWith(intScr1);
-        int sum = binScr1.asInt().getContent()/exampleInt1;
-        ScrabbleBinary solution1 = new ScrabbleBinary(BinUtilities.intToBinary(sum));
-        assertEquals(expected1, solution1);
+        rndm = new Random(seed);
+        String exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+        ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
+
+        ScrabbleBinary expected = (ScrabbleBinary) sBin1.divideWith(sInt);
+        int sum = sBin1.asInt().getContent()/exampleInt1;
+        ScrabbleBinary actual = new ScrabbleBinary(BinUtilities.intToBinary(sum));
+        assertEquals(expected, actual);
     }
 }

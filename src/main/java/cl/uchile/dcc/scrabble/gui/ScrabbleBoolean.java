@@ -44,12 +44,6 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic {
         return new ScrabbleBoolean(this.content);
     }
 
-    public ScrabbleString stringAddedBy(ScrabbleString c) {
-        String addedString = c.getContent() + this.content;
-        return new ScrabbleString(addedString);
-    }
-
-
     @Override
     public ScrabbleBoolean negation(){
         return new ScrabbleBoolean(!this.content);
@@ -67,13 +61,19 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic {
 
     @Override
     public ScrabbleLogic conjunctionByBinary(ScrabbleBinary c) {
+        StringBuilder newBinary = new StringBuilder();
         for (int i = 0; i < c.getContent().length(); i++) {
-            if (c.getContent().charAt(i) == '0' || !this.content){
-                return new ScrabbleBinary(c.getContent());
+            if (c.getContent().charAt(i) == '0') {
+                newBinary.append("0");
+            } else {
+                if (!this.content) {
+                    newBinary.append("0");
+                } else {
+                    newBinary.append("1");
+                }
             }
         }
-        String trueString = c.getContent().replace("0", "1");
-        return new ScrabbleBinary(trueString);
+        return new ScrabbleBinary(newBinary.toString());
     }
 
     @Override
@@ -88,19 +88,19 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic {
 
     @Override
     public ScrabbleLogic disjunctionByBinary(ScrabbleBinary c) {
-        boolean trueFound = false;
+        StringBuilder newBinary = new StringBuilder();
         for (int i = 0; i < c.getContent().length(); i++) {
-            if (c.getContent().charAt(i) == '1'){
-                trueFound = true;
-
+            if (c.getContent().charAt(i) == '1') {
+                newBinary.append("1");
+            } else {
+                if (this.content) {
+                    newBinary.append("1");
+                } else {
+                    newBinary.append("0");
+                }
             }
         }
-        if (trueFound) {
-            String trueString = c.getContent().replace("0", "1");
-            return new ScrabbleBinary(trueString);
-        } else {
-            return new ScrabbleBinary(c.getContent());
-        }
+        return new ScrabbleBinary(newBinary.toString());
     }
 
     @Override
