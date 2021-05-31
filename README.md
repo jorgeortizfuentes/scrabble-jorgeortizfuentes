@@ -16,7 +16,6 @@ _University of Chile_.
 **The rest of the documentation is left for the users of this template to complete**
 
 
-
 ## Executing
 
 This program contains 5 classes to instantiate objects of type ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior. In addition, ScrabbleInt, ScrabbleFloat and ScrabbleBinary implement the ScrabbleNumber interface, which determines their mathematical behavior. On the other hand, ScrabbleBinary and ScrabbleBoolean implement the ScrabbleLogic interface, which determines the logical relationships between them.
@@ -24,10 +23,9 @@ This program contains 5 classes to instantiate objects of type ScrabbleString, S
 Additionally, the program has an auxiliary class called BinUtilities, which provides methods to perform transformations between binary (provided as Java String) and integers (Java int). 
 
 ## Functioning
+This program contains 5 classes to instantiate objects of type ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior. In addition, ScrabbleInt, ScrabbleFloat and ScrabbleBinary implement the ScrabbleNumber interface, which determines their mathematical behavior. On the other hand, ScrabbleBinary and ScrabbleBoolean implement the ScrabbleLogic interface, which determines the logical relationships between them.
 
-Este programa contiene 5 clases para instanciar objetos del tipo ScrabbleString, ScrabbleInt, ScrabbleFloat,  ScrableBinary y ScrabbleBoolean. Las 5 clases implementan la interface ScrabbleType, que determina el comportamiento general de estas. Además, ScrabbleInt, ScrabbleFloat y ScrableBinary implementan la interface ScrabbleNumber, que determina su comportamiento matemático. En cambio, ScrableBinary y ScrabbleBoolean implementan la interface ScrabbleLogic, que determina las relaciones lógicas entre estas.
-
-Adicionalmente, el programa posee una clase auxiliar llamada BinUtilities, que proporciona métodos para realizar transformaciones entre binarios (proporcionados como String de Java) y números enteros (int de Java). 
+Additionally, the program has an auxiliary class called BinUtilities, which provides methods to perform transformations between binary (provided as Java String) and integers (Java int).
 
 ## Transformations
 The 5 classes can be transformed into each other according to the following characteristics:
@@ -61,6 +59,5 @@ Operations that are not allowed according to the table, but are forced by the in
 
 ## UML Diagram
 
-![Alt text](./diagram.svg)
 <img src="./diagram.svg">
 
