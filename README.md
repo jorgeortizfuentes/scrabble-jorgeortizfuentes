@@ -13,9 +13,6 @@ _University of Chile_.
 
 ---
 
-**The rest of the documentation is left for the users of this template to complete**
-
-
 ## Executing
 
 This program contains 5 classes to instantiate objects of type ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior. In addition, ScrabbleInt, ScrabbleFloat and ScrabbleBinary implement the ScrabbleNumber interface, which determines their mathematical behavior. On the other hand, ScrabbleBinary and ScrabbleBoolean implement the ScrabbleLogic interface, which determines the logical relationships between them.
