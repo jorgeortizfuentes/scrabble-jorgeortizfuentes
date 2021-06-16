@@ -236,4 +236,14 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic {
     return null;
   }
 
+  /**
+   * Evaluate the operations tree
+   *
+   * @return a ScrabbleType element
+   */
+  @Override
+  public ScrabbleType evaluate() {
+    return null;
+  }
+
 }

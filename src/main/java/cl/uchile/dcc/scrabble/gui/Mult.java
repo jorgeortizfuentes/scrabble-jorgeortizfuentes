@@ -4,6 +4,7 @@ public class Mult implements Operation {
   Operation left;
   Operation right;
 
+
   public Mult(Operation left, Operation right) {
     this.left = left;
     this.right = right;
@@ -16,6 +17,8 @@ public class Mult implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    return null;
+    ScrabbleNumber multiplicant = (ScrabbleNumber) left.evaluate();
+    ScrabbleNumber multiplicator = (ScrabbleNumber) right.evaluate();
+    return (ScrabbleType) multiplicant.multiplyWith(multiplicator);
   }
 }

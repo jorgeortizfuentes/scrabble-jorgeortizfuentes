@@ -1,11 +1,11 @@
 package cl.uchile.dcc.scrabble.gui;
 
 public class Add implements Operation {
-  ScrabbleType left;
-  ScrabbleType right;
+  Operation left;
+  Operation right;
 
 
-  public Add(ScrabbleType left, ScrabbleType right) {
+  public Add(Operation left, Operation right) {
     this.left = left;
     this.right = right;
   }
@@ -17,6 +17,6 @@ public class Add implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    return null;
+    return left.evaluate().addWith(right.evaluate());
   }
 }
