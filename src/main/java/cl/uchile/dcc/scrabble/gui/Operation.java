@@ -10,6 +10,4 @@ public interface Operation {
    * @return a ScrabbleType element
    */
   ScrabbleType evaluate();
-
-
 }

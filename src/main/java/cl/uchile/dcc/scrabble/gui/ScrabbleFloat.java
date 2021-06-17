@@ -59,6 +59,16 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
   }
 
   /**
+   * Attempts to convert object to binary but fails because the transformation is wrong.
+   *
+   * @return null
+   */
+  @Override
+  public ScrabbleBinary asBinary() {
+    return null;
+  }
+
+  /**
    * {@inheritDoc}
    */
   @Override
@@ -237,11 +247,14 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
     return null;
   }
 
+
+
   /**
    * Evaluate the operations tree
    *
    * @return a ScrabbleType element
    */
+
   @Override
   public ScrabbleType evaluate() {
     return new ScrabbleFloat(content);

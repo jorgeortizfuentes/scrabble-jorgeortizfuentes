@@ -142,4 +142,11 @@ public interface ScrabbleNumber {
    * @return a new object with quotient of both
    */
   ScrabbleNumber dividedByBinary(ScrabbleBinary c);
+
+  /**
+   * Returns the object in ScrabbleBinary format.
+   *
+   * @return content of the object in ScrabbleBinary format
+   */
+  ScrabbleBinary asBinary();
 }

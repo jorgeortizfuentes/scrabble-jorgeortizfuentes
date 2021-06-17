@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic {
+public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
 
   /**
    * Object content with a java boolean
@@ -243,7 +243,7 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic {
    */
   @Override
   public ScrabbleType evaluate() {
-    return null;
+    return new ScrabbleBoolean(content);
   }
 
 }
