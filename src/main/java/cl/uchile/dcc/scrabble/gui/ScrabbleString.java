@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class ScrabbleString implements ScrabbleType, Operation {
+public class ScrabbleString implements ScrabbleType {
 
   /**
    * Object content with a java string
@@ -123,16 +123,5 @@ public class ScrabbleString implements ScrabbleType, Operation {
   public ScrabbleType addedByBinary(ScrabbleBinary c) {
     return null;
   }
-
-  /**
-   * Evaluate the operations tree
-   *
-   * @return a ScrabbleType element
-   */
-  @Override
-  public ScrabbleType evaluate() {
-    return new ScrabbleString(content);
-  }
-
 
 }

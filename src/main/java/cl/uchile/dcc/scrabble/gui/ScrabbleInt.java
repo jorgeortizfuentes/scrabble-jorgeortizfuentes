@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class ScrabbleInt implements ScrabbleType, ScrabbleNumber, Operation {
+public class ScrabbleInt implements ScrabbleType, ScrabbleNumber {
 
   /**
    * Object content with a java int
@@ -269,15 +269,4 @@ public class ScrabbleInt implements ScrabbleType, ScrabbleNumber, Operation {
     String stringBinarySum = BinUtilities.intToBinary(result);
     return new ScrabbleBinary(stringBinarySum);
   }
-
-  /**
-   * Evaluate the operations tree
-   *
-   * @return a ScrabbleType element
-   */
-  @Override
-  public ScrabbleType evaluate() {
-    return new ScrabbleInt(content);
-  }
-
 }

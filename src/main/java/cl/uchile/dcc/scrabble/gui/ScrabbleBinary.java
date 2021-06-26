@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class ScrabbleBinary implements ScrabbleType, ScrabbleLogic, ScrabbleNumber, Operation {
+public class ScrabbleBinary implements ScrabbleType, ScrabbleLogic, ScrabbleNumber {
 
   /**
    * Object content with a java string
@@ -437,16 +437,6 @@ public class ScrabbleBinary implements ScrabbleType, ScrabbleLogic, ScrabbleNumb
     int result = binaryInt2 / binaryInt1;
     String stringBinarySum = BinUtilities.intToBinary(result);
     return new ScrabbleBinary(stringBinarySum);
-  }
-
-  /**
-   * Evaluate the operations tree
-   *
-   * @return a ScrabbleType element
-   */
-  @Override
-  public ScrabbleType evaluate() {
-    return new ScrabbleBinary(content);
   }
 
 }

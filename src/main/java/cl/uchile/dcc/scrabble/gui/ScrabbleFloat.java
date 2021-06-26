@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
+public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber {
 
   /**
    * Object content with a java double
@@ -56,16 +56,6 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
    */
   public ScrabbleFloat asFloat() {
     return new ScrabbleFloat(this.content);
-  }
-
-  /**
-   * Attempts to convert object to binary but fails because the transformation is wrong.
-   *
-   * @return null
-   */
-  @Override
-  public ScrabbleBinary asBinary() {
-    return null;
   }
 
   /**
@@ -246,18 +236,4 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
   public ScrabbleNumber dividedByBinary(ScrabbleBinary c) {
     return null;
   }
-
-
-
-  /**
-   * Evaluate the operations tree
-   *
-   * @return a ScrabbleType element
-   */
-
-  @Override
-  public ScrabbleType evaluate() {
-    return new ScrabbleFloat(content);
-  }
-
 }
