@@ -76,6 +76,12 @@ public interface ScrabbleType {
    */
   ScrabbleType addedByBinary(ScrabbleBinary c);
 
+  /**
+   * Evaluate the operations tree
+   *
+   * @return a ScrabbleType element
+   */
+  ScrabbleType evaluate();
 }
 
 
