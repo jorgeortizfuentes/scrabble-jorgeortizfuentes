@@ -2,7 +2,6 @@ package cl.uchile.dcc.scrabble.gui;
 
 import java.util.HashMap;
 
-
 public class IntFactory {
 
   private static HashMap<Integer, ScrabbleInt> element = new HashMap<>();
