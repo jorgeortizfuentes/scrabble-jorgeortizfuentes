@@ -62,6 +62,11 @@ public class Subt implements Operation {
     return (ScrabbleType) minuend.subtractWith(subtrahend);
   }
 
+  /**
+   * Returns the object in ScrabbleBinary format.
+   *
+   * @return content of the object in ScrabbleBinary format
+   */
   public ScrabbleBinary asBinary() {
     ScrabbleNumber evaluation = (ScrabbleNumber) this.evaluate();
     return evaluation.asBinary();

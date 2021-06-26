@@ -79,6 +79,8 @@ class OperatorTest {
             sInt1,
             sBinary2
         ).asBinary();
+    tree1.evaluate();
+
 
 
 
