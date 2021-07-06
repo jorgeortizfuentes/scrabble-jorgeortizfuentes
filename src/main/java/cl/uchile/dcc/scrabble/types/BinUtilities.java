@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.types;
 
 /**
  * Implementation of the <i>BinUtilities</i>. These allow you to perform auxiliary operations

@@ -2,6 +2,9 @@ package cl.uchile.dcc.scrabble.gui;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import cl.uchile.dcc.scrabble.operations.Or;
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
+import cl.uchile.dcc.scrabble.types.ScrabbleBoolean;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;

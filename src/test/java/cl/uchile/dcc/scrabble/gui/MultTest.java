@@ -2,11 +2,15 @@ package cl.uchile.dcc.scrabble.gui;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import cl.uchile.dcc.scrabble.operations.Mult;
+import cl.uchile.dcc.scrabble.types.BinUtilities;
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
+import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
+import cl.uchile.dcc.scrabble.types.ScrabbleInt;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 class MultTest {
 

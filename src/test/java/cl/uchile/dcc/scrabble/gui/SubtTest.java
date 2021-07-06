@@ -3,6 +3,11 @@ package cl.uchile.dcc.scrabble.gui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import cl.uchile.dcc.scrabble.operations.Subt;
+import cl.uchile.dcc.scrabble.types.BinUtilities;
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
+import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
+import cl.uchile.dcc.scrabble.types.ScrabbleInt;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;

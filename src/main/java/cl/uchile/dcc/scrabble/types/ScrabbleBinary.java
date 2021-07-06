@@ -1,5 +1,6 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.types;
 
+import cl.uchile.dcc.scrabble.operations.Operation;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -151,11 +152,33 @@ public class ScrabbleBinary implements ScrabbleType, ScrabbleLogic, ScrabbleNumb
    * This binary is tried to operate according to the conjunction operation
    *
    * @param c a ScrabbleBinary object
-   * @return null
+   * @return the binary operated value by value
    */
   @Override
   public ScrabbleLogic conjunctionByBinary(ScrabbleBinary c) {
-    return null;
+    String v1;
+    String v2;
+    int lengthDifference = Math.abs(c.getContent().length() - this.content.length());
+
+    if (c.getContent().length() >= this.content.length()) {
+      v1 = c.getContent();
+      v2 = this.content;
+    } else {
+      v1 = this.content;
+      v2 = c.getContent();
+    }
+
+    v2 += "1".repeat(lengthDifference);
+
+    StringBuilder newBinary = new StringBuilder();
+    for (int i = 0; i < v1.length(); i++) {
+      if (v1.charAt(i) == '1' && v2.charAt(i) == '1') {
+        newBinary.append("1");
+      } else{
+        newBinary.append("0");
+      }
+    }
+    return new ScrabbleBinary(newBinary.toString());
   }
 
   /**
@@ -199,8 +222,31 @@ public class ScrabbleBinary implements ScrabbleType, ScrabbleLogic, ScrabbleNumb
    */
   @Override
   public ScrabbleLogic disjunctionByBinary(ScrabbleBinary c) {
-    // Invalid operation
-    return null;
+    String v1;
+    String v2;
+
+    int lengthDifference = Math.abs(c.getContent().length() - this.content.length());
+
+    if (c.getContent().length() >= this.content.length()) {
+      v1 = c.getContent();
+      v2 = this.content;
+    } else {
+      v1 = this.content;
+      v2 = c.getContent();
+    }
+
+    v2 += "0".repeat(lengthDifference);
+
+    StringBuilder newBinary = new StringBuilder();
+    for (int i = 0; i < v1.length(); i++) {
+      if (v1.charAt(i) == '0' && v2.charAt(i) == '0') {
+        newBinary.append("0");
+      } else{
+        newBinary.append("1");
+      }
+    }
+    return new ScrabbleBinary(newBinary.toString());
+
   }
 
   /**

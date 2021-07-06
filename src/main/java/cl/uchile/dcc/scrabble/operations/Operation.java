@@ -1,6 +1,6 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleType;
+import cl.uchile.dcc.scrabble.types.ScrabbleType;
 
 public interface Operation {
 

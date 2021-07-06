@@ -1,5 +1,8 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
+import cl.uchile.dcc.scrabble.types.ScrabbleNumber;
+import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
 public class Subt implements Operation {

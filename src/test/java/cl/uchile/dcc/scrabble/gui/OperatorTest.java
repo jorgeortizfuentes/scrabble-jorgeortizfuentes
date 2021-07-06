@@ -1,7 +1,14 @@
 package cl.uchile.dcc.scrabble.gui;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import cl.uchile.dcc.scrabble.operations.Add;
+import cl.uchile.dcc.scrabble.operations.And;
+import cl.uchile.dcc.scrabble.operations.Or;
+import cl.uchile.dcc.scrabble.operations.Subt;
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
+import cl.uchile.dcc.scrabble.types.ScrabbleBoolean;
+import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
+import cl.uchile.dcc.scrabble.types.ScrabbleInt;
+import cl.uchile.dcc.scrabble.types.ScrabbleString;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +24,8 @@ class OperatorTest {
   String exampleBinary2;
   boolean exampleBoolean1;
   boolean exampleBoolean2;
+  String exampleString1;
+  String exampleString2;
   ScrabbleInt sInt1;
   ScrabbleInt sInt2;
   ScrabbleFloat sFloat1;
@@ -25,6 +34,8 @@ class OperatorTest {
   ScrabbleBinary sBinary2;
   ScrabbleBoolean sBool1;
   ScrabbleBoolean sBool2;
+  ScrabbleString sString1;
+  ScrabbleString sString2;
 
   @BeforeEach
   void setUp() {
@@ -51,6 +62,13 @@ class OperatorTest {
       exampleBoolean2 = rndm.nextBoolean();
     } while (exampleBoolean1 == exampleBoolean2);
 
+    exampleString1 = RandomStringUtils.random(Math.abs(rndm.nextInt(20)), 0, Character.MAX_CODE_POINT, true,
+        true, null, rndm);
+
+    do{
+      exampleString2 = RandomStringUtils.random(Math.abs(rndm.nextInt(20)), 0, Character.MAX_CODE_POINT, true,
+          true, null, rndm);
+    } while (exampleString1.equals(exampleString2));
     sInt1 = new ScrabbleInt(exampleInt1);
     sInt2 = new ScrabbleInt(exampleInt2);
     sFloat1 = new ScrabbleFloat(exampleFloat1);
@@ -59,12 +77,12 @@ class OperatorTest {
     sBinary2 = new ScrabbleBinary(exampleBinary2);
     sBool1 = new ScrabbleBoolean(exampleBoolean1);
     sBool2 = new ScrabbleBoolean(exampleBoolean2);
-
+    sString1 = new ScrabbleString(exampleString1);
+    sString2 = new ScrabbleString(exampleString1);
   }
 
   @Test
   void evaluate() {
-    // Pendiente, no alcancé
     var tree = new Add(
         sFloat1,
         new Or(
@@ -79,7 +97,21 @@ class OperatorTest {
             sInt1,
             sBinary2
         ).asBinary();
-    tree1.evaluate();
+
+    var tree2 = new And(
+        sBinary1,
+        new Subt(
+            sInt1,
+            sBinary2
+        ).asBinary());
+
+    var tree3 = new Add(
+        sString2,
+        sInt1).asBinary();
+
+    System.out.println("hola");
+    System.out.println(tree3.evaluate());
+
 
 
 

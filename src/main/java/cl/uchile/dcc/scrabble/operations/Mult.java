@@ -1,13 +1,15 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
+import cl.uchile.dcc.scrabble.types.ScrabbleNumber;
+import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
-public class Or implements Operation {
+public class Mult implements Operation {
   Operation left;
   Operation right;
 
 
-  public Or(Operation left, Operation right) {
+  public Mult(Operation left, Operation right) {
     this.left = left;
     this.right = right;
   }
@@ -35,7 +37,7 @@ public class Or implements Operation {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(Or.class, left, right);
+    return Objects.hash(Mult.class, left, right);
   }
 
   /**
@@ -43,8 +45,8 @@ public class Or implements Operation {
    */
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof Or) {
-      var o = (Or) obj;
+    if (obj instanceof Mult) {
+      var o = (Mult) obj;
       return o.getLeft().equals(this.left) && o.getRight().equals(this.right);
     }
     return false;
@@ -57,8 +59,8 @@ public class Or implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    ScrabbleLogic prop1 = (ScrabbleLogic) left.evaluate();
-    ScrabbleLogic prop2 = (ScrabbleLogic) right.evaluate();
-    return (ScrabbleType) prop1.disjunctionWith(prop2);
+    ScrabbleNumber multiplicant = (ScrabbleNumber) left.evaluate();
+    ScrabbleNumber multiplicator = (ScrabbleNumber) right.evaluate();
+    return (ScrabbleType) multiplicant.multiplyWith(multiplicator);
   }
 }

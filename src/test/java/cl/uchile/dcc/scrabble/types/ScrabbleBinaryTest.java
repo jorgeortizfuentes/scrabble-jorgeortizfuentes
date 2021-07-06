@@ -1,5 +1,11 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.types;
 
+import cl.uchile.dcc.scrabble.types.BinUtilities;
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
+import cl.uchile.dcc.scrabble.types.ScrabbleBoolean;
+import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
+import cl.uchile.dcc.scrabble.types.ScrabbleInt;
+import cl.uchile.dcc.scrabble.types.ScrabbleString;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -147,7 +153,36 @@ class ScrabbleBinaryTest {
   void conjunctionByBinary() {
     var sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected = sBin.conjunctionByBinary(sBin2);
-    assertNull(expected);
+
+
+    String v1;
+    String v2;
+
+    int lengthDifference = Math.abs(sBin.getContent().length() - sBin2.getContent().length());
+
+    if (sBin.getContent().length() >= sBin2.getContent().length()) {
+      v1 = sBin.getContent();
+      v2 = sBin2.getContent();
+    } else {
+      v1 = sBin2.getContent();
+      v2 = sBin.getContent();
+    }
+    var newV2 = new StringBuilder();
+    newV2.append(v2);
+    newV2.append("1".repeat(lengthDifference));
+    v2 = newV2.toString();
+
+    StringBuilder newBinary = new StringBuilder();
+    for (int i = 0; i < v1.length(); i++) {
+      if (v1.charAt(i) == '1' && v2.charAt(i) == '1') {
+        newBinary.append("1");
+      } else{
+        newBinary.append("0");
+      }
+    }
+    var conjunction = new ScrabbleBinary(newBinary.toString());
+
+    assertEquals(expected, conjunction);
   }
 
   @RepeatedTest(20)
@@ -190,7 +225,36 @@ class ScrabbleBinaryTest {
   void disjunctionByBinary() {
     var sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected = sBin.disjunctionByBinary(sBin2);
-    assertNull(expected);
+
+
+    String v1;
+    String v2;
+
+    int lengthDifference = Math.abs(sBin.getContent().length() - sBin2.getContent().length());
+
+    if (sBin.getContent().length() >= sBin2.getContent().length()) {
+      v1 = sBin.getContent();
+      v2 = sBin2.getContent();
+    } else {
+      v1 = sBin2.getContent();
+      v2 = sBin.getContent();
+    }
+    var newV2 = new StringBuilder();
+    newV2.append(v2);
+    newV2.append("0".repeat(lengthDifference));
+    v2 = newV2.toString();
+
+    StringBuilder newBinary = new StringBuilder();
+    for (int i = 0; i < v1.length(); i++) {
+      if (v1.charAt(i) == '0' && v2.charAt(i) == '0') {
+        newBinary.append("0");
+      } else{
+        newBinary.append("1");
+      }
+    }
+    var disjunction = new ScrabbleBinary(newBinary.toString());
+
+    assertEquals(expected, disjunction);
   }
 
   @RepeatedTest(20)

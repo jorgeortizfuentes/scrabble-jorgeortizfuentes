@@ -1,13 +1,16 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
+import cl.uchile.dcc.scrabble.types.ScrabbleNumber;
+import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
-public class Mult implements Operation {
+public class Add implements Operation {
   Operation left;
   Operation right;
 
 
-  public Mult(Operation left, Operation right) {
+  public Add(Operation left, Operation right) {
     this.left = left;
     this.right = right;
   }
@@ -35,7 +38,7 @@ public class Mult implements Operation {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(Mult.class, left, right);
+    return Objects.hash(Add.class, left, right);
   }
 
   /**
@@ -43,12 +46,13 @@ public class Mult implements Operation {
    */
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof Mult) {
-      var o = (Mult) obj;
+    if (obj instanceof Add) {
+      var o = (Add) obj;
       return o.getLeft().equals(this.left) && o.getRight().equals(this.right);
     }
     return false;
   }
+
 
   /**
    * Evaluate the operations tree
@@ -57,8 +61,16 @@ public class Mult implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    ScrabbleNumber multiplicant = (ScrabbleNumber) left.evaluate();
-    ScrabbleNumber multiplicator = (ScrabbleNumber) right.evaluate();
-    return (ScrabbleType) multiplicant.multiplyWith(multiplicator);
+    return left.evaluate().addWith(right.evaluate());
+  }
+
+  /**
+   * Returns the object in ScrabbleBinary format.
+   *
+   * @return content of the object in ScrabbleBinary format
+   */
+  public ScrabbleBinary asBinary() {
+    ScrabbleNumber evaluation = (ScrabbleNumber) this.evaluate();
+    return evaluation.asBinary();
   }
 }

@@ -1,4 +1,6 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
+
+import cl.uchile.dcc.scrabble.types.ScrabbleType;
 
 public class Operator implements Operation {
   Operation info;
