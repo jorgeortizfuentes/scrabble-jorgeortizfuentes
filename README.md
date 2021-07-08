@@ -9,8 +9,7 @@ This work is licensed under a
 and aims purely to be used with the purpose of teaching in the context of the course 
 _CC3002 Metodologías de Diseño y programación_ of the 
 [_Computer Sciences Department (DCC)_](https://www.dcc.uchile.cl) of the 
-_University of Chile_.
-
+_University of Chile_. Developed by Jorge Luis Ortiz Fuentes
 ---
 
 ## Executing
