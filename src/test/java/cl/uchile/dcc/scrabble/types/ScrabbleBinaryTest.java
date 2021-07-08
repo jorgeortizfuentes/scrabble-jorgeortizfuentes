@@ -1,19 +1,13 @@
 package cl.uchile.dcc.scrabble.types;
 
-import cl.uchile.dcc.scrabble.types.BinUtilities;
-import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
-import cl.uchile.dcc.scrabble.types.ScrabbleBoolean;
-import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
-import cl.uchile.dcc.scrabble.types.ScrabbleInt;
-import cl.uchile.dcc.scrabble.types.ScrabbleString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-
-import java.util.Random;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ScrabbleBinaryTest {
 
@@ -71,7 +65,7 @@ class ScrabbleBinaryTest {
 
   @RepeatedTest(20)
   void testAsString() {
-    assertEquals(new ScrabbleString(exampleBinary1), sBin.asString());
+    Assertions.assertEquals(new ScrabbleString(exampleBinary1), sBin.asString());
     assertNotEquals(new ScrabbleString(exampleBinary2), sBin.asString());
   }
 
@@ -154,7 +148,6 @@ class ScrabbleBinaryTest {
     var sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected = sBin.conjunctionByBinary(sBin2);
 
-
     String v1;
     String v2;
 
@@ -168,15 +161,15 @@ class ScrabbleBinaryTest {
       v2 = sBin.getContent();
     }
     var newV2 = new StringBuilder();
+    newV2.append("0".repeat(lengthDifference));
     newV2.append(v2);
-    newV2.append("1".repeat(lengthDifference));
     v2 = newV2.toString();
 
     StringBuilder newBinary = new StringBuilder();
     for (int i = 0; i < v1.length(); i++) {
       if (v1.charAt(i) == '1' && v2.charAt(i) == '1') {
         newBinary.append("1");
-      } else{
+      } else {
         newBinary.append("0");
       }
     }
@@ -226,7 +219,6 @@ class ScrabbleBinaryTest {
     var sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected = sBin.disjunctionByBinary(sBin2);
 
-
     String v1;
     String v2;
 
@@ -240,15 +232,15 @@ class ScrabbleBinaryTest {
       v2 = sBin.getContent();
     }
     var newV2 = new StringBuilder();
-    newV2.append(v2);
     newV2.append("0".repeat(lengthDifference));
+    newV2.append(v2);
     v2 = newV2.toString();
 
     StringBuilder newBinary = new StringBuilder();
     for (int i = 0; i < v1.length(); i++) {
       if (v1.charAt(i) == '0' && v2.charAt(i) == '0') {
         newBinary.append("0");
-      } else{
+      } else {
         newBinary.append("1");
       }
     }
@@ -262,7 +254,8 @@ class ScrabbleBinaryTest {
     ScrabbleBinary sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected1 = sBin.addWith(sBin2);
     var actual =
-        new ScrabbleInt(BinUtilities.binaryToInt(exampleBinary1) + BinUtilities.binaryToInt(exampleBinary2))
+        new ScrabbleInt(
+            BinUtilities.binaryToInt(exampleBinary1) + BinUtilities.binaryToInt(exampleBinary2))
             .asBinary();
     assertEquals(expected1, actual);
   }
@@ -306,7 +299,8 @@ class ScrabbleBinaryTest {
     ScrabbleBinary sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected1 = sBin.addedByBinary(sBin2);
     var actual =
-        new ScrabbleInt(BinUtilities.binaryToInt(exampleBinary1) + BinUtilities.binaryToInt(exampleBinary2))
+        new ScrabbleInt(
+            BinUtilities.binaryToInt(exampleBinary1) + BinUtilities.binaryToInt(exampleBinary2))
             .asBinary();
     assertEquals(expected1, actual);
   }
@@ -316,7 +310,8 @@ class ScrabbleBinaryTest {
     ScrabbleBinary sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected1 = sBin2.subtractWith(sBin);
     var actual =
-        new ScrabbleInt(BinUtilities.binaryToInt(exampleBinary2) - BinUtilities.binaryToInt(exampleBinary1))
+        new ScrabbleInt(
+            BinUtilities.binaryToInt(exampleBinary2) - BinUtilities.binaryToInt(exampleBinary1))
             .asBinary();
     assertEquals(expected1, actual);
   }
@@ -346,7 +341,8 @@ class ScrabbleBinaryTest {
     ScrabbleBinary sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected1 = sBin.subtractedByBinary(sBin2);
     var actual =
-        new ScrabbleInt(BinUtilities.binaryToInt(exampleBinary2) - BinUtilities.binaryToInt(exampleBinary1))
+        new ScrabbleInt(
+            BinUtilities.binaryToInt(exampleBinary2) - BinUtilities.binaryToInt(exampleBinary1))
             .asBinary();
     assertEquals(expected1, actual);
   }
@@ -356,7 +352,8 @@ class ScrabbleBinaryTest {
     ScrabbleBinary sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected1 = sBin2.multiplyWith(sBin);
     var actual =
-        new ScrabbleInt(BinUtilities.binaryToInt(exampleBinary2) * BinUtilities.binaryToInt(exampleBinary1))
+        new ScrabbleInt(
+            BinUtilities.binaryToInt(exampleBinary2) * BinUtilities.binaryToInt(exampleBinary1))
             .asBinary();
     assertEquals(expected1, actual);
   }
@@ -386,7 +383,8 @@ class ScrabbleBinaryTest {
     ScrabbleBinary sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected1 = sBin.multipliedByBinary(sBin2);
     var actual =
-        new ScrabbleInt(BinUtilities.binaryToInt(exampleBinary2) * BinUtilities.binaryToInt(exampleBinary1))
+        new ScrabbleInt(
+            BinUtilities.binaryToInt(exampleBinary2) * BinUtilities.binaryToInt(exampleBinary1))
             .asBinary();
     assertEquals(expected1, actual);
   }
@@ -404,7 +402,8 @@ class ScrabbleBinaryTest {
     ScrabbleBinary sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected1 = sBin2.divideWith(sBin3);
     var actual =
-        new ScrabbleInt(BinUtilities.binaryToInt(exampleBinary2) / BinUtilities.binaryToInt(exampleBinary3))
+        new ScrabbleInt(
+            BinUtilities.binaryToInt(exampleBinary2) / BinUtilities.binaryToInt(exampleBinary3))
             .asBinary();
     assertEquals(expected1, actual);
   }
@@ -456,8 +455,16 @@ class ScrabbleBinaryTest {
     ScrabbleBinary sBin2 = new ScrabbleBinary(exampleBinary2);
     var expected1 = sBin3.dividedByBinary(sBin2);
     var actual =
-        new ScrabbleInt(BinUtilities.binaryToInt(exampleBinary2) / BinUtilities.binaryToInt(exampleBinary3))
+        new ScrabbleInt(
+            BinUtilities.binaryToInt(exampleBinary2) / BinUtilities.binaryToInt(exampleBinary3))
             .asBinary();
     assertEquals(expected1, actual);
   }
+
+  @RepeatedTest(20)
+  void evaluate() {
+    var expected = sBin.evaluate();
+    assertEquals(expected, sBin);
+  }
+
 }

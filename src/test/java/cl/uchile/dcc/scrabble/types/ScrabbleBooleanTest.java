@@ -4,13 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
-import cl.uchile.dcc.scrabble.types.ScrabbleBoolean;
-import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
-import cl.uchile.dcc.scrabble.types.ScrabbleInt;
-import cl.uchile.dcc.scrabble.types.ScrabbleString;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -58,7 +54,7 @@ class ScrabbleBooleanTest {
   void testAsString() {
     String exampleBooleanStr1 = Boolean.toString(exampleBoolean1);
     String exampleBooleanStr2 = Boolean.toString(exampleBoolean2);
-    assertEquals(new ScrabbleString(exampleBooleanStr1), boolScr.asString());
+    Assertions.assertEquals(new ScrabbleString(exampleBooleanStr1), boolScr.asString());
     assertNotEquals(new ScrabbleString(exampleBooleanStr2), boolScr.asString());
   }
 
@@ -223,6 +219,12 @@ class ScrabbleBooleanTest {
 
     var expected = boolScr.addedByBinary(sBin);
     assertNull(expected);
+  }
+
+  @RepeatedTest(20)
+  void evaluate() {
+    var expected = boolScr.evaluate();
+    assertEquals(expected, boolScr);
   }
 
 }

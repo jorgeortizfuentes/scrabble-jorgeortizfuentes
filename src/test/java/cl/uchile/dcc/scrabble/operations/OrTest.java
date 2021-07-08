@@ -1,8 +1,9 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import cl.uchile.dcc.scrabble.operations.Or;
 import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
 import cl.uchile.dcc.scrabble.types.ScrabbleBoolean;
 import java.util.Random;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 
 class OrTest {
+
   String exampleBinary1;
   String exampleBinary2;
   boolean exampleBoolean1;
@@ -29,14 +31,14 @@ class OrTest {
     int seed = new Random().nextInt();
     Random rndm = new Random(seed);
 
-    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
-    do{
-      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
+    do {
+      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
 
     } while (exampleBinary1.equals(exampleBinary2));
 
     exampleBoolean1 = rndm.nextBoolean();
-    do{
+    do {
       exampleBoolean2 = rndm.nextBoolean();
     } while (exampleBoolean1 == exampleBoolean2);
 
@@ -46,17 +48,17 @@ class OrTest {
     sBool1 = new ScrabbleBoolean(exampleBoolean1);
     sBool2 = new ScrabbleBoolean(exampleBoolean2);
 
-    boolOr = new Or(sBool1,sBool2);
-    binOr = new Or(sBinary1,sBinary2);
-    binBoolOr = new Or(sBinary1,sBool1);
-    treeOr = new Or(sBinary1,new Or(sBool1,sBinary1));
+    boolOr = new Or(sBool1, sBool2);
+    binOr = new Or(sBinary1, sBinary2);
+    binBoolOr = new Or(sBinary1, sBool1);
+    treeOr = new Or(sBinary1, new Or(sBool1, sBinary1));
   }
 
   @RepeatedTest(20)
   void testConstructor() {
     // Bool constructor
-    var boolExpected = new Or(sBool1,sBool2);
-    var noBoolExpected = new Or(sBool1,sBool1);
+    var boolExpected = new Or(sBool1, sBool2);
+    var noBoolExpected = new Or(sBool1, sBool1);
 
     assertEquals(boolExpected, boolOr);
     assertEquals(boolExpected.hashCode(), boolOr.hashCode());
@@ -65,8 +67,8 @@ class OrTest {
     assertNotEquals(noBoolExpected.hashCode(), boolOr.hashCode());
 
     // Binary constructor
-    var binExpected = new Or(sBinary1,sBinary2);
-    var noBinExpected = new Or(sBinary1,sBinary1);
+    var binExpected = new Or(sBinary1, sBinary2);
+    var noBinExpected = new Or(sBinary1, sBinary1);
 
     assertEquals(binExpected, binOr);
     assertEquals(binExpected.hashCode(), binOr.hashCode());
@@ -75,8 +77,8 @@ class OrTest {
     assertNotEquals(noBinExpected.hashCode(), binOr.hashCode());
 
     // Binary and Boolean constructor
-    var binBoolExpected = new Or(sBinary1,sBool1);
-    var noBinBoolExpected = new Or(sBinary1,sBool2);
+    var binBoolExpected = new Or(sBinary1, sBool1);
+    var noBinBoolExpected = new Or(sBinary1, sBool2);
 
     assertEquals(binBoolExpected, binBoolOr);
     assertEquals(binBoolExpected.hashCode(), binBoolOr.hashCode());
@@ -85,8 +87,8 @@ class OrTest {
     assertNotEquals(noBinBoolExpected.hashCode(), binBoolOr.hashCode());
 
     // Complex tree constructor
-    var complexExpected = new Or(sBinary1,new Or(sBool1,sBinary1));
-    var noComplexExpected = new Or(sBinary1,new Or(sBool2,sBinary1));
+    var complexExpected = new Or(sBinary1, new Or(sBool1, sBinary1));
+    var noComplexExpected = new Or(sBinary1, new Or(sBool2, sBinary1));
 
     assertEquals(complexExpected, treeOr);
     assertEquals(complexExpected.hashCode(), treeOr.hashCode());
@@ -116,7 +118,7 @@ class OrTest {
     assertEquals(sBinary2, binOr.getRight());
     assertNotEquals(sBinary1, binOr.getRight());
 
-    assertEquals(new Or(sBool1,sBinary1), treeOr.getRight());
+    assertEquals(new Or(sBool1, sBinary1), treeOr.getRight());
     assertNotEquals(sBinary1, treeOr.getRight());
 
   }
@@ -129,13 +131,15 @@ class OrTest {
     assertEquals(boolOr.evaluate(), new ScrabbleBoolean(exBoolOr));
 
     // Test two binaries
-    var exBinOr = sBinary1.conjunctionWith(sBinary2);
+    var exBinOr = sBinary1.disjunctionWith(sBinary2);
     assertEquals(binOr.evaluate(), exBinOr);
 
-
     // Test binary with boolean
+    var exBoolBin = sBinary1.disjunctionWith(sBool1);
+    assertEquals(binBoolOr.evaluate(), exBoolBin);
 
-    // Test complex tree
-
+    // Test with nulls
+    var nullTree = new Or(null, null);
+    assertNull(nullTree.evaluate());
   }
 }

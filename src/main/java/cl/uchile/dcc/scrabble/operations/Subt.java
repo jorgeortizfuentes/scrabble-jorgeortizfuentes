@@ -1,15 +1,31 @@
 package cl.uchile.dcc.scrabble.operations;
 
-import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
-import cl.uchile.dcc.scrabble.types.ScrabbleNumber;
 import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
-public class Subt implements Operation {
+/**
+ * Implementation of <i>Subtraction operation</i>.
+ *
+ * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
+ */
+public class Subt extends AbstractOperation implements Operation {
+
+  /**
+   * Left leaf of the tree
+   */
   Operation left;
+
+  /**
+   * Right leaf of the tree
+   */
   Operation right;
 
-
+  /**
+   * Constructor of an Subtraction Tree
+   *
+   * @param left  left tree object
+   * @param right left tree object
+   */
   public Subt(Operation left, Operation right) {
     this.left = left;
     this.right = right;
@@ -60,18 +76,12 @@ public class Subt implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    ScrabbleNumber minuend = (ScrabbleNumber) left.evaluate();
-    ScrabbleNumber subtrahend = (ScrabbleNumber) right.evaluate();
-    return (ScrabbleType) minuend.subtractWith(subtrahend);
+    if (left == null || right == null) {
+      return null;
+    } else {
+      return left.evaluate().subtractWith(right.evaluate());
+    }
+
   }
 
-  /**
-   * Returns the object in ScrabbleBinary format.
-   *
-   * @return content of the object in ScrabbleBinary format
-   */
-  public ScrabbleBinary asBinary() {
-    ScrabbleNumber evaluation = (ScrabbleNumber) this.evaluate();
-    return evaluation.asBinary();
-  }
 }

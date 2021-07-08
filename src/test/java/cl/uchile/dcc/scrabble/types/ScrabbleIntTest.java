@@ -3,13 +3,9 @@ package cl.uchile.dcc.scrabble.types;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import cl.uchile.dcc.scrabble.types.BinUtilities;
-import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
-import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
-import cl.uchile.dcc.scrabble.types.ScrabbleInt;
-import cl.uchile.dcc.scrabble.types.ScrabbleString;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 
@@ -60,7 +56,7 @@ class ScrabbleIntTest {
   void testAsString() {
     String exampleStrInt1 = Integer.toString(exampleInt1);
     String exampleStrInt2 = Integer.toString(exampleInt2);
-    assertEquals(new ScrabbleString(exampleStrInt1), sInt.asString());
+    Assertions.assertEquals(new ScrabbleString(exampleStrInt1), sInt.asString());
     assertNotEquals(new ScrabbleString(exampleStrInt2), sInt.asString());
   }
 
@@ -308,5 +304,11 @@ class ScrabbleIntTest {
     int sum = sBin1.asInt().getContent() / exampleInt1;
     ScrabbleBinary actual = new ScrabbleBinary(BinUtilities.intToBinary(sum));
     assertEquals(expected, actual);
+  }
+
+  @RepeatedTest(20)
+  void evaluate() {
+    var expected = sInt.evaluate();
+    assertEquals(expected, sInt);
   }
 }

@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class ScrabbleString implements ScrabbleType, Operation {
+public class ScrabbleString extends ScrabbleAbstract implements Operation {
 
   /**
    * Object content with a java string
@@ -16,7 +16,7 @@ public class ScrabbleString implements ScrabbleType, Operation {
   protected String content;
 
   /**
-   * ScrabbleString Constructor Constructs a String object of Scrabble type.
+   * ScrabbleString Constructor Constructs a String object of Scrabble cl.uchile.dcc.scrabble.type.
    *
    * @param javaStr receives a java string for the content of the object
    */
@@ -93,46 +93,13 @@ public class ScrabbleString implements ScrabbleType, Operation {
   }
 
   /**
-   * This object is tried to add to another object ScrabbleInt, but it is not possible
-   *
-   * @param c any ScrabbleInt object that can be added to
-   * @return null because this operation is invalid
-   */
-  @Override
-  public ScrabbleType addedByInt(ScrabbleInt c) {
-    return null;
-  }
-
-  /**
-   * This object is tried to add to another object ScrabbleFloat, but it is not possible
-   *
-   * @param c any ScrabbleFloat object that can be added to
-   * @return null because this operation is invalid
-   */
-  @Override
-  public ScrabbleType addedByFloat(ScrabbleFloat c) {
-    return null;
-  }
-
-  /**
-   * This object is tried to add to another object ScrabbleBinary, but it is not possible
-   *
-   * @param c any ScrabbleBinary object that can be added to
-   * @return null because this operation is invalid
-   */
-  @Override
-  public ScrabbleType addedByBinary(ScrabbleBinary c) {
-    return null;
-  }
-
-  /**
    * Evaluate the operations tree
    *
    * @return a ScrabbleType element
    */
   @Override
   public ScrabbleType evaluate() {
-    return new ScrabbleString(content);
+    return ScrabbleFactory.getString(content);
   }
 
 

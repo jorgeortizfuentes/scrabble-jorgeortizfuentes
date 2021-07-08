@@ -1,15 +1,32 @@
 package cl.uchile.dcc.scrabble.operations;
 
-import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
-import cl.uchile.dcc.scrabble.types.ScrabbleNumber;
+
 import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
-public class Add implements Operation {
+/**
+ * Implementation of <i>Add operation</i>.
+ *
+ * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
+ */
+public class Add extends AbstractOperation implements Operation {
+
+  /**
+   * Left leaf of the tree
+   */
   Operation left;
+
+  /**
+   * Right leaf of the tree
+   */
   Operation right;
 
-
+  /**
+   * Constructor of an Add tree
+   *
+   * @param left  left tree object
+   * @param right left tree object
+   */
   public Add(Operation left, Operation right) {
     this.left = left;
     this.right = right;
@@ -61,16 +78,13 @@ public class Add implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    return left.evaluate().addWith(right.evaluate());
+    if (left == null || right == null) {
+      return null;
+    } else {
+      return left.evaluate().addWith(right.evaluate());
+    }
+
   }
 
-  /**
-   * Returns the object in ScrabbleBinary format.
-   *
-   * @return content of the object in ScrabbleBinary format
-   */
-  public ScrabbleBinary asBinary() {
-    ScrabbleNumber evaluation = (ScrabbleNumber) this.evaluate();
-    return evaluation.asBinary();
-  }
+
 }

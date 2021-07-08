@@ -1,7 +1,6 @@
 package cl.uchile.dcc.scrabble.types;
 
 import cl.uchile.dcc.scrabble.operations.Operation;
-import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -9,7 +8,7 @@ import java.util.Objects;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
+public class ScrabbleBoolean extends ScrabbleAbstract implements Operation {
 
   /**
    * Object content with a java boolean
@@ -17,7 +16,8 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
   protected boolean content;
 
   /**
-   * ScrabbleBoolean Constructor Constructs a Boolean object of Scrabble type.
+   * ScrabbleBoolean Constructor Constructs a Boolean object of Scrabble
+   * cl.uchile.dcc.scrabble.type.
    *
    * @param javaBoolean receives a java boolean for the content of the object
    */
@@ -95,19 +95,19 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleLogic conjunctionWith(ScrabbleLogic c) {
+  public ScrabbleType conjunctionWith(ScrabbleType c) {
     return c.conjunctionByBoolean(this);
   }
 
   /**
    * This boolean is related according to the logical conjunction operation by another object of
-   * type ScrabbleBoolean
+   * cl.uchile.dcc.scrabble.type ScrabbleBoolean
    *
    * @param c a ScrabbleBoolean object
    * @return a new object with the conjunction between the two
    */
   @Override
-  public ScrabbleLogic conjunctionByBoolean(ScrabbleBoolean c) {
+  public ScrabbleType conjunctionByBoolean(ScrabbleBoolean c) {
     return new ScrabbleBoolean(c.getContent() && this.content);
   }
 
@@ -119,7 +119,7 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
    * @return a new object with the conjunction between the two
    */
   @Override
-  public ScrabbleLogic conjunctionByBinary(ScrabbleBinary c) {
+  public ScrabbleType conjunctionByBinary(ScrabbleBinary c) {
     StringBuilder newBinary = new StringBuilder();
     for (int i = 0; i < c.getContent().length(); i++) {
       if (c.getContent().charAt(i) == '0') {
@@ -139,19 +139,19 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleLogic disjunctionWith(ScrabbleLogic c) {
+  public ScrabbleType disjunctionWith(ScrabbleType c) {
     return c.disjunctionByBoolean(this);
   }
 
   /**
    * This boolean is related according to the logical disjunction operation by another object of
-   * type ScrabbleBoolean
+   * cl.uchile.dcc.scrabble.type ScrabbleBoolean
    *
    * @param c a ScrabbleBoolean object
    * @return a new object with the disjunction between the two
    */
   @Override
-  public ScrabbleLogic disjunctionByBoolean(ScrabbleBoolean c) {
+  public ScrabbleType disjunctionByBoolean(ScrabbleBoolean c) {
     return new ScrabbleBoolean(c.getContent() || this.content);
   }
 
@@ -163,7 +163,7 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
    * @return a new object with the disjunction between the two
    */
   @Override
-  public ScrabbleLogic disjunctionByBinary(ScrabbleBinary c) {
+  public ScrabbleType disjunctionByBinary(ScrabbleBinary c) {
     StringBuilder newBinary = new StringBuilder();
     for (int i = 0; i < c.getContent().length(); i++) {
       if (c.getContent().charAt(i) == '1') {
@@ -180,17 +180,6 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
   }
 
   /**
-   * To this object is tried to add another object, but it is not possible
-   *
-   * @param c any ScrabbleType object
-   * @return null
-   */
-  @Override
-  public ScrabbleType addWith(ScrabbleType c) {
-    return null;
-  }
-
-  /**
    * This object is concatenated to another object ScrabbleString.
    *
    * @param c any ScrabbleString object
@@ -203,49 +192,13 @@ public class ScrabbleBoolean implements ScrabbleType, ScrabbleLogic, Operation {
   }
 
   /**
-   * This object is tried to add to another object ScrabbleInt, but it is not possible
-   *
-   * @param c any ScrabbleInt object that can be added to
-   * @return null because this operation is invalid
-   */
-  @Override
-  public ScrabbleType addedByInt(ScrabbleInt c) {
-    // Invalid operation
-    return null;
-  }
-
-  /**
-   * This object is tried to add to another object ScrabbleFloat, but it is not possible
-   *
-   * @param c any ScrabbleFloat object that can be added to
-   * @return null because this operation is invalid
-   */
-  @Override
-  public ScrabbleType addedByFloat(ScrabbleFloat c) {
-    // Invalid operation
-    return null;
-  }
-
-  /**
-   * This object is tried to add to another object ScrabbleBinary, but it is not possible
-   *
-   * @param c any ScrabbleBinary object that can be added to
-   * @return null because this operation is invalid
-   */
-  @Override
-  public ScrabbleType addedByBinary(ScrabbleBinary c) {
-    // Invalid operation
-    return null;
-  }
-
-  /**
    * Evaluate the operations tree
    *
    * @return a ScrabbleType element
    */
   @Override
   public ScrabbleType evaluate() {
-    return new ScrabbleBoolean(content);
+    return ScrabbleFactory.getBoolean(content);
   }
 
 }

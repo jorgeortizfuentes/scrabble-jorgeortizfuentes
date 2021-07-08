@@ -1,13 +1,14 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import cl.uchile.dcc.scrabble.operations.Add;
 import cl.uchile.dcc.scrabble.types.BinUtilities;
 import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
 import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
 import cl.uchile.dcc.scrabble.types.ScrabbleInt;
+import cl.uchile.dcc.scrabble.types.ScrabbleString;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,43 +16,61 @@ import org.junit.jupiter.api.RepeatedTest;
 
 class AddTest {
 
+  String exampleString1;
+  String exampleString2;
   int exampleInt1;
   int exampleInt2;
   double exampleFloat1;
   double exampleFloat2;
   String exampleBinary1;
   String exampleBinary2;
+  ScrabbleString sString1;
+  ScrabbleString sString2;
   ScrabbleInt sInt1;
   ScrabbleInt sInt2;
   ScrabbleFloat sFloat1;
   ScrabbleFloat sFloat2;
   ScrabbleBinary sBinary1;
   ScrabbleBinary sBinary2;
+  Add strAdd;
   Add intAdd;
   Add floatAdd;
   Add binaryAdd;
   Add treeAdd;
+
 
   @BeforeEach
   void setUp() {
     int seed = new Random().nextInt();
     Random rndm = new Random(seed);
 
+    exampleString1 = RandomStringUtils
+        .random(Math.abs(rndm.nextInt(20)), 0, Character.MAX_CODE_POINT, true,
+            true, null, rndm);
+
+    do {
+      exampleString2 = RandomStringUtils
+          .random(Math.abs(rndm.nextInt(20)), 0, Character.MAX_CODE_POINT, true,
+              true, null, rndm);
+    } while (exampleString1.equals(exampleString2));
+
     exampleInt1 = rndm.nextInt();
-    do{
+    do {
       exampleInt2 = rndm.nextInt();
     } while (exampleInt1 == exampleInt2);
     exampleFloat1 = rndm.nextDouble();
-    do{
+    do {
       exampleFloat2 = rndm.nextDouble();
     } while (exampleFloat1 == exampleFloat2);
 
-    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
-    do{
-      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
+    do {
+      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
 
     } while (exampleBinary1.equals(exampleBinary2));
 
+    sString1 = new ScrabbleString(exampleString1);
+    sString2 = new ScrabbleString(exampleString2);
     sInt1 = new ScrabbleInt(exampleInt1);
     sInt2 = new ScrabbleInt(exampleInt2);
     sFloat1 = new ScrabbleFloat(exampleFloat1);
@@ -59,17 +78,28 @@ class AddTest {
     sBinary1 = new ScrabbleBinary(exampleBinary1);
     sBinary2 = new ScrabbleBinary(exampleBinary2);
 
-    intAdd = new Add(sInt1,sInt2);
-    floatAdd = new Add(sFloat1,sFloat2);
-    binaryAdd = new Add(sBinary1,sBinary2);
+    strAdd = new Add(sString1, sString2);
+    intAdd = new Add(sInt1, sInt2);
+    floatAdd = new Add(sFloat1, sFloat2);
+    binaryAdd = new Add(sBinary1, sBinary2);
     treeAdd = new Add(floatAdd, new Add(intAdd, binaryAdd));
   }
 
   @RepeatedTest(20)
   void testConstructor() {
+    // String constructor
+    var stringExpected = new Add(sString1, sString2);
+    var noStringExpected = new Add(sString1, sString1);
+
+    assertEquals(stringExpected, strAdd);
+    assertEquals(stringExpected.hashCode(), strAdd.hashCode());
+
+    assertNotEquals(noStringExpected, strAdd);
+    assertNotEquals(noStringExpected.hashCode(), strAdd.hashCode());
+
     // Int constructor
-    var intExpected = new Add(sInt1,sInt2);
-    var noIntExpected = new Add(sInt2,sInt2);
+    var intExpected = new Add(sInt1, sInt2);
+    var noIntExpected = new Add(sInt2, sInt2);
 
     assertEquals(intExpected, intAdd);
     assertEquals(intExpected.hashCode(), intAdd.hashCode());
@@ -78,8 +108,8 @@ class AddTest {
     assertNotEquals(noIntExpected.hashCode(), intAdd.hashCode());
 
     // Float constructor
-    var floatExpected = new Add(sFloat1,sFloat2);
-    var noFloatExpected = new Add(sFloat2,sFloat2);
+    var floatExpected = new Add(sFloat1, sFloat2);
+    var noFloatExpected = new Add(sFloat2, sFloat2);
 
     assertEquals(floatExpected, floatAdd);
     assertEquals(floatExpected.hashCode(), floatAdd.hashCode());
@@ -88,8 +118,8 @@ class AddTest {
     assertNotEquals(noFloatExpected.hashCode(), floatAdd.hashCode());
 
     // Binary constructor
-    var binaryExpected = new Add(sBinary1,sBinary2);
-    var noBinaryExpected = new Add(sBinary2,sBinary2);
+    var binaryExpected = new Add(sBinary1, sBinary2);
+    var noBinaryExpected = new Add(sBinary2, sBinary2);
 
     assertEquals(binaryExpected, binaryAdd);
     assertEquals(binaryExpected.hashCode(), binaryAdd.hashCode());
@@ -136,8 +166,12 @@ class AddTest {
   @RepeatedTest(20)
   void evaluate() {
 
+    // Test with two strings
+    String stringAdd = exampleString1 + exampleString2;
+    assertEquals(strAdd.evaluate(), new ScrabbleString(stringAdd));
+
     // Test two ints
-    int exIntAdd = exampleInt1+ exampleInt2;
+    int exIntAdd = exampleInt1 + exampleInt2;
     assertEquals(intAdd.evaluate(), new ScrabbleInt(exIntAdd));
 
     // Test two floats
@@ -156,6 +190,8 @@ class AddTest {
     double secondAdd = exDoubleAdd + firstAdd;
     assertEquals(treeAdd.evaluate(), new ScrabbleFloat(secondAdd));
 
-    // Test with Strings
+    // Test with nulls
+    var nullTree = new Add(null, null);
+    assertNull(nullTree.evaluate());
   }
 }

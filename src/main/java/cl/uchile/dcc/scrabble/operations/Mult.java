@@ -1,14 +1,31 @@
 package cl.uchile.dcc.scrabble.operations;
 
-import cl.uchile.dcc.scrabble.types.ScrabbleNumber;
 import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
-public class Mult implements Operation {
+/**
+ * Implementation of <i>Multiplication operation</i>.
+ *
+ * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
+ */
+public class Mult extends AbstractOperation implements Operation {
+
+  /**
+   * Left leaf of the tree
+   */
   Operation left;
+
+  /**
+   * Right leaf of the tree
+   */
   Operation right;
 
-
+  /**
+   * Constructor of an Multiplication tree
+   *
+   * @param left  left tree object
+   * @param right left tree object
+   */
   public Mult(Operation left, Operation right) {
     this.left = left;
     this.right = right;
@@ -59,8 +76,11 @@ public class Mult implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    ScrabbleNumber multiplicant = (ScrabbleNumber) left.evaluate();
-    ScrabbleNumber multiplicator = (ScrabbleNumber) right.evaluate();
-    return (ScrabbleType) multiplicant.multiplyWith(multiplicator);
+    if (left == null || right == null) {
+      return null;
+    } else {
+      return left.evaluate().multiplyWith(right.evaluate());
+    }
   }
+
 }

@@ -1,8 +1,9 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import cl.uchile.dcc.scrabble.operations.Mult;
 import cl.uchile.dcc.scrabble.types.BinUtilities;
 import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
 import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
@@ -37,17 +38,17 @@ class MultTest {
     Random rndm = new Random(seed);
 
     exampleInt1 = rndm.nextInt();
-    do{
+    do {
       exampleInt2 = rndm.nextInt();
     } while (exampleInt1 == exampleInt2);
     exampleFloat1 = rndm.nextDouble();
-    do{
+    do {
       exampleFloat2 = rndm.nextDouble();
     } while (exampleFloat1 == exampleFloat2);
 
-    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
-    do{
-      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
+    do {
+      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
 
     } while (exampleBinary1.equals(exampleBinary2));
 
@@ -58,17 +59,17 @@ class MultTest {
     sBinary1 = new ScrabbleBinary(exampleBinary1);
     sBinary2 = new ScrabbleBinary(exampleBinary2);
 
-    intMult = new Mult(sInt1,sInt2);
-    floatMult = new Mult(sFloat1,sFloat2);
-    binaryMult = new Mult(sBinary1,sBinary2);
+    intMult = new Mult(sInt1, sInt2);
+    floatMult = new Mult(sFloat1, sFloat2);
+    binaryMult = new Mult(sBinary1, sBinary2);
     treeMult = new Mult(floatMult, new Mult(intMult, binaryMult));
   }
 
   @RepeatedTest(20)
   void testConstructor() {
     // Int constructor
-    var intExpected = new Mult(sInt1,sInt2);
-    var noIntExpected = new Mult(sInt2,sInt2);
+    var intExpected = new Mult(sInt1, sInt2);
+    var noIntExpected = new Mult(sInt2, sInt2);
 
     assertEquals(intExpected, intMult);
     assertEquals(intExpected.hashCode(), intMult.hashCode());
@@ -77,8 +78,8 @@ class MultTest {
     assertNotEquals(noIntExpected.hashCode(), intMult.hashCode());
 
     // Float constructor
-    var floatExpected = new Mult(sFloat1,sFloat2);
-    var noFloatExpected = new Mult(sFloat2,sFloat2);
+    var floatExpected = new Mult(sFloat1, sFloat2);
+    var noFloatExpected = new Mult(sFloat2, sFloat2);
 
     assertEquals(floatExpected, floatMult);
     assertEquals(floatExpected.hashCode(), floatMult.hashCode());
@@ -87,8 +88,8 @@ class MultTest {
     assertNotEquals(noFloatExpected.hashCode(), floatMult.hashCode());
 
     // Binary constructor
-    var binaryExpected = new Mult(sBinary1,sBinary2);
-    var noBinaryExpected = new Mult(sBinary2,sBinary2);
+    var binaryExpected = new Mult(sBinary1, sBinary2);
+    var noBinaryExpected = new Mult(sBinary2, sBinary2);
 
     assertEquals(binaryExpected, binaryMult);
     assertEquals(binaryExpected.hashCode(), binaryMult.hashCode());
@@ -136,23 +137,27 @@ class MultTest {
   void evaluate() {
 
     // Test two ints
-    int exIntMult = exampleInt1*exampleInt2;
+    int exIntMult = exampleInt1 * exampleInt2;
     assertEquals(intMult.evaluate(), new ScrabbleInt(exIntMult));
 
     // Test two floats
-    double exDoubleMult = exampleFloat1*exampleFloat2;
+    double exDoubleMult = exampleFloat1 * exampleFloat2;
     assertEquals(floatMult.evaluate(), new ScrabbleFloat(exDoubleMult));
 
     // Test two binaries
     int exBinAsInt1 = BinUtilities.binaryToInt(exampleBinary1);
     int exBinAsInt2 = BinUtilities.binaryToInt(exampleBinary2);
-    int exBinMult = exBinAsInt1*exBinAsInt2;
+    int exBinMult = exBinAsInt1 * exBinAsInt2;
     String productBin = BinUtilities.intToBinary(exBinMult);
     assertEquals(binaryMult.evaluate(), new ScrabbleBinary(productBin));
 
     // Test complex tree
-    int firstMult = exIntMult*exBinMult;
+    int firstMult = exIntMult * exBinMult;
     double secondMult = firstMult * exDoubleMult;
     assertEquals(treeMult.evaluate(), new ScrabbleFloat(secondMult));
+
+    // Test with nulls
+    var nullTree = new Mult(null, null);
+    assertNull(nullTree.evaluate());
   }
 }

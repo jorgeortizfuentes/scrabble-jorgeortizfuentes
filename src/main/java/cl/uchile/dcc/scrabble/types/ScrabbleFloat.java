@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
+public class ScrabbleFloat extends ScrabbleAbstract implements Operation {
 
   /**
    * Object content with a java double
@@ -16,7 +16,7 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
   protected double content;
 
   /**
-   * ScrabbleFloat Constructor Constructs a Float object of Scrabble type.
+   * ScrabbleFloat Constructor Constructs a Float object of Scrabble cl.uchile.dcc.scrabble.type.
    *
    * @param javaDouble receives a java double for the content of the object
    */
@@ -55,18 +55,9 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
    *
    * @return content of the object in ScrabbleFloat format
    */
+  @Override
   public ScrabbleFloat asFloat() {
     return new ScrabbleFloat(this.content);
-  }
-
-  /**
-   * Attempts to convert object to binary but fails because the transformation is wrong.
-   *
-   * @return null
-   */
-  @Override
-  public ScrabbleBinary asBinary() {
-    return null;
   }
 
   /**
@@ -128,21 +119,10 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
   }
 
   /**
-   * Another object tries to added this object, but it is not possible to
-   *
-   * @param c any ScrabbleBinary object
-   * @return null because it is not possible to
-   */
-  @Override
-  public ScrabbleType addedByBinary(ScrabbleBinary c) {
-    return null;
-  }
-
-  /**
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber subtractWith(ScrabbleNumber c) {
+  public ScrabbleType subtractWith(ScrabbleType c) {
     return c.subtractedByFloat(this);
   }
 
@@ -150,7 +130,7 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber subtractedByInt(ScrabbleInt c) {
+  public ScrabbleType subtractedByInt(ScrabbleInt c) {
     return c.asFloat().subtractWith(this);
   }
 
@@ -158,27 +138,16 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber subtractedByFloat(ScrabbleFloat c) {
+  public ScrabbleType subtractedByFloat(ScrabbleFloat c) {
     double result = c.getContent() - this.content;
     return new ScrabbleFloat(result);
-  }
-
-  /**
-   * Another object tries to subtracted this object, but it is not possible to
-   *
-   * @param c any ScrabbleBinary object
-   * @return null because it is not possible to
-   */
-  @Override
-  public ScrabbleNumber subtractedByBinary(ScrabbleBinary c) {
-    return null;
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber multiplyWith(ScrabbleNumber c) {
+  public ScrabbleType multiplyWith(ScrabbleType c) {
     return c.multipliedByFloat(this);
   }
 
@@ -186,7 +155,7 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber multipliedByInt(ScrabbleInt c) {
+  public ScrabbleType multipliedByInt(ScrabbleInt c) {
     double result = c.getContent() * this.content;
     return new ScrabbleFloat(result);
   }
@@ -195,27 +164,16 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber multipliedByFloat(ScrabbleFloat c) {
+  public ScrabbleType multipliedByFloat(ScrabbleFloat c) {
     double result = c.getContent() * this.content;
     return new ScrabbleFloat(result);
-  }
-
-  /**
-   * Another object tries to multiply this object, but it is not possible to
-   *
-   * @param c any ScrabbleBinary object
-   * @return null because it is not possible to
-   */
-  @Override
-  public ScrabbleNumber multipliedByBinary(ScrabbleBinary c) {
-    return null;
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber divideWith(ScrabbleNumber c) {
+  public ScrabbleType divideWith(ScrabbleType c) {
     return c.dividedByFloat(this);
   }
 
@@ -223,7 +181,7 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber dividedByInt(ScrabbleInt c) {
+  public ScrabbleType dividedByInt(ScrabbleInt c) {
     double result = c.getContent() / this.content;
     return new ScrabbleFloat(result);
   }
@@ -232,23 +190,10 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
    * {@inheritDoc}
    */
   @Override
-  public ScrabbleNumber dividedByFloat(ScrabbleFloat c) {
+  public ScrabbleType dividedByFloat(ScrabbleFloat c) {
     double result = c.getContent() / this.content;
     return new ScrabbleFloat(result);
   }
-
-  /**
-   * Another object tries to divide this object, but it is not possible to
-   *
-   * @param c any ScrabbleBinary object
-   * @return null because it is not possible to
-   */
-  @Override
-  public ScrabbleNumber dividedByBinary(ScrabbleBinary c) {
-    return null;
-  }
-
-
 
   /**
    * Evaluate the operations tree
@@ -258,7 +203,7 @@ public class ScrabbleFloat implements ScrabbleType, ScrabbleNumber, Operation {
 
   @Override
   public ScrabbleType evaluate() {
-    return new ScrabbleFloat(content);
+    return ScrabbleFactory.getFloat(content);
   }
 
 }

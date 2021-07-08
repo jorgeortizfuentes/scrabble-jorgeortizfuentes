@@ -15,16 +15,24 @@ _University of Chile_.
 
 ## Executing
 
-This program contains 5 classes to instantiate objects of type ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior. In addition, ScrabbleInt, ScrabbleFloat and ScrabbleBinary implement the ScrabbleNumber interface, which determines their mathematical behavior. On the other hand, ScrabbleBinary and ScrabbleBoolean implement the ScrabbleLogic interface, which determines the logical relationships between them.
-
-Additionally, the program has an auxiliary class called BinUtilities, which provides methods to perform transformations between binary (provided as Java String) and integers (Java int). 
+This program runs on Java 15.0.1 and does not require additional packages.
 
 ## Functioning
-This program contains 5 classes to instantiate objects of type ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior. In addition, ScrabbleInt, ScrabbleFloat and ScrabbleBinary implement the ScrabbleNumber interface, which determines their mathematical behavior. On the other hand, ScrabbleBinary and ScrabbleBoolean implement the ScrabbleLogic interface, which determines the logical relationships between them.
 
-Additionally, the program has an auxiliary class called BinUtilities, which provides methods to perform transformations between binary (provided as Java String) and integers (Java int).
+This program contains 2 packages: types and operations.
 
-## Transformations
+The types package contains 5 classes to instantiate objects of cl.uchile.dcc.scrabble.types ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior and expand an abstract class called ScrabbleAbstract. In addition to the 5 classes, there is a factory to build the memory-optimized Scrabble cl.uchile.dcc.scrabble.types objects.
+
+The operations package contains 7 classes with AVL tree operations: Add (addition), Subt (subtraction), Mult (multiplication), Div (division), And (conjunction), Or (disjunction) and Negate (negation). These classes implement the Operation interface and expand an abstract class called AbstractOperation. 
+
+The objects of the types package function as leaves of the AVL trees, so they also implement the Operation interface.
+
+In addition, in the operations package there is the Var class, to assign variables of the String cl.uchile.dcc.scrabble.types to the objects of the Scrabble cl.uchile.dcc.scrabble.types, using the Factory and optimizing the memory.
+
+Translated with www.DeepL.com/Translator (free version)
+## Scrabble Types
+
+### Types
 The 5 classes can be transformed into each other according to the following characteristics:
 
 |                 | ScrabbleString | ScrabbleBoolean | ScrabbleFloat | ScrabbleInt | ScrabbleBinary |
@@ -37,7 +45,7 @@ The 5 classes can be transformed into each other according to the following char
 
 Each allowed transformation can be performed with the asTYPENAME method, where TYPENAME is the name of the expected object.
 
-## Operations
+### Methods
 
 In addition to the above transformations, classes can perform some operations on each other, according to the following table:
 
@@ -54,7 +62,34 @@ This table returns the operations on the left for all those that are possible an
 
 Operations that are not allowed according to the table, but are forced by the interface, return a null value.
 
-## UML Diagram
+### Factory
 
-<img src="./diagram.svg">
+In order to optimize memory usage and make object creation efficient, a Factory was implemented. Through it you can create objects with the following methods
 
+* ScrabbleFactory.getString(string)
+* ScrabbleFactory.getInt(int)
+* ScrabbleFactory.getBinary(string)
+* ScrabbleFactory.getFloat(double)
+* ScrabbleFactory.getBoolean(bool)
+
+## Operations
+
+The possible operations were implemented using AVL trees. 
+
+The Add (addition), Subt (subtraction), Mult (multiplication), Div (division), Or (disjunction), And (conjunction) trees have two leaves. On the other hand, the Negate tree has only one leaf. 
+
+All trees can receive both other trees and Scrabbles cl.uchile.dcc.scrabble.types objects.
+
+
+### Variables 
+
+In order to allocate variables optimizing memory, the Var class was created to relate String variables with scrabble objects that are created and stored with the ScrabbleFactory. 
+
+
+## Types UML Diagram
+
+![Image Caption](PackageTypes.svg)
+
+## Operations UML Diagram
+
+![Image Caption](PackageOperations.svg)

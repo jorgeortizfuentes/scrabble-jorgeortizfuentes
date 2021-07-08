@@ -1,9 +1,9 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import cl.uchile.dcc.scrabble.operations.Subt;
 import cl.uchile.dcc.scrabble.types.BinUtilities;
 import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
 import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
@@ -38,17 +38,17 @@ class SubtTest {
     Random rndm = new Random(seed);
 
     exampleInt1 = rndm.nextInt();
-    do{
+    do {
       exampleInt2 = rndm.nextInt();
     } while (exampleInt1 == exampleInt2);
     exampleFloat1 = rndm.nextDouble();
-    do{
+    do {
       exampleFloat2 = rndm.nextDouble();
     } while (exampleFloat1 == exampleFloat2);
 
-    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
-    do{
-      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
+    do {
+      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
 
     } while (exampleBinary1.equals(exampleBinary2));
 
@@ -59,17 +59,17 @@ class SubtTest {
     sBinary1 = new ScrabbleBinary(exampleBinary1);
     sBinary2 = new ScrabbleBinary(exampleBinary2);
 
-    intSubt = new Subt(sInt1,sInt2);
-    floatSubt = new Subt(sFloat1,sFloat2);
-    binarySubt = new Subt(sBinary1,sBinary2);
+    intSubt = new Subt(sInt1, sInt2);
+    floatSubt = new Subt(sFloat1, sFloat2);
+    binarySubt = new Subt(sBinary1, sBinary2);
     treeSubt = new Subt(floatSubt, new Subt(intSubt, binarySubt));
   }
 
   @RepeatedTest(20)
   void testConstructor() {
     // Int constructor
-    var intExpected = new Subt(sInt1,sInt2);
-    var noIntExpected = new Subt(sInt2,sInt2);
+    var intExpected = new Subt(sInt1, sInt2);
+    var noIntExpected = new Subt(sInt2, sInt2);
 
     assertEquals(intExpected, intSubt);
     assertEquals(intExpected.hashCode(), intSubt.hashCode());
@@ -78,8 +78,8 @@ class SubtTest {
     assertNotEquals(noIntExpected.hashCode(), intSubt.hashCode());
 
     // Float constructor
-    var floatExpected = new Subt(sFloat1,sFloat2);
-    var noFloatExpected = new Subt(sFloat2,sFloat2);
+    var floatExpected = new Subt(sFloat1, sFloat2);
+    var noFloatExpected = new Subt(sFloat2, sFloat2);
 
     assertEquals(floatExpected, floatSubt);
     assertEquals(floatExpected.hashCode(), floatSubt.hashCode());
@@ -88,8 +88,8 @@ class SubtTest {
     assertNotEquals(noFloatExpected.hashCode(), floatSubt.hashCode());
 
     // Binary constructor
-    var binaryExpected = new Subt(sBinary1,sBinary2);
-    var noBinaryExpected = new Subt(sBinary2,sBinary2);
+    var binaryExpected = new Subt(sBinary1, sBinary2);
+    var noBinaryExpected = new Subt(sBinary2, sBinary2);
 
     assertEquals(binaryExpected, binarySubt);
     assertEquals(binaryExpected.hashCode(), binarySubt.hashCode());
@@ -137,23 +137,27 @@ class SubtTest {
   void evaluate() {
 
     // Test two ints
-    int exIntSubt = exampleInt1-exampleInt2;
+    int exIntSubt = exampleInt1 - exampleInt2;
     assertEquals(intSubt.evaluate(), new ScrabbleInt(exIntSubt));
 
     // Test two floats
-    double exDoubleSubt = exampleFloat1-exampleFloat2;
+    double exDoubleSubt = exampleFloat1 - exampleFloat2;
     assertEquals(floatSubt.evaluate(), new ScrabbleFloat(exDoubleSubt));
 
     // Test two binaries
     int exBinAsInt1 = BinUtilities.binaryToInt(exampleBinary1);
     int exBinAsInt2 = BinUtilities.binaryToInt(exampleBinary2);
-    int exBinSubt = exBinAsInt1-exBinAsInt2;
+    int exBinSubt = exBinAsInt1 - exBinAsInt2;
     String binSubt = BinUtilities.intToBinary(exBinSubt);
     assertEquals(binarySubt.evaluate(), new ScrabbleBinary(binSubt));
 
     // Test complex tree
-    int firstSubt = exIntSubt-exBinSubt;
+    int firstSubt = exIntSubt - exBinSubt;
     double secondSubt = exDoubleSubt - firstSubt;
     assertEquals(treeSubt.evaluate(), new ScrabbleFloat(secondSubt));
+
+    // Test with nulls
+    var nullTree = new Subt(null, null);
+    assertNull(nullTree.evaluate());
   }
 }

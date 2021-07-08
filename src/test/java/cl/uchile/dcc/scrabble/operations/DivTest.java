@@ -1,9 +1,9 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.operations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import cl.uchile.dcc.scrabble.operations.Div;
 import cl.uchile.dcc.scrabble.types.BinUtilities;
 import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
 import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
@@ -39,19 +39,20 @@ class DivTest {
     Random rndm = new Random(seed);
 
     exampleInt1 = rndm.nextInt(1000000);
-    do{
+    do {
       exampleInt2 = rndm.nextInt(1000000);
     } while (exampleInt1 == exampleInt2 || exampleInt2 == 0);
     exampleFloat1 = rndm.nextDouble();
-    do{
+    do {
       exampleFloat2 = rndm.nextDouble();
-    } while (exampleFloat1 == exampleFloat2 || exampleFloat2==0);
+    } while (exampleFloat1 == exampleFloat2 || exampleFloat2 == 0);
 
-    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
-    do{
-      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16-1))+1, "01");
+    exampleBinary1 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
+    do {
+      exampleBinary2 = RandomStringUtils.random(Math.abs(rndm.nextInt(16 - 1)) + 1, "01");
 
-    } while (exampleBinary1.equals(exampleBinary2) || BinUtilities.binaryToInt(exampleBinary2) == 0);
+    } while (exampleBinary1.equals(exampleBinary2)
+        || BinUtilities.binaryToInt(exampleBinary2) == 0);
 
     sInt1 = new ScrabbleInt(exampleInt1);
     sInt2 = new ScrabbleInt(exampleInt2);
@@ -60,9 +61,9 @@ class DivTest {
     sBinary1 = new ScrabbleBinary(exampleBinary1);
     sBinary2 = new ScrabbleBinary(exampleBinary2);
 
-    intDiv = new Div(sInt1,sInt2);
-    floatDiv = new Div(sFloat1,sFloat2);
-    binaryDiv = new Div(sBinary1,sBinary2);
+    intDiv = new Div(sInt1, sInt2);
+    floatDiv = new Div(sFloat1, sFloat2);
+    binaryDiv = new Div(sBinary1, sBinary2);
     treeDiv = new Div(floatDiv, new Div(intDiv, binaryDiv));
 
     treeDiv2 = new Div(intDiv, new Div(floatDiv, binaryDiv));
@@ -72,8 +73,8 @@ class DivTest {
   @RepeatedTest(20)
   void testConstructor() {
     // Int constructor
-    var intExpected = new Div(sInt1,sInt2);
-    var noIntExpected = new Div(sInt2,sInt2);
+    var intExpected = new Div(sInt1, sInt2);
+    var noIntExpected = new Div(sInt2, sInt2);
 
     assertEquals(intExpected, intDiv);
     assertEquals(intExpected.hashCode(), intDiv.hashCode());
@@ -82,8 +83,8 @@ class DivTest {
     assertNotEquals(noIntExpected.hashCode(), intDiv.hashCode());
 
     // Float constructor
-    var floatExpected = new Div(sFloat1,sFloat2);
-    var noFloatExpected = new Div(sFloat2,sFloat2);
+    var floatExpected = new Div(sFloat1, sFloat2);
+    var noFloatExpected = new Div(sFloat2, sFloat2);
 
     assertEquals(floatExpected, floatDiv);
     assertEquals(floatExpected.hashCode(), floatDiv.hashCode());
@@ -92,8 +93,8 @@ class DivTest {
     assertNotEquals(noFloatExpected.hashCode(), floatDiv.hashCode());
 
     // Binary constructor
-    var binaryExpected = new Div(sBinary1,sBinary2);
-    var noBinaryExpected = new Div(sBinary2,sBinary2);
+    var binaryExpected = new Div(sBinary1, sBinary2);
+    var noBinaryExpected = new Div(sBinary2, sBinary2);
 
     assertEquals(binaryExpected, binaryDiv);
     assertEquals(binaryExpected.hashCode(), binaryDiv.hashCode());
@@ -141,27 +142,27 @@ class DivTest {
   void evaluate() {
 
     // Test two ints
-    int exIntDiv = exampleInt1/exampleInt2;
+    int exIntDiv = exampleInt1 / exampleInt2;
     assertEquals(intDiv.evaluate(), new ScrabbleInt(exIntDiv));
 
     // Test two floats
-    double exDoubleDiv = exampleFloat1/exampleFloat2;
+    double exDoubleDiv = exampleFloat1 / exampleFloat2;
     assertEquals(floatDiv.evaluate(), new ScrabbleFloat(exDoubleDiv));
 
     // Test two binaries
     int exBinAsInt1 = BinUtilities.binaryToInt(exampleBinary1);
     int exBinAsInt2 = BinUtilities.binaryToInt(exampleBinary2);
-    int exBinDiv = exBinAsInt1/exBinAsInt2;
+    int exBinDiv = exBinAsInt1 / exBinAsInt2;
     String binDiv = BinUtilities.intToBinary(exBinDiv);
     assertEquals(binaryDiv.evaluate(), new ScrabbleBinary(binDiv));
 
     // Test complex tree
     double firstDiv = exDoubleDiv / exBinDiv;
-    System.out.println(exIntDiv);
-    System.out.println(exBinDiv);
-    System.out.println(firstDiv);
     double secondDiv = exIntDiv / firstDiv;
-    System.out.println(exDoubleDiv);
     assertEquals(treeDiv2.evaluate(), new ScrabbleFloat(secondDiv));
+
+    // Test with nulls
+    var nullTree = new Div(null, null);
+    assertNull(nullTree.evaluate());
   }
 }

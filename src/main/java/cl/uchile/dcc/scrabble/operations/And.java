@@ -1,14 +1,31 @@
 package cl.uchile.dcc.scrabble.operations;
 
-import cl.uchile.dcc.scrabble.types.ScrabbleLogic;
 import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
-public class And implements Operation {
+/**
+ * Implementation of <i>And operation</i>.
+ *
+ * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
+ */
+public class And extends AbstractOperation implements Operation {
+
+  /**
+   * Left leaf of the tree
+   */
   Operation left;
+
+  /**
+   * Right leaf of the tree
+   */
   Operation right;
 
-
+  /**
+   * Constructor of an And tree
+   *
+   * @param left  left tree object
+   * @param right left tree object
+   */
   public And(Operation left, Operation right) {
     this.left = left;
     this.right = right;
@@ -59,8 +76,11 @@ public class And implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    ScrabbleLogic prop1 = (ScrabbleLogic) left.evaluate();
-    ScrabbleLogic prop2 = (ScrabbleLogic) right.evaluate();
-    return (ScrabbleType) prop1.conjunctionWith(prop2);
+    if (left == null || right == null) {
+      return null;
+    } else {
+      return left.evaluate().conjunctionWith(right.evaluate());
+    }
+
   }
 }

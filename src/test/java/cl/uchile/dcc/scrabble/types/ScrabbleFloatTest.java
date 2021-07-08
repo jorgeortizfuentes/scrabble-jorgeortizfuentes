@@ -1,18 +1,17 @@
 package cl.uchile.dcc.scrabble.types;
 
-import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
-import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
-import cl.uchile.dcc.scrabble.types.ScrabbleInt;
-import cl.uchile.dcc.scrabble.types.ScrabbleString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 
-import java.util.Random;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class ScrabbleFloatTest {
+
   private ScrabbleFloat sFloat;
   private double exampleFloat1;
   private double exampleFloat2;
@@ -70,7 +69,7 @@ class ScrabbleFloatTest {
   void testAsString() {
     String exampleStrFloat1 = Double.toString(exampleFloat1);
     String exampleStrFloat2 = Double.toString(exampleFloat2);
-    assertEquals(new ScrabbleString(exampleStrFloat1), sFloat.asString());
+    Assertions.assertEquals(new ScrabbleString(exampleStrFloat1), sFloat.asString());
     assertNotEquals(new ScrabbleString(exampleStrFloat2), sFloat.asString());
   }
 
@@ -251,5 +250,11 @@ class ScrabbleFloatTest {
     ScrabbleBinary sBin1 = new ScrabbleBinary(exampleBinary1);
     var solution = sFloat.dividedByBinary(sBin1);
     assertNull(solution);
+  }
+
+  @RepeatedTest(20)
+  void evaluate() {
+    var expected = sFloat.evaluate();
+    assertEquals(expected, sFloat);
   }
 }

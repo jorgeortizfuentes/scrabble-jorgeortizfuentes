@@ -1,14 +1,25 @@
 package cl.uchile.dcc.scrabble.operations;
 
-import cl.uchile.dcc.scrabble.operations.Operation;
-import cl.uchile.dcc.scrabble.operations.Or;
-import cl.uchile.dcc.scrabble.types.ScrabbleLogic;
 import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
-public class Negate implements Operation {
+/**
+ * Implementation of <i>Negate operation</i>.
+ *
+ * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
+ */
+public class Negate extends AbstractOperation implements Operation {
+
+  /**
+   * Unique value of the tree
+   */
   Operation value;
 
+  /**
+   * Constructor of Negation Tree
+   *
+   * @param value tree leaf
+   */
   public Negate(Operation value) {
     this.value = value;
   }
@@ -16,7 +27,7 @@ public class Negate implements Operation {
   /**
    * Returns the value of the tree object
    *
-   * @return tree object
+   * @return leaf object
    */
   public Operation getValue() {
     return value;
@@ -28,7 +39,7 @@ public class Negate implements Operation {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(Or.class, value);
+    return Objects.hash(Negate.class, value);
   }
 
   /**
@@ -36,9 +47,9 @@ public class Negate implements Operation {
    */
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof Or) {
-      var o = (Or) obj;
-      return o.getLeft().equals(this.value);
+    if (obj instanceof Negate) {
+      var o = (Negate) obj;
+      return o.getValue().equals(this.value);
     }
     return false;
   }
@@ -50,7 +61,12 @@ public class Negate implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    ScrabbleLogic prop = (ScrabbleLogic) value.evaluate();
-    return (ScrabbleType) prop.negation();
+    if (value == null) {
+      return null;
+    } else {
+      ScrabbleType prop = value.evaluate();
+      return prop.negation();
+    }
+
   }
 }

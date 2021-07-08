@@ -1,14 +1,31 @@
 package cl.uchile.dcc.scrabble.operations;
 
-import cl.uchile.dcc.scrabble.types.ScrabbleNumber;
 import cl.uchile.dcc.scrabble.types.ScrabbleType;
 import java.util.Objects;
 
-public class Div implements Operation {
+/**
+ * Implementation of <i>Division Operation</i>.
+ *
+ * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
+ */
+public class Div extends AbstractOperation implements Operation {
+
+  /**
+   * Left leaf of the tree
+   */
   Operation left;
+
+  /**
+   * Right leaf of the tree
+   */
   Operation right;
 
-
+  /**
+   * Constructor of an Division tree
+   *
+   * @param left  left tree object
+   * @param right left tree object
+   */
   public Div(Operation left, Operation right) {
     this.left = left;
     this.right = right;
@@ -59,8 +76,11 @@ public class Div implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    ScrabbleNumber dividend = (ScrabbleNumber) left.evaluate();
-    ScrabbleNumber divisor = (ScrabbleNumber) right.evaluate();
-    return (ScrabbleType) dividend.divideWith(divisor);
+    if (left == null || right == null) {
+      return null;
+    } else {
+      return left.evaluate().divideWith(right.evaluate());
+    }
+
   }
 }
