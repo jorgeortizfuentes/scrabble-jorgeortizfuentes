@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>cl.uchile.dcc.scrabble.operations</OriginalElement>
+  <nodes>
+    <node x="0.0" y="526.0">cl.uchile.dcc.scrabble.operations.Var</node>
+    <node x="991.5" y="294.0">cl.uchile.dcc.scrabble.operations.AbstractOperation</node>
+    <node x="991.5" y="0.0">cl.uchile.dcc.scrabble.operations.Operation</node>
+    <node x="1618.0" y="562.0">cl.uchile.dcc.scrabble.operations.Div</node>
+    <node x="342.0" y="562.0">cl.uchile.dcc.scrabble.operations.Mult</node>
+    <node x="864.0" y="562.0">cl.uchile.dcc.scrabble.operations.Subt</node>
+    <node x="1872.0" y="562.0">cl.uchile.dcc.scrabble.operations.Or</node>
+    <node x="1386.0" y="586.0">cl.uchile.dcc.scrabble.operations.Negate</node>
+    <node x="1127.0" y="562.0">cl.uchile.dcc.scrabble.operations.And</node>
+    <node x="605.0" y="562.0">cl.uchile.dcc.scrabble.operations.Add</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cl.uchile.dcc.scrabble.operations.Negate" target="cl.uchile.dcc.scrabble.operations.AbstractOperation">
+      <point x="-53.0" y="-89.0" />
+      <point x="1439.0" y="496.0" />
+      <point x="1163.375" y="496.0" />
+      <point x="46.875" y="76.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Mult" target="cl.uchile.dcc.scrabble.operations.AbstractOperation">
+      <point x="60.75" y="-113.0" />
+      <point x="524.25" y="486.0" />
+      <point x="1038.375" y="486.0" />
+      <point x="-78.125" y="76.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Var" target="cl.uchile.dcc.scrabble.operations.AbstractOperation">
+      <point x="80.5" y="-149.0" />
+      <point x="241.5" y="476.0" />
+      <point x="1007.125" y="476.0" />
+      <point x="-109.375" y="76.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Div" target="cl.uchile.dcc.scrabble.operations.AbstractOperation">
+      <point x="-58.5" y="-113.0" />
+      <point x="1676.5" y="486.0" />
+      <point x="1194.625" y="486.0" />
+      <point x="78.125" y="76.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Or" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="57.25" y="-113.0" />
+      <point x="2043.75" y="244.0" />
+      <point x="1227.611111111111" y="244.0" />
+      <point x="111.11111111111109" y="112.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Or" target="cl.uchile.dcc.scrabble.operations.AbstractOperation">
+      <point x="-57.25" y="-113.0" />
+      <point x="1929.25" y="476.0" />
+      <point x="1225.875" y="476.0" />
+      <point x="109.375" y="76.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Add" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="-59.75" y="-113.0" />
+      <point x="664.75" y="264.0" />
+      <point x="1060.9444444444443" y="264.0" />
+      <point x="-55.55555555555566" y="112.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Add" target="cl.uchile.dcc.scrabble.operations.AbstractOperation">
+      <point x="59.75" y="-113.0" />
+      <point x="784.25" y="496.0" />
+      <point x="1069.625" y="496.0" />
+      <point x="-46.875" y="76.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Var" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="-80.5" y="-149.0" />
+      <point x="80.5" y="244.0" />
+      <point x="1005.3888888888889" y="244.0" />
+      <point x="-111.11111111111109" y="112.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.AbstractOperation" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="0.0" y="-76.0" />
+      <point x="0.0" y="112.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Subt" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="-60.75" y="-113.0" />
+      <point x="925.5625" y="274.0" />
+      <point x="1088.7222222222222" y="274.0" />
+      <point x="-27.77777777777783" y="112.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Mult" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="-60.75" y="-113.0" />
+      <point x="402.75" y="254.0" />
+      <point x="1033.1666666666667" y="254.0" />
+      <point x="-83.33333333333326" y="112.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Subt" target="cl.uchile.dcc.scrabble.operations.AbstractOperation">
+      <point x="60.75" y="-113.0" />
+      <point x="1046.25" y="506.0" />
+      <point x="1100.875" y="506.0" />
+      <point x="-15.625" y="76.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.And" target="cl.uchile.dcc.scrabble.operations.AbstractOperation">
+      <point x="-59.75" y="-113.0" />
+      <point x="1186.75" y="506.0" />
+      <point x="1132.125" y="506.0" />
+      <point x="15.625" y="76.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Div" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="58.5" y="-113.0" />
+      <point x="1793.5" y="254.0" />
+      <point x="1199.8333333333333" y="254.0" />
+      <point x="83.33333333333326" y="112.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.And" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="59.75" y="-113.0" />
+      <point x="1306.4375" y="274.0" />
+      <point x="1144.2777777777778" y="274.0" />
+      <point x="27.77777777777783" y="112.0" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.operations.Negate" target="cl.uchile.dcc.scrabble.operations.Operation">
+      <point x="53.0" y="-89.0" />
+      <point x="1545.0" y="264.0" />
+      <point x="1172.0555555555557" y="264.0" />
+      <point x="55.55555555555566" y="112.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="1001.5" y="255.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
