@@ -8,17 +8,8 @@ import java.util.Objects;
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public class Subt extends AbstractOperation implements Operation {
+public class Subt extends AbstractDualOperation implements Operation {
 
-  /**
-   * Left leaf of the tree
-   */
-  Operation left;
-
-  /**
-   * Right leaf of the tree
-   */
-  Operation right;
 
   /**
    * Constructor of an Subtraction Tree
@@ -32,21 +23,11 @@ public class Subt extends AbstractOperation implements Operation {
   }
 
   /**
-   * Returns the left value of the tree object
-   *
-   * @return left tree object
+   * Constructor of an empty tree
    */
-  public Operation getLeft() {
-    return left;
-  }
-
-  /**
-   * Returns the right value of the tree object
-   *
-   * @return right tree object
-   */
-  public Operation getRight() {
-    return right;
+  public Subt() {
+    this.left = null;
+    this.right = null;
   }
 
   /**
@@ -84,37 +65,4 @@ public class Subt extends AbstractOperation implements Operation {
 
   }
 
-  /**
-   * Indicates whether the tree and its leaves are complete.
-   *
-   * @return true or false
-   */
-  @Override
-  public boolean isComplete() {
-    if (this.left == null || this.right == null) {
-      return false;
-    } else {
-      return this.left.isComplete() && this.right.isComplete();
-    }
-  }
-
-  /**
-   * Adds a value or an operation to the first empty node on the left
-   *
-   * @param v value
-   */
-  //@Override
-  public void setValues(Operation v) {
-    if (this.left == null) {
-      this.left = v;
-    } else if (!this.left.isComplete()) {
-      this.left.setValues(v);
-
-    } else if (this.right == null) {
-      this.right = v;
-
-    } else if (!this.right.isComplete()) {
-      this.right.setValues(v);
-    }
-  }
 }
