@@ -119,4 +119,25 @@ public class Var extends AbstractOperation implements Operation {
     }
     return false;
   }
+
+  /**
+   * Indicates whether the tree and its leaves are complete.
+   *
+   * @return true or false
+   */
+  @Override
+  public boolean isComplete() {
+    return this.evaluate().isComplete();
+  }
+
+  /**
+   * Adds a value or an operation to the first empty node on the left
+   *
+   * @param v value
+   */
+  //@Override
+  public void setValues(Operation v) {
+    this.assign((ScrabbleType) v);
+
+  }
 }

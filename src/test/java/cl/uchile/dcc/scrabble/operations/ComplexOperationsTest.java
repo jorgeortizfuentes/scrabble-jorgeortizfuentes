@@ -2,7 +2,9 @@ package cl.uchile.dcc.scrabble.operations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
 import cl.uchile.dcc.scrabble.types.ScrabbleFactory;
+import cl.uchile.dcc.scrabble.types.ScrabbleInt;
 import org.junit.jupiter.api.Test;
 
 class ComplexOperationsTest {

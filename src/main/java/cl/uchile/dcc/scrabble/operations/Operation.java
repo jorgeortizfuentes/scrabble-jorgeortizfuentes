@@ -72,4 +72,18 @@ public interface Operation {
    */
   ScrabbleBinary asBinary();
 
+  /**
+   * Adds a value or an operation to the first empty node on the left
+   *
+   * @param v value
+   */
+  void setValues(Operation v);
+
+  /**
+   * Indicates whether the tree and its leaves are complete.
+   *
+   * @return true or false
+   */
+  boolean isComplete();
+
 }

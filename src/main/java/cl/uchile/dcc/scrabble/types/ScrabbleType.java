@@ -267,6 +267,12 @@ public interface ScrabbleType {
    */
   ScrabbleType disjunctionByBinary(ScrabbleBinary c);
 
+  /**
+   * Indicates whether the tree and its leaves are complete.
+   *
+   * @return true or false
+   */
+  boolean isComplete();
 }
 
 

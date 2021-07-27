@@ -33,6 +33,14 @@ public class Add extends AbstractOperation implements Operation {
   }
 
   /**
+   * Constructor of an empty tree
+   */
+  public Add() {
+    this.left = null;
+    this.right = null;
+  }
+
+  /**
    * Returns the left value of the tree object
    *
    * @return left tree object
@@ -78,7 +86,7 @@ public class Add extends AbstractOperation implements Operation {
    */
   @Override
   public ScrabbleType evaluate() {
-    if (left == null || right == null) {
+    if (this.left == null || this.right == null) {
       return null;
     } else {
       return left.evaluate().addWith(right.evaluate());
@@ -86,5 +94,37 @@ public class Add extends AbstractOperation implements Operation {
 
   }
 
+  /**
+   * Adds a value or an operation to the first empty node on the left
+   *
+   * @param v value
+   */
+  //@Override
+  public void setValues(Operation v) {
+    if (this.left == null) {
+      this.left = v;
+    } else if (!this.left.isComplete()) {
+      this.left.setValues(v);
 
+    } else if (this.right == null) {
+      this.right = v;
+
+    } else if (!this.right.isComplete()) {
+      this.right.setValues(v);
+    }
+  }
+
+  /**
+   * Indicates whether the tree and its leaves are complete.
+   *
+   * @return true or false
+   */
+  @Override
+  public boolean isComplete() {
+    if (this.left == null || this.right == null) {
+      return false;
+    } else {
+      return this.left.isComplete() && this.right.isComplete();
+    }
+  }
 }

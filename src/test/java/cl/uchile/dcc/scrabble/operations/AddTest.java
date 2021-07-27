@@ -1,8 +1,10 @@
 package cl.uchile.dcc.scrabble.operations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import cl.uchile.dcc.scrabble.types.BinUtilities;
 import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
@@ -193,5 +195,39 @@ class AddTest {
     // Test with nulls
     var nullTree = new Add(null, null);
     assertNull(nullTree.evaluate());
+  }
+
+  @RepeatedTest(20)
+  void isComplete() {
+    var incompleteTree1 = new Add();
+    var incompleteTree2 = new Add(new Add(), strAdd);
+
+    assertFalse(incompleteTree1.isComplete());
+    assertFalse(incompleteTree2.isComplete());
+    assertTrue(strAdd.isComplete());
+
+  }
+
+  @RepeatedTest(20)
+  void setValues() {
+
+
+    var incompleteTree1 = new Add();
+    var incompleteTree2 = new Add(new Add(), strAdd);
+    var incompleteTree3 = new Add(strAdd, new Add());
+
+    incompleteTree1.setValues(sString1);
+    incompleteTree1.setValues(sString2);
+    assertEquals(strAdd, incompleteTree1);
+
+    incompleteTree2.setValues(sString1);
+    incompleteTree2.setValues(sString2);
+    var expected = new Add(incompleteTree1, strAdd);
+
+    assertEquals(expected, incompleteTree2);
+
+
+
+
   }
 }

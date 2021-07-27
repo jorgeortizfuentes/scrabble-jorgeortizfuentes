@@ -1,5 +1,7 @@
 package cl.uchile.dcc.scrabble.types;
 
+import cl.uchile.dcc.scrabble.operations.Operation;
+
 public abstract class ScrabbleAbstract implements ScrabbleType {
 
   /**
@@ -298,4 +300,21 @@ public abstract class ScrabbleAbstract implements ScrabbleType {
     return null;
   }
 
+  /**
+   * Indicates whether the tree and its leaves are complete.
+   *
+   * @return true or false
+   */
+  public boolean isComplete() {
+    return true;
+  }
+
+  /**
+   * Adds a value or an operation to the first empty node on the left
+   *
+   * @param v value
+   */
+  //@Override
+  public void setValues(Operation v) {
+  }
 }

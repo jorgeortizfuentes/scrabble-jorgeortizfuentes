@@ -69,4 +69,33 @@ public class Negate extends AbstractOperation implements Operation {
     }
 
   }
+
+  /**
+   * Indicates whether the tree and its leaves are complete.
+   *
+   * @return true or false
+   */
+  @Override
+  public boolean isComplete() {
+    if (this.value == null) {
+      return false;
+    } else {
+      return this.value.isComplete();
+    }
+  }
+
+  /**
+   * Adds a value or an operation to the first empty node on the left
+   *
+   * @param v value
+   */
+  //@Override
+  public void setValues(Operation v) {
+    if (this.value == null) {
+      this.value = v;
+    } else if (!this.value.isComplete()) {
+      this.value.setValues(v);
+
+    }
+  }
 }
