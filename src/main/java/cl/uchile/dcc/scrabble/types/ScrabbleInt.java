@@ -283,4 +283,23 @@ public class ScrabbleInt extends ScrabbleAbstract implements Operation {
     return ScrabbleFactory.getInt(content);
   }
 
+  /**
+   * Indicates its color
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getColor() {
+    return "DARKBLUE";
+  }
+
+  /**
+   * Indicates a label with its abbreviation
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getLabel() {
+    return "INT";
+  }
 }

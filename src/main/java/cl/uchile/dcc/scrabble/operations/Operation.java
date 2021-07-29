@@ -86,4 +86,17 @@ public interface Operation {
    */
   boolean isComplete();
 
+  /**
+   * Indicates its color
+   *
+   * @return CSS color
+   */
+  String getColor();
+
+  /**
+   * Indicates a label with its abbreviation
+   *
+   * @return CSS color
+   */
+  String getLabel();
 }

@@ -140,7 +140,7 @@ public class InsertOperations {
       Operations.leaveSignInQueue(")");
 
       //Operations.setValues(new Negate());
-    } else if (Operations.isComplete()){
+    } else if (Operations.isComplete()) {
       Operations.asString();
       Result.cleanResult();
       Calculate.calculate();
@@ -164,7 +164,7 @@ public class InsertOperations {
       Notifications.showLastMessage();
       Operations.addOperationSign("Int  (");
       Operations.leaveSignInQueue(")");
-    } else if (Operations.isComplete()){
+    } else if (Operations.isComplete()) {
       Operations.asInt();
       Result.cleanResult();
       Calculate.calculate();
@@ -188,7 +188,7 @@ public class InsertOperations {
       Notifications.showLastMessage();
       Operations.addOperationSign("Float  (");
       Operations.leaveSignInQueue(")");
-    } else if (Operations.isComplete()){
+    } else if (Operations.isComplete()) {
       Operations.asFloat();
       Result.cleanResult();
       Calculate.calculate();
@@ -213,7 +213,7 @@ public class InsertOperations {
       Operations.addOperationSign("Bin  (");
       Operations.leaveSignInQueue(")");
 
-    } else if (Operations.isComplete()){
+    } else if (Operations.isComplete()) {
       Operations.asBinary();
       Result.cleanResult();
       Calculate.calculate();
@@ -237,7 +237,7 @@ public class InsertOperations {
       Notifications.showLastMessage();
       Operations.addOperationSign("Bool  (");
       Operations.leaveSignInQueue(")");
-    } else if (Operations.isComplete()){
+    } else if (Operations.isComplete()) {
       Operations.asBoolean();
       Result.cleanResult();
       Calculate.calculate();

@@ -495,6 +495,25 @@ public class ScrabbleBinary extends ScrabbleAbstract implements Operation {
     return ScrabbleFactory.getBinary(content);
   }
 
+  /**
+   * Indicates its color
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getColor() {
+    return "DARKSLATEGRAY";
+  }
+
+  /**
+   * Indicates a label with its abbreviation
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getLabel() {
+    return "BIN";
+  }
 }
 
 

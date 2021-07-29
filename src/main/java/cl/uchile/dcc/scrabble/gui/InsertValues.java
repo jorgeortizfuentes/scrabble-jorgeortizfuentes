@@ -1,6 +1,8 @@
 package cl.uchile.dcc.scrabble.gui;
 
 import cl.uchile.dcc.scrabble.types.ScrabbleFactory;
+import java.util.Arrays;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,12 +20,12 @@ public class InsertValues {
   public static VBox getValuesBox() {
     var valuesBox = new VBox();
 
-    var title = FormFactory.getTitleLabel("Insert values");
+    var title = DesignFactory.getTitleLabel("Insert values");
     valuesBox.getChildren().add(title);
     valuesBox.getChildren().add(buttonsBar());
 
     valuesBox.setAlignment(Pos.BOTTOM_CENTER);
-    valuesBox.setPadding(new Insets(150,0,0,0));
+    valuesBox.setPadding(new Insets(75, 0, 0, 0));
     return valuesBox;
   }
 
@@ -32,19 +34,19 @@ public class InsertValues {
     buttonBar.setAlignment(Pos.CENTER);
 
     // Create the buttons to go into the ButtonBar
-    valueTypeBox = FormFactory.getChoiceBox();
+    valueTypeBox = DesignFactory.getChoiceBox();
 
     valueTypeBox.setValue("Select a type");
     valueTypeBox.getItems().addAll("String", "Int", "Float", "Binary", "Boolean");
 
-    valueText = FormFactory.getTextField();
+    valueText = DesignFactory.getTextField();
 
     buttonBar.getChildren().addAll(valueTypeBox, valueText, getInsertButton());
     return buttonBar;
   }
 
   public static Button getInsertButton() {
-    var button = FormFactory.getButton2();
+    var button = DesignFactory.getButton2();
     button.setText("INSERT");
     button.setOnAction(InsertValues::sendValue);
 
@@ -56,13 +58,12 @@ public class InsertValues {
     var inputType = valueTypeBox.getValue().toString();
     var inputValue = valueText.getCharacters().toString();
 
-    if (Operations.isNull() || Operations.isComplete()){
+    if (Operations.isNull() || Operations.isComplete()) {
       Notifications.addMessage("Error. Select a operation first.");
       Notifications.showLastMessage();
     } else {
       valueText.clear();
-      switch(inputType)
-      {
+      switch (inputType) {
         case "String":
 
           var strObj = ScrabbleFactory.getString(inputValue);
@@ -77,7 +78,7 @@ public class InsertValues {
             Operations.addObjectWithLabel(intObj);
           } catch (NumberFormatException s) {
             var current = Notifications.getCurrentMessage();
-            if (!current.contains("Invalid Int")){
+            if (!current.contains("Invalid Int")) {
               String actual = "Invalid Int. " + current;
               Notifications.addMessage(actual);
               Notifications.showLastMessage();
@@ -100,24 +101,42 @@ public class InsertValues {
 
           break;
         case "Boolean":
-          // Me falta construir una excepcion en mi clase Scrabble
-          var boolObj = ScrabbleFactory.getBoolean(Boolean.valueOf(inputValue));
-          Operations.addValueToOperation(boolObj);
-          Operations.addObjectWithLabel(boolObj);
+          inputValue = inputValue.toLowerCase();
+          List<String> validBoolean = Arrays.asList("true", "false");
+          if (validBoolean.contains(inputValue)) {
+            var boolObj = ScrabbleFactory.getBoolean(Boolean.valueOf(inputValue));
+            Operations.addValueToOperation(boolObj);
+            Operations.addObjectWithLabel(boolObj);
+          } else {
+            var current = Notifications.getCurrentMessage();
+            if (!current.contains("Invalid Boolean")) {
+              String actual = "Invalid Boolean. " + current;
+              Notifications.addMessage(actual);
+              Notifications.showLastMessage();
+            }
+          }
+
           break;
         case "Binary":
-          // Me falta modificar la excepción
-          var binObj = ScrabbleFactory.getBinary(inputValue);
-          Operations.addValueToOperation(binObj);
-          Operations.addObjectWithLabel(binObj);
+          try {
+            var binObj = ScrabbleFactory.getBinary(inputValue);
+            Operations.addValueToOperation(binObj);
+            Operations.addObjectWithLabel(binObj);
+          } catch (AssertionError s) {
+            var current = Notifications.getCurrentMessage();
+            if (!current.contains("Invalid Binary")) {
+              String actual = "Invalid Binary. " + current;
+              Notifications.addMessage(actual);
+              Notifications.showLastMessage();
+            }
+          }
+
           break;
         default:
           Notifications.addMessage("Select a type");
           Notifications.showLastMessage();
       }
     }
-
-
 
 
   }

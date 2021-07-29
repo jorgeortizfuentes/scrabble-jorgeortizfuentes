@@ -201,4 +201,23 @@ public class ScrabbleBoolean extends ScrabbleAbstract implements Operation {
     return ScrabbleFactory.getBoolean(content);
   }
 
+  /**
+   * Indicates its color
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getColor() {
+    return "MAROON";
+  }
+
+  /**
+   * Indicates a label with its abbreviation
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getLabel() {
+    return "BOOL";
+  }
 }

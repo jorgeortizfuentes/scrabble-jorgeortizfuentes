@@ -1,15 +1,13 @@
 package cl.uchile.dcc.scrabble.operations;
 
-import java.util.Objects;
-
 /**
  * Implementation of <i>Abstract Operation</i>.
- *
+ * <p>
  * Extends AbstractOperation having two variables: one operation on the left and one on the right
  *
  * @author <a href=mailto:jorge@ortizfuentes.com>Jorge Ortiz Fuentes</a>
  */
-public abstract class AbstractDualOperation extends AbstractOperation{
+public abstract class AbstractDualOperation extends AbstractOperation {
 
   /**
    * Left leaf of the tree

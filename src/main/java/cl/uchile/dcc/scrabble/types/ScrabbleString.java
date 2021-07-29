@@ -102,5 +102,23 @@ public class ScrabbleString extends ScrabbleAbstract implements Operation {
     return ScrabbleFactory.getString(content);
   }
 
+  /**
+   * Indicates its color
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getColor() {
+    return "DARKRED";
+  }
 
+  /**
+   * Indicates a label with its abbreviation
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getLabel() {
+    return "STR";
+  }
 }

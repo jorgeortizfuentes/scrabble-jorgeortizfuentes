@@ -8,8 +8,8 @@ import javafx.scene.layout.HBox;
 
 public class Notifications {
 
-  private static Stack messagesStack = new Stack();
-  private static Label messageLabel = new Label("Select an operation");
+  private static final Stack messagesStack = new Stack();
+  private static final Label messageLabel = DesignFactory.getNotificationLabel();
   private static HBox notificationBox;
 
   // Notification Box
@@ -18,13 +18,11 @@ public class Notifications {
     notificationBox = new HBox(10);// 10 pixels separation
     notificationBox.setPadding(new Insets(15)); // 15 pixels border
     notificationBox.setAlignment(Pos.TOP_CENTER);
-    notificationBox.getChildren().add(messageLabel());
+    notificationBox.getChildren().add(getMessageLabel());
     return notificationBox;
   }
 
-  public static Label messageLabel() {
-    messageLabel.setStyle("-fx-font-size: 18px;"
-        + "-fx-font-weight: bold");
+  public static Label getMessageLabel() {
     return messageLabel;
   }
 
@@ -53,9 +51,9 @@ public class Notifications {
   }
 
   public static void cleanMessage() {
-  messagesStack.clear();
-  messagesStack.add("Select an operation");
-  showLastMessage();
-}
+    messagesStack.clear();
+    messagesStack.add("Select an operation");
+    showLastMessage();
+  }
 
 }

@@ -91,6 +91,26 @@ public abstract class AbstractOperation implements Operation {
     } else {
       return evaluation.asInt();
     }
+  }
 
+
+  /**
+   * Indicates its color
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getColor() {
+    return null;
+  }
+
+  /**
+   * Indicates a label with its abbreviation
+   *
+   * @return CSS color
+   */
+  @Override
+  public String getLabel() {
+    return null;
   }
 }
