@@ -20,13 +20,13 @@ This program runs on Java 15.0.1 and does not require additional packages.
 
 This program contains 2 packages: types and operations.
 
-The types package contains 5 classes to instantiate objects of cl.uchile.dcc.scrabble.types ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior and expand an abstract class called ScrabbleAbstract. In addition to the 5 classes, there is a factory to build the memory-optimized Scrabble cl.uchile.dcc.scrabble.types objects.
+The types package contains 5 classes to instantiate objects of cl.uchile.dcc.scrabble.model ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior and expand an abstract class called ScrabbleAbstract. In addition to the 5 classes, there is a factory to build the memory-optimized Scrabble cl.uchile.dcc.scrabble.model objects.
 
 The operations package contains 7 classes with AVL tree operations: Add (addition), Subt (subtraction), Mult (multiplication), Div (division), And (conjunction), Or (disjunction) and Negate (negation). These classes implement the Operation interface and expand an abstract class called AbstractOperation. 
 
 The objects of the types package function as leaves of the AVL trees, so they also implement the Operation interface.
 
-In addition, in the operations package there is the Var class, to assign variables of the String cl.uchile.dcc.scrabble.types to the objects of the Scrabble cl.uchile.dcc.scrabble.types, using the Factory and optimizing the memory.
+In addition, in the operations package there is the Var class, to assign variables of the String cl.uchile.dcc.scrabble.model to the objects of the Scrabble cl.uchile.dcc.scrabble.model, using the Factory and optimizing the memory.
 
 Translated with www.DeepL.com/Translator (free version)
 ## Scrabble Types
@@ -77,7 +77,7 @@ The possible operations were implemented using AVL trees.
 
 The Add (addition), Subt (subtraction), Mult (multiplication), Div (division), Or (disjunction), And (conjunction) trees have two leaves. On the other hand, the Negate tree has only one leaf. 
 
-All trees can receive both other trees and Scrabbles cl.uchile.dcc.scrabble.types objects.
+All trees can receive both other trees and Scrabbles cl.uchile.dcc.scrabble.model objects.
 
 
 ### Variables 
