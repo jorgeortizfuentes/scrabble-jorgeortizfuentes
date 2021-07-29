@@ -2,10 +2,7 @@ package cl.uchile.dcc.scrabble.gui;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -19,11 +16,6 @@ import javafx.stage.Stage;
  */
 public class Scrabble extends Application {
 
-  private static VBox leftVerticalBox;
-
-
-  private static ChoiceBox valueTypeBox;
-  private static TextField valueText;
 
   public static void main(String[] args) {
     launch(args);
@@ -32,21 +24,11 @@ public class Scrabble extends Application {
   @Override
   public void start(Stage primaryStage) {
 
-
     primaryStage.setTitle("Scrabble Operations");
-    // Root
     var root = new BorderPane();
-
-
-
-
-    // Root
     root.setLeft(LeftBox.getLeftBox());
     root.setCenter(RightBox.getRightBox());
 
-
-
-    // This sets the size of the Scene to be 400px wide, 200px high
     Scene scene = new Scene(root, 1024, 800);
     primaryStage.setScene(scene);
 
@@ -54,7 +36,6 @@ public class Scrabble extends Application {
 
 
   }
-
 
 
 }

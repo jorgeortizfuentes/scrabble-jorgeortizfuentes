@@ -64,26 +64,49 @@ public class InsertValues {
       switch(inputType)
       {
         case "String":
+
           var strObj = ScrabbleFactory.getString(inputValue);
           Operations.addValueToOperation(strObj);
           Operations.addObjectWithLabel(strObj);
+
           break;
         case "Int":
-          var intObj = ScrabbleFactory.getInt(Integer.valueOf(inputValue));
-          Operations.addValueToOperation(intObj);
-          Operations.addObjectWithLabel(intObj);
+          try {
+            var intObj = ScrabbleFactory.getInt(Integer.valueOf(inputValue));
+            Operations.addValueToOperation(intObj);
+            Operations.addObjectWithLabel(intObj);
+          } catch (NumberFormatException s) {
+            var current = Notifications.getCurrentMessage();
+            if (!current.contains("Invalid Int")){
+              String actual = "Invalid Int. " + current;
+              Notifications.addMessage(actual);
+              Notifications.showLastMessage();
+            }
+          }
           break;
         case "Float":
-          var floatObj = ScrabbleFactory.getFloat(Float.valueOf(inputValue));
-          Operations.addValueToOperation(floatObj);
-          Operations.addObjectWithLabel(floatObj);
+          try {
+            var floatObj = ScrabbleFactory.getFloat(Float.valueOf(inputValue));
+            Operations.addValueToOperation(floatObj);
+            Operations.addObjectWithLabel(floatObj);
+          } catch (NumberFormatException s) {
+            var current = Notifications.getCurrentMessage();
+            if (!current.contains("Invalid Float")) {
+              String actual = "Invalid Float. " + current;
+              Notifications.addMessage(actual);
+              Notifications.showLastMessage();
+            }
+          }
+
           break;
         case "Boolean":
+          // Me falta construir una excepcion en mi clase Scrabble
           var boolObj = ScrabbleFactory.getBoolean(Boolean.valueOf(inputValue));
           Operations.addValueToOperation(boolObj);
           Operations.addObjectWithLabel(boolObj);
           break;
         case "Binary":
+          // Me falta modificar la excepción
           var binObj = ScrabbleFactory.getBinary(inputValue);
           Operations.addValueToOperation(binObj);
           Operations.addObjectWithLabel(binObj);
