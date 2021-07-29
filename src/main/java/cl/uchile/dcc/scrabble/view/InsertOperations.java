@@ -6,12 +6,29 @@ import cl.uchile.dcc.scrabble.controller.Div;
 import cl.uchile.dcc.scrabble.controller.Mult;
 import cl.uchile.dcc.scrabble.controller.Negate;
 import cl.uchile.dcc.scrabble.controller.Or;
-import cl.uchile.dcc.scrabble.controller.Subt;
 import cl.uchile.dcc.scrabble.controller.ScrabbleFactory;
+import cl.uchile.dcc.scrabble.controller.Subt;
 import javafx.event.ActionEvent;
 
+/**
+ * LeftBox button actions for inserting operations and transformations
+ *
+ * @author Jorge Luis Ortiz Fuentes
+ */
 public class InsertOperations {
 
+  /**
+   * Performs an addition operation
+   * <p>
+   * If the operation in memory is empty, construct an empty add operation. If an operation already
+   * exists and is not completed, then it adds an empty add operation in the leftmost available
+   * space.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
   public static void addOperation(ActionEvent event) {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.cleanOperationBox();
@@ -29,7 +46,18 @@ public class InsertOperations {
     Operations.leaveSignInQueue("+");
   }
 
-
+  /**
+   * Performs a subtraction operation
+   * <p>
+   * If the operation in memory is empty, construct an empty subtraction operation. If an operation
+   * already exists and is not completed, then it adds an empty subtraction operation in the
+   * leftmost available space.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
   public static void subtOperation(ActionEvent event) {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Subt());
@@ -45,6 +73,18 @@ public class InsertOperations {
     Operations.leaveSignInQueue("-");
   }
 
+  /**
+   * Performs a multiplication operation
+   * <p>
+   * If the operation in memory is empty, construct an empty multiplication operation. If an
+   * operation already exists and is not completed, then it adds an empty multiplication operation
+   * in the leftmost available space.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
   public static void multOperation(ActionEvent event) {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Mult());
@@ -60,6 +100,18 @@ public class InsertOperations {
     Operations.leaveSignInQueue("×");
   }
 
+  /**
+   * Performs a division operation
+   * <p>
+   * If the operation in memory is empty, construct an empty division operation. If an operation
+   * already exists and is not completed, then it adds an empty division operation in the leftmost
+   * available space.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
   public static void divOperation(ActionEvent event) {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Div());
@@ -75,7 +127,19 @@ public class InsertOperations {
     Operations.leaveSignInQueue("÷");
   }
 
-  public static void andOperation(ActionEvent actionEvent) {
+  /**
+   * Performs a conjunction operation
+   * <p>
+   * If the operation in memory is empty, construct an empty conjunction operation. If an operation
+   * already exists and is not completed, then it adds an empty conjunction operation in the
+   * leftmost available space.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
+  public static void andOperation(ActionEvent event) {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new And());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -91,7 +155,19 @@ public class InsertOperations {
 
   }
 
-  public static void orOperation(ActionEvent actionEvent) {
+  /**
+   * Performs a disjunction operation
+   * <p>
+   * If the operation in memory is empty, construct an empty disjunction operation. If an operation
+   * already exists and is not completed, then it adds an empty disjunction operation in the
+   * leftmost available space.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
+  public static void orOperation(ActionEvent event) {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Or());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -107,7 +183,19 @@ public class InsertOperations {
 
   }
 
-  public static void negateOperation(ActionEvent actionEvent) {
+  /**
+   * Performs a negation operation
+   * <p>
+   * If the operation in memory is empty, construct an empty negation operation. If an operation
+   * already exists and is not completed, then it adds an empty negation operation in the leftmost
+   * available space.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
+  public static void negateOperation(ActionEvent event) {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Negate());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -121,7 +209,19 @@ public class InsertOperations {
 
   }
 
-  public static void asStringOperation(ActionEvent actionEvent) {
+  /**
+   * Performs an operation to transform into String
+   * <p>
+   * If the operation in memory is empty, construct an empty transform operation. If an operation
+   * already exists and is not completed, then it adds an empty transform operation in the leftmost
+   * available space. If the operation is completed, then transform the result.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
+  public static void asStringOperation(ActionEvent event) {
     if (Operations.isNull()) {
       Operations.setOperation(new Add());
       Operations.setValues(ScrabbleFactory.getString(""));
@@ -139,7 +239,6 @@ public class InsertOperations {
       Operations.addOperationSign("Str  (");
       Operations.leaveSignInQueue(")");
 
-      //Operations.setValues(new Negate());
     } else if (Operations.isComplete()) {
       Operations.asString();
       Result.cleanResult();
@@ -147,7 +246,19 @@ public class InsertOperations {
     }
   }
 
-  public static void asIntOperation(ActionEvent actionEvent) {
+  /**
+   * Performs an operation to transform into Int
+   * <p>
+   * If the operation in memory is empty, construct an empty transform operation. If an operation
+   * already exists and is not completed, then it adds an empty transform operation in the leftmost
+   * available space. If the operation is completed, then transform the result.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
+  public static void asIntOperation(ActionEvent event) {
     if (Operations.isNull()) {
       Operations.setOperation(new Add());
       Operations.setValues(ScrabbleFactory.getInt(0));
@@ -171,7 +282,19 @@ public class InsertOperations {
     }
   }
 
-  public static void asFloatOperation(ActionEvent actionEvent) {
+  /**
+   * Performs an operation to transform into Float
+   * <p>
+   * If the operation in memory is empty, construct an empty transform operation. If an operation
+   * already exists and is not completed, then it adds an empty transform operation in the leftmost
+   * available space. If the operation is completed, then transform the result.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
+  public static void asFloatOperation(ActionEvent event) {
     if (Operations.isNull()) {
       Operations.setOperation(new Add());
       Operations.setValues(ScrabbleFactory.getFloat(0));
@@ -195,7 +318,19 @@ public class InsertOperations {
     }
   }
 
-  public static void asBinaryOperation(ActionEvent actionEvent) {
+  /**
+   * Performs an operation to transform into Binary
+   * <p>
+   * If the operation in memory is empty, construct an empty transform operation. If an operation
+   * already exists and is not completed, then it adds an empty transform operation in the leftmost
+   * available space. If the operation is completed, then transform the result.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
+  public static void asBinaryOperation(ActionEvent event) {
     if (Operations.isNull()) {
       Operations.setOperation(new Add());
       Operations.setValues(ScrabbleFactory.getBinary("0"));
@@ -220,7 +355,19 @@ public class InsertOperations {
     }
   }
 
-  public static void asBooleanOperation(ActionEvent actionEvent) {
+  /**
+   * Performs an operation to transform into Boolean
+   * <p>
+   * If the operation in memory is empty, construct an empty transform operation. If an operation
+   * already exists and is not completed, then it adds an empty transform operation in the leftmost
+   * available space. If the operation is completed, then transform the result.
+   * <p>
+   * Add the corresponding notifications to guide the use of the operation and insert the signs of
+   * the corresponding operation.
+   *
+   * @param event Event that initializes this operation
+   */
+  public static void asBooleanOperation(ActionEvent event) {
     if (Operations.isNull()) {
       Operations.setOperation(new And());
       Operations.setValues(ScrabbleFactory.getBoolean(true));

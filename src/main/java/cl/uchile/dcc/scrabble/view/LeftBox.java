@@ -5,11 +5,23 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
+/**
+ * Box on the left with buttons for operations and transformations.
+ *
+ * @author Jorge Luis Ortiz Fuentes
+ */
 public class LeftBox {
 
+  /**
+   * Vertical Box containing the contents of this part of the layout
+   */
   private static VBox leftBox;
 
-
+  /**
+   * Get the vertical box with all buttons and padding.
+   *
+   * @return vertical box
+   */
   public static VBox getLeftBox() {
     leftBox = new VBox(10);// 10 pixels separation
     leftBox.setPadding(new Insets(0, 0, 0, 30)); // 15 pixels border
@@ -32,6 +44,11 @@ public class LeftBox {
     return leftBox;
   }
 
+  /**
+   * Button to add. If pressed, it executes the InsertOperations::addOperation method.
+   *
+   * @return Add button
+   */
   private static Button addButton() {
     var button = DesignFactory.getButton1();
     button.setText("ADD ( □ + □ )");
@@ -40,6 +57,11 @@ public class LeftBox {
 
   }
 
+  /**
+   * Button to subtract. If pressed, it executes the InsertOperations::subtOperation method.
+   *
+   * @return Subtract button
+   */
   private static Button subtButton() {
     var button = DesignFactory.getButton1();
     button.setText("SUBTRACT ( □ - □ )");
@@ -47,6 +69,11 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to multiply. If pressed, it executes the InsertOperations::multOperation method.
+   *
+   * @return Multiply button
+   */
   private static Button multButton() {
     var button = DesignFactory.getButton1();
     button.setText("MULTIPLY ( □ × □ )");
@@ -54,6 +81,11 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to divide. If pressed, it executes the InsertOperations::divOperation method.
+   *
+   * @return Divide button
+   */
   private static Button divButton() {
     var button = DesignFactory.getButton1();
     button.setText("DIVIDE ( □ ÷ □ )");
@@ -61,6 +93,12 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to implement the conjunction operation. If pressed, it executes the
+   * InsertOperations::andOperation method.
+   *
+   * @return And button
+   */
   private static Button andButton() {
     var button = DesignFactory.getButton1();
     button.setText("AND ( □ ∧ □ )");
@@ -68,6 +106,12 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to implement the disjunction operation. If pressed, it executes the
+   * InsertOperations::orOperation method.
+   *
+   * @return Or button
+   */
   private static Button orButton() {
     var button = DesignFactory.getButton1();
     button.setText("OR ( □ ∨ □ )");
@@ -75,6 +119,11 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to negate. If pressed, it executes the InsertOperations::negateOperation method.
+   *
+   * @return Or button
+   */
   private static Button negateButton() {
     var button = DesignFactory.getButton1();
     button.setText("NEGATE ( ¬ □ )");
@@ -82,6 +131,12 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to convert to Scrabble String. If pressed, it executes the
+   * InsertOperations::asStringOperation method.
+   *
+   * @return As String button
+   */
   private static Button asStringButton() {
     var button = DesignFactory.getButton1();
     button.setText("TO STRING ( □ )");
@@ -89,6 +144,12 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to convert to Scrabble Int. If pressed, it executes the InsertOperations::asIntOperation
+   * method.
+   *
+   * @return As Int button
+   */
   private static Button asIntButton() {
     var button = DesignFactory.getButton1();
     button.setText("TO INT ( □ )");
@@ -96,6 +157,12 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to convert to Scrabble Float. If pressed, it executes the
+   * InsertOperations::asFloatOperation method.
+   *
+   * @return As Float button
+   */
   private static Button asFloatButton() {
     var button = DesignFactory.getButton1();
     button.setText("TO FLOAT ( □ )");
@@ -103,6 +170,12 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to convert to Scrabble Binary. If pressed, it executes the
+   * InsertOperations::asBinaryOperation method.
+   *
+   * @return As Binary button
+   */
   private static Button asBinaryButton() {
     var button = DesignFactory.getButton1();
     button.setText("TO BINARY ( □ )");
@@ -110,6 +183,12 @@ public class LeftBox {
     return button;
   }
 
+  /**
+   * Button to convert to Scrabble Boolean. If pressed, it executes the
+   * InsertOperations::asBooleanOperation method.
+   *
+   * @return As Boolean button
+   */
   private static Button asBooleanButton() {
     var button = DesignFactory.getButton1();
     button.setText("TO BOOLEAN ( □ )");

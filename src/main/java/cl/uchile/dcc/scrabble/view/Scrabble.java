@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 
 /**
- * Main entry point for the application.
+ * Main entry point for the Scrabble Application.
  * <p>
- * <Complete here with the details of the implemented application>
+ * Through a layout divided into two parts (left and right), the program allows you to insert
+ * operations, transformations and values to be calculated at the push of a button.
  *
- * @author Ignacio Slater Muñoz.
  * @author Jorge Luis Ortiz Fuentes
  */
 public class Scrabble extends Application {
@@ -21,6 +21,11 @@ public class Scrabble extends Application {
     launch(args);
   }
 
+  /**
+   * Build the layout and insert the left and right part. Then visualize it.
+   *
+   * @param primaryStage default primary Stage
+   */
   @Override
   public void start(Stage primaryStage) {
 
