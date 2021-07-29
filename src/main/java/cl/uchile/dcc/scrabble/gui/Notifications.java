@@ -23,8 +23,6 @@ public class Notifications {
   }
 
   public static Label messageLabel() {
-    //messageLabel.setLayoutX(600);
-    //messageLabel.setLayoutY(30);
     messageLabel.setStyle("-fx-font-size: 18px;"
         + "-fx-font-weight: bold");
     return messageLabel;
@@ -46,14 +44,18 @@ public class Notifications {
     }
   }
 
+  public static String getCurrentMessage() {
+    return messageLabel.getText();
+  }
+
   public static String getLastMessage() {
     return (String) messagesStack.pop();
   }
 
-    public static void cleanMessage() {
-    messagesStack.clear();
-    messagesStack.add("Select an operation");
-    showLastMessage();
-  }
+  public static void cleanMessage() {
+  messagesStack.clear();
+  messagesStack.add("Select an operation");
+  showLastMessage();
+}
 
 }

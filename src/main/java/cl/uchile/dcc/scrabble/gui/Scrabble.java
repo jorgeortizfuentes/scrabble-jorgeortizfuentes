@@ -45,20 +45,9 @@ public class Scrabble extends Application {
     root.setCenter(RightBox.getRightBox());
 
 
-    //
-    // root.getChildren().add(cajaVertical);
-    //root.getChildren().add(calculateButton());
-
-    //root.getChildren().add(addButton());
-    //root.getChildren().add(subtractButton());
-    //root.getChildren().add(messageLabel());
-    //root.getChildren().add(resultLabel());
-    //root.getChildren().add(valuesBar());
-
-
 
     // This sets the size of the Scene to be 400px wide, 200px high
-    Scene scene = new Scene(root, 1280, 720);
+    Scene scene = new Scene(root, 1024, 800);
     primaryStage.setScene(scene);
 
     primaryStage.show();

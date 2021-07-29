@@ -1,8 +1,7 @@
 package cl.uchile.dcc.scrabble.gui;
 
-import cl.uchile.dcc.scrabble.operations.Add;
-import cl.uchile.dcc.scrabble.operations.Subt;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
@@ -13,68 +12,109 @@ public class LeftBox {
 
   public static VBox getLeftBox() {
     leftBox = new VBox(10);// 10 pixels separation
-    leftBox.setPadding(new Insets(15)); // 15 pixels border
-
+    leftBox.setPadding(new Insets(0, 0, 0, 30)); // 15 pixels border
+    leftBox.setAlignment(Pos.BASELINE_CENTER);
+    leftBox.getChildren().add(FormFactory.getTitleLabel("Operations"));
     leftBox.getChildren().add(addButton());
-    leftBox.getChildren().add(subtractButton());
+    leftBox.getChildren().add(subtButton());
+    leftBox.getChildren().add(multButton());
+    leftBox.getChildren().add(divButton());
+    leftBox.getChildren().add(andButton());
+    leftBox.getChildren().add(orButton());
+    leftBox.getChildren().add(negateButton());
+    leftBox.getChildren().add(FormFactory.getTitleLabel("Transformations"));
+    leftBox.getChildren().add(asStringButton());
+    leftBox.getChildren().add(asIntButton());
+    leftBox.getChildren().add(asFloatButton());
+    leftBox.getChildren().add(asBinaryButton());
+    leftBox.getChildren().add(asBooleanButton());
+
+
     return leftBox;
   }
 
   private static Button addButton() {
-    var button = new Button("ADD ( □ + □ )");
-    button.setLayoutX(100);
-    button.setLayoutY(100);
-    button.setFocusTraversable(false);
-    button.setStyle("-fx-background-color: #AFBBF2; "
-        + "-fx-pref-width: 200px;"
-        + "-fx-padding: 15 30 15 30;"
-        + "-fx-font-size: 14px;"
-        + "-fx-font-weight: bold");
-    button.setOnAction(event -> {
-
-      if (Operations.isNull()){
-        Operations.setOperation(new Add());
-        Notifications.addMessage("Press \"Calculate\" to obtain the result");
-      } else {
-        Operations.setValues(new Add());
-      }
-      Notifications.addMessage("Inserts the second addend or an operation");
-      Notifications.addMessage("Inserts the first addend or an operation");
-      Notifications.showLastMessage();
-      Operations.addOperationSign("(");
-      Operations.leaveSignInQueue(")");
-      Operations.leaveSignInQueue("+");
-
-
-
-      });
+    var button = FormFactory.getButton1();
+    button.setText("ADD ( □ + □ )");
+    button.setOnAction(InsertOperations::addOperation);
     return button;
 
   }
 
-  private static Button subtractButton() {
-    var button = new Button("SUBTRACT ( □ - □ )");
-    button.setLayoutX(100);
-    button.setLayoutY(200);
-    button.setFocusTraversable(false);
-    button.setStyle("-fx-background-color: #AFBBF2; "
-        + "-fx-pref-width: 200px;"
-        + "-fx-padding: 15 30 15 30;"
-        + "-fx-font-size: 14px;"
-        + "-fx-font-weight: bold");
-    //button.setOnAction(App::playSound);
-    button.setOnAction(event -> {
-      if (Operations.isNull()){
-        Operations.setOperation(new Subt());
-        Notifications.addMessage("Press \"Calculate\" to obtain the result");
-      } else {
-        Operations.setValues(new Subt());
-      }
-      Notifications.addMessage("Insert the subtrahend or an operation");
-      Notifications.addMessage("Insert the minuend or an operation");
-      Notifications.showLastMessage();
-    });
+  private static Button subtButton() {
+    var button = FormFactory.getButton1();
+    button.setText("SUBTRACT ( □ - □ )");
+    button.setOnAction(InsertOperations::subtOperation);
     return button;
   }
 
+  private static Button multButton() {
+    var button = FormFactory.getButton1();
+    button.setText("MULTIPLY ( □ × □ )");
+    button.setOnAction(InsertOperations::multOperation);
+    return button;
+  }
+
+  private static Button divButton() {
+    var button = FormFactory.getButton1();
+    button.setText("DIVIDE ( □ ÷ □ )");
+    button.setOnAction(InsertOperations::divOperation);
+    return button;
+  }
+
+  private static Button andButton() {
+    var button = FormFactory.getButton1();
+    button.setText("AND ( □ ∧ □ )");
+    button.setOnAction(InsertOperations::andOperation);
+    return button;
+  }
+
+  private static Button orButton() {
+    var button = FormFactory.getButton1();
+    button.setText("OR ( □ ∨ □ )");
+    button.setOnAction(InsertOperations::orOperation);
+    return button;
+  }
+
+  private static Button negateButton() {
+    var button = FormFactory.getButton1();
+    button.setText("NEGATE ( ¬ □ )");
+    button.setOnAction(InsertOperations::negateOperation);
+    return button;
+  }
+
+  private static Button asStringButton() {
+    var button = FormFactory.getButton1();
+    button.setText("TO STRING ( □ )");
+    button.setOnAction(InsertOperations::asStringOperation);
+    return button;
+  }
+
+  private static Button asIntButton() {
+    var button = FormFactory.getButton1();
+    button.setText("TO INT ( □ )");
+    button.setOnAction(InsertOperations::asIntOperation);
+    return button;
+  }
+
+  private static Button asFloatButton() {
+    var button = FormFactory.getButton1();
+    button.setText("TO FLOAT ( □ )");
+    button.setOnAction(InsertOperations::asFloatOperation);
+    return button;
+  }
+
+  private static Button asBinaryButton() {
+    var button = FormFactory.getButton1();
+    button.setText("TO BINARY ( □ )");
+    button.setOnAction(InsertOperations::asBinaryOperation);
+    return button;
+  }
+
+  private static Button asBooleanButton() {
+    var button = FormFactory.getButton1();
+    button.setText("TO BOOLEAN ( □ )");
+    button.setOnAction(InsertOperations::asBooleanOperation);
+    return button;
+  }
 }

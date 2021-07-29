@@ -1,19 +1,24 @@
 package cl.uchile.dcc.scrabble.gui;
 
 import cl.uchile.dcc.scrabble.operations.Operation;
-import cl.uchile.dcc.scrabble.types.ScrabbleFactory;
+import cl.uchile.dcc.scrabble.types.ScrabbleBinary;
+import cl.uchile.dcc.scrabble.types.ScrabbleBoolean;
+import cl.uchile.dcc.scrabble.types.ScrabbleFloat;
+import cl.uchile.dcc.scrabble.types.ScrabbleInt;
 import cl.uchile.dcc.scrabble.types.ScrabbleString;
 import cl.uchile.dcc.scrabble.types.ScrabbleType;
+import java.text.Normalizer.Form;
 import java.util.Stack;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 
 public class Operations {
-  private static HBox showOperationBox = new HBox();
+  private static TilePane operationsBox = new TilePane();
+  private static ScrollPane operationsBoxScroll = new ScrollPane(getOperationBox());
   private static Operation operation = null;
 
   private static Stack operationsStack = new Stack();
@@ -45,8 +50,28 @@ public class Operations {
     operation.setValues(op);
   }
 
-    public static void cleanOperation(){
+  public static void cleanOperation(){
     Operations.operation = null;
+  }
+
+  public static void asString(){
+    operation = operation.asString();
+  }
+
+  public static void asInt(){
+    operation = operation.asInt();
+  }
+
+  public static void asFloat(){
+    operation = operation.asFloat();
+  }
+
+  public static void asBinary(){
+    operation = operation.asBinary();
+  }
+
+  public static void asBoolean(){
+    operation = operation.asBoolean();
   }
 
   public static ScrabbleType evaluate(){
@@ -67,18 +92,31 @@ public class Operations {
   }
 
 
+  // Operation Box
+
+  public static ScrollPane getOperationsBoxScroll() {
+    operationsBoxScroll.setPrefSize(200, 250);
+    operationsBoxScroll.setFitToHeight(true);
+    operationsBoxScroll.setFitToWidth(true);
+    return operationsBoxScroll;
+  }
+  public static TilePane getOperationBox() {
 
 
 
+    operationsBox.setVgap(15);
+    operationsBox.setMinHeight(250);
 
-  // Show Operation Box
+    operationsBox.setPrefColumns(12);
+    operationsBox.setPrefRows(8);
+    operationsBox.setPadding(new Insets(20,20,20,20)); // 15 pixels border
+    operationsBox.setAlignment(Pos.TOP_CENTER);
+    return operationsBox;
+  }
 
-  public static HBox getOperationBox() {
-    showOperationBox.setSpacing(5);
-    showOperationBox.setPadding(new Insets(15)); // 15 pixels border
-    showOperationBox.setAlignment(Pos.TOP_CENTER);
-
-    return showOperationBox;
+  public static void cleanOperationBox() {
+    operationsStack.clear();
+    operationsBox.getChildren().clear();
   }
 
   public static void leaveSignInQueue(String s) {
@@ -93,27 +131,71 @@ public class Operations {
     var op = new Label(s);
     op.setStyle("-fx-font-size: 22px;"
         + "-fx-font-weight: bold");
-    showOperationBox.getChildren().add(op);
+    operationsBox.getChildren().add(op);
 
   }
 
-  public static void addStringSign(ScrabbleString s) {
-    var op = new Label(s.toString());
-    op.setStyle("-fx-font-size: 22px;"
-        + "-fx-font-weight: bold");
-    var opType = new Label("Str");
-    opType.setTranslateY(op.getFont().getSize() * 0.65);
-
-
+  public static void addObjectWithLabel(ScrabbleString s) {
+    var op = FormFactory.getValueOperationLabel(s.toString());
+    var opType = TypeLabelsFactory.getStringLabel();
     operationsStack.add(opType);
     operationsStack.add(op);
-
+    Operations.showLastOperation(3);
 
   }
 
+  public static void addObjectWithLabel(ScrabbleInt s) {
+    var op = FormFactory.getValueOperationLabel(s.toString());
+    var opType = TypeLabelsFactory.getIntLabel();
+    operationsStack.add(opType);
+    operationsStack.add(op);
+    Operations.showLastOperation(3);
+
+  }
+
+  public static void addObjectWithLabel(ScrabbleFloat s) {
+    var op = FormFactory.getValueOperationLabel(s.toString());
+    var opType = TypeLabelsFactory.getFloatLabel();
+    operationsStack.add(opType);
+    operationsStack.add(op);
+    Operations.showLastOperation(3);
+
+  }
+
+  public static void addObjectWithLabel(ScrabbleBinary s) {
+    var op = FormFactory.getValueOperationLabel(s.toString());
+    var opType = TypeLabelsFactory.getBinaryLabel();
+    operationsStack.add(opType);
+    operationsStack.add(op);
+    Operations.showLastOperation(3);
+
+  }
+
+  public static void addObjectWithLabel(ScrabbleBoolean s) {
+    var op = FormFactory.getValueOperationLabel(s.toString());
+    var opType = TypeLabelsFactory.getBooleanLabel();
+    operationsStack.add(opType);
+    operationsStack.add(op);
+    Operations.showLastOperation(3);
+
+  }
 
   public static void showLastOperation() {
     var last = (Label) operationsStack.pop();
-    showOperationBox.getChildren().add(last);
+    operationsBox.getChildren().add(last);
+    if (last.getText() == ")" && !operationsStack.isEmpty()){
+      var secondLast = (Label) operationsStack.pop();
+      operationsBox.getChildren().add(secondLast);
+    }
   }
+
+  public static void showLastOperation(int n) {
+    for (int i = 0; i < n; i++) {
+      showLastOperation();
+
+    }
+
+  }
+
+
 }

@@ -25,6 +25,14 @@ public class Negate extends AbstractOperation implements Operation {
   }
 
   /**
+   * Constructor of null Negation Tree
+   *
+   */
+  public Negate() {
+    this.value = null;
+  }
+
+  /**
    * Returns the value of the tree object
    *
    * @return leaf object
