@@ -13,17 +13,12 @@ import javafx.scene.layout.VBox;
 public class RightBox {
 
   /**
-   * Vertical Box containing the contents of this part of the layout
-   */
-  private static VBox rightBox;
-
-  /**
    * Get the vertical box with sections and padding.
    *
    * @return vertical box
    */
   public static VBox getRightBox() {
-    rightBox = new VBox(10);// 10 pixels separation
+    var rightBox = new VBox(10);// 10 pixels separation
     rightBox.setPadding(new Insets(30, 30, 0, 0)); // 15 pixels border
 
     rightBox.getChildren().add(Notifications.getNotificationBox());

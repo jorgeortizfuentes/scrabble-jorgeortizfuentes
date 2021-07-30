@@ -20,7 +20,7 @@ public class InsertValues {
   /**
    * Choice Box to select an object type
    */
-  private static ChoiceBox valueTypeBox;
+  private static ChoiceBox<String> valueTypeBox;
 
   /**
    * Text Field to insert an object value
@@ -84,10 +84,10 @@ public class InsertValues {
    * If there is no operation, returns error. If it is possible to insert a value, then it checks
    * the type of the value, constructs it and adds it to both the operation and the display field.
    *
-   * @param event
+   * @param event an event
    */
   public static void sendValue(ActionEvent event) {
-    var inputType = valueTypeBox.getValue().toString();
+    var inputType = valueTypeBox.getValue();
     var inputValue = valueText.getCharacters().toString();
 
     if (Operations.isNull() || Operations.isComplete()) {
@@ -105,7 +105,7 @@ public class InsertValues {
           break;
         case "Int":
           try {
-            var intObj = ScrabbleFactory.getInt(Integer.valueOf(inputValue));
+            var intObj = ScrabbleFactory.getInt(Integer.parseInt(inputValue));
             Operations.addValueToOperation(intObj);
             Operations.addObjectWithLabel(intObj);
           } catch (NumberFormatException s) {
@@ -119,7 +119,7 @@ public class InsertValues {
           break;
         case "Float":
           try {
-            var floatObj = ScrabbleFactory.getFloat(Float.valueOf(inputValue));
+            var floatObj = ScrabbleFactory.getFloat(Float.parseFloat(inputValue));
             Operations.addValueToOperation(floatObj);
             Operations.addObjectWithLabel(floatObj);
           } catch (NumberFormatException s) {
@@ -136,7 +136,7 @@ public class InsertValues {
           inputValue = inputValue.toLowerCase();
           List<String> validBoolean = Arrays.asList("true", "false");
           if (validBoolean.contains(inputValue)) {
-            var boolObj = ScrabbleFactory.getBoolean(Boolean.valueOf(inputValue));
+            var boolObj = ScrabbleFactory.getBoolean(Boolean.parseBoolean(inputValue));
             Operations.addValueToOperation(boolObj);
             Operations.addObjectWithLabel(boolObj);
           } else {

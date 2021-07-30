@@ -8,7 +8,6 @@ import cl.uchile.dcc.scrabble.controller.Negate;
 import cl.uchile.dcc.scrabble.controller.Or;
 import cl.uchile.dcc.scrabble.controller.ScrabbleFactory;
 import cl.uchile.dcc.scrabble.controller.Subt;
-import javafx.event.ActionEvent;
 
 /**
  * Insert operations actions for inserting operations and transformations
@@ -27,9 +26,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void addOperation(ActionEvent event) {
+  public static void addOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.cleanOperationBox();
       Result.cleanResult();
@@ -56,9 +54,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void subtOperation(ActionEvent event) {
+  public static void subtOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Subt());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -83,9 +80,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void multOperation(ActionEvent event) {
+  public static void multOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Mult());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -110,9 +106,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void divOperation(ActionEvent event) {
+  public static void divOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Div());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -137,9 +132,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void andOperation(ActionEvent event) {
+  public static void andOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new And());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -165,9 +159,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void orOperation(ActionEvent event) {
+  public static void orOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Or());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -193,9 +186,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void negateOperation(ActionEvent event) {
+  public static void negateOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
       Operations.setOperation(new Negate());
       Notifications.addMessage("Press \"Calculate\" to obtain the result");
@@ -219,9 +211,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void asStringOperation(ActionEvent event) {
+  public static void asStringOperation() {
     if (Operations.isNull()) {
       Operations.setOperation(new Add());
       Operations.setValues(ScrabbleFactory.getString(""));
@@ -256,9 +247,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void asIntOperation(ActionEvent event) {
+  public static void asIntOperation() {
     if (Operations.isNull()) {
       Operations.setOperation(new Add());
       Operations.setValues(ScrabbleFactory.getInt(0));
@@ -292,9 +282,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void asFloatOperation(ActionEvent event) {
+  public static void asFloatOperation() {
     if (Operations.isNull()) {
       Operations.setOperation(new Add());
       Operations.setValues(ScrabbleFactory.getFloat(0));
@@ -328,9 +317,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void asBinaryOperation(ActionEvent event) {
+  public static void asBinaryOperation() {
     if (Operations.isNull()) {
       Operations.setOperation(new Add());
       Operations.setValues(ScrabbleFactory.getBinary("0"));
@@ -365,9 +353,8 @@ public class InsertOperations {
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
    *
-   * @param event Event that initializes this operation
    */
-  public static void asBooleanOperation(ActionEvent event) {
+  public static void asBooleanOperation() {
     if (Operations.isNull()) {
       Operations.setOperation(new And());
       Operations.setValues(ScrabbleFactory.getBoolean(true));

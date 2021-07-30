@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import cl.uchile.dcc.scrabble.controller.ScrabbleFactory;
 import cl.uchile.dcc.scrabble.model.ScrabbleBinary;
 import cl.uchile.dcc.scrabble.model.ScrabbleBoolean;
 import cl.uchile.dcc.scrabble.model.ScrabbleFloat;

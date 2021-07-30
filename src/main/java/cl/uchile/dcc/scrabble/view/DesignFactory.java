@@ -96,8 +96,8 @@ public class DesignFactory {
    *
    * @return designed choice box
    */
-  public static ChoiceBox getChoiceBox() {
-    var cb = new ChoiceBox();
+  public static ChoiceBox<String> getChoiceBox() {
+    var cb = new ChoiceBox<String>();
     cb.setStyle("-fx-background-color: transparent; "
         + "-fx-border-color: " + mainColor + ";"
         + "-fx-border-width: 1;"

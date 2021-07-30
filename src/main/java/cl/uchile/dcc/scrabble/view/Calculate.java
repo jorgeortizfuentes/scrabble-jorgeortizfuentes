@@ -15,18 +15,12 @@ import javafx.scene.layout.HBox;
 public class Calculate {
 
   /**
-   * HorizontalBox to insert the buttons for calculating
-   */
-  private static HBox calculateBox;
-
-
-  /**
    * Get Calculate Box with buttons for calculating
    *
    * @return an horizontal box with buttons
    */
   public static HBox getCalculateBox() {
-    calculateBox = new HBox(10);// 10 pixels separation
+    var calculateBox = new HBox(10);// 10 pixels separation
     calculateBox.setPadding(new Insets(15)); // 15 pixels border
     calculateBox.setAlignment(Pos.TOP_CENTER);
     calculateBox.getChildren().add(getCalculateButton());
