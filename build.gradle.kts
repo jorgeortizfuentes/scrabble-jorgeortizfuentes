@@ -17,7 +17,7 @@ plugins {
 }
 
 application {
-    mainClass.set("cl.uchile.dcc.scrabble.gui.Scrabble")
+    mainClass.set("cl.uchile.dcc.scrabble.view.Scrabble")
 }
 
 repositories {

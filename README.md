@@ -12,24 +12,29 @@ _CC3002 Metodologías de Diseño y programación_ of the
 _University of Chile_. Developed by Jorge Luis Ortiz Fuentes
 ---
 
+## Program
+
+This program allows to run an interface with buttons to perform operations between variables, similar but more simplified to the Scratch Project.
+
+![Image Caption](GUIScreenshot.png)
+
 ## Executing
 
-This program runs on Java 15.0.1 and does not require additional packages.
+This program runs on Java 15.0.1 and requires JavaFX plugin 0.0.8.
 
 ## Functioning
 
-This program contains 2 packages: types and operations.
+This program contains 3 packages: model, controller and view.
 
-The types package contains 5 classes to instantiate objects of cl.uchile.dcc.scrabble.types ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior and expand an abstract class called ScrabbleAbstract. In addition to the 5 classes, there is a factory to build the memory-optimized Scrabble cl.uchile.dcc.scrabble.types objects.
+The model package contains 5 classes to instantiate objects ScrabbleString, ScrabbleInt, ScrabbleFloat, ScrabbleBinary and ScrabbleBoolean. The 5 classes implement the ScrabbleType interface, which determines their general behavior and expand an abstract class called ScrabbleAbstract. 
 
-The operations package contains 7 classes with AVL tree operations: Add (addition), Subt (subtraction), Mult (multiplication), Div (division), And (conjunction), Or (disjunction) and Negate (negation). These classes implement the Operation interface and expand an abstract class called AbstractOperation. 
+The controller package contains 7 classes with AVL tree operations: Add (addition), Subt (subtraction), Mult (multiplication), Div (division), And (conjunction), Or (disjunction) and Negate (negation). These classes implement the Operation interface and expand an abstract class called AbstractOperation. In addition, there is a factory to build the memory-optimized Scrabble objects.
 
-The objects of the types package function as leaves of the AVL trees, so they also implement the Operation interface.
+The objects of the model package function as leaves of the AVL trees, so they also implement the Operation interface.
 
-In addition, in the operations package there is the Var class, to assign variables of the String cl.uchile.dcc.scrabble.types to the objects of the Scrabble cl.uchile.dcc.scrabble.types, using the Factory and optimizing the memory.
+In addition, in the operations package there is the Var class, to assign variables of the String to the objects of the Scrabble model, using the Factory and optimizing the memory.
 
-Translated with www.DeepL.com/Translator (free version)
-## Scrabble Types
+## Model
 
 ### Types
 The 5 classes can be transformed into each other according to the following characteristics:
@@ -61,6 +66,16 @@ This table returns the operations on the left for all those that are possible an
 
 Operations that are not allowed according to the table, but are forced by the interface, return a null value.
 
+## Controller
+
+### Operations
+
+The possible operations were implemented using AVL trees. 
+
+The Add (addition), Subt (subtraction), Mult (multiplication), Div (division), Or (disjunction), And (conjunction) trees have two leaves. On the other hand, the Negate tree has only one leaf. 
+
+All trees can receive both other trees and Scrabbles cl.uchile.dcc.scrabble.model objects.
+
 ### Factory
 
 In order to optimize memory usage and make object creation efficient, a Factory was implemented. Through it you can create objects with the following methods
@@ -71,24 +86,37 @@ In order to optimize memory usage and make object creation efficient, a Factory 
 * ScrabbleFactory.getFloat(double)
 * ScrabbleFactory.getBoolean(bool)
 
-## Operations
-
-The possible operations were implemented using AVL trees. 
-
-The Add (addition), Subt (subtraction), Mult (multiplication), Div (division), Or (disjunction), And (conjunction) trees have two leaves. On the other hand, the Negate tree has only one leaf. 
-
-All trees can receive both other trees and Scrabbles cl.uchile.dcc.scrabble.types objects.
-
-
 ### Variables 
 
 In order to allocate variables optimizing memory, the Var class was created to relate String variables with scrabble objects that are created and stored with the ScrabbleFactory. 
 
+## Vist
 
-## Types UML Diagram
+Through a layout divided into two parts (left and right), the program allows you to insert operations, transformations and values to be calculated at the push of a button.
 
-![Image Caption](PackageTypes.svg)
+The view is structured in 10 classes.
 
-## Operations UML Diagram
+* Scrabble: initializes the layout and starts the program
+* DesignFactory: factory to build labels, buttons and fields in a predesigned format
+* LeftBox: contains the buttons for inserting operations
+* InsertOperations: functionalities for leftbox buttons to insert operations and transformations
+* RightBox: contains the notifications, the result, the inserted operations and the buttons for adding objects values
+* Notifications: implements a stack to store the notifications that are displayed at the top of the right box
+* Result: implement and shows the result of the operation in memory
+* Operations: implements the operation box in the right box 
+* InsertValues: functionalities for rightbox buttons to insert objects values 
+* Calculate: implements the buttons and functionalities to calculate the inserted operations and values
 
-![Image Caption](PackageOperations.svg)
+
+
+## Model UML Diagram
+
+![Image Caption](Package-model.svg)
+
+## Controller UML Diagram
+
+![Image Caption](Package-controller.svg)
+
+## View UML Diagram
+
+![Image Caption](Package-view.svg)
