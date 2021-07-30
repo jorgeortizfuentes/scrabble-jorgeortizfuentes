@@ -1,10 +1,8 @@
 package cl.uchile.dcc.scrabble.view;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -36,7 +34,7 @@ public class Scrabble extends Application {
     root.setLeft(LeftBox.getLeftBox());
     root.setCenter(RightBox.getRightBox());
 
-    Scene scene = new Scene(root);//, 1024, 800);
+    Scene scene = new Scene(root);
     primaryStage.setScene(scene);
 
     primaryStage.show();

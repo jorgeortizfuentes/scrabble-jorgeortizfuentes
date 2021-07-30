@@ -25,7 +25,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void addOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
@@ -53,7 +52,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void subtOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
@@ -79,7 +77,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void multOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
@@ -105,7 +102,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void divOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
@@ -131,7 +127,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void andOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
@@ -158,7 +153,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void orOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
@@ -185,7 +179,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void negateOperation() {
     if (Operations.isNull() || Operations.isComplete()) {
@@ -210,7 +203,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void asStringOperation() {
     if (Operations.isNull()) {
@@ -246,7 +238,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void asIntOperation() {
     if (Operations.isNull()) {
@@ -281,7 +272,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void asFloatOperation() {
     if (Operations.isNull()) {
@@ -316,7 +306,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void asBinaryOperation() {
     if (Operations.isNull()) {
@@ -352,7 +341,6 @@ public class InsertOperations {
    * <p>
    * Add the corresponding notifications to guide the use of the operation and insert the signs of
    * the corresponding operation.
-   *
    */
   public static void asBooleanOperation() {
     if (Operations.isNull()) {
