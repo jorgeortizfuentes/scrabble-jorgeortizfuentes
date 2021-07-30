@@ -19,12 +19,11 @@ public class RightBox {
    */
   public static VBox getRightBox() {
     var rightBox = new VBox(10);// 10 pixels separation
-    rightBox.setPadding(new Insets(30, 30, 0, 0)); // 15 pixels border
 
+    rightBox.setPadding(new Insets(30, 120, 0, 120)); // 15 pixels border
     rightBox.getChildren().add(Notifications.getNotificationBox());
     rightBox.getChildren().add(Result.getResultBox());
     rightBox.getChildren().add(Operations.getOperationsBoxScroll());
-    VBox.setMargin(Operations.getOperationsBoxScroll(), new Insets(5, 120, 5, 120));
 
     rightBox.getChildren().add(Calculate.getCalculateBox());
     rightBox.getChildren().add(InsertValues.getValuesBox());

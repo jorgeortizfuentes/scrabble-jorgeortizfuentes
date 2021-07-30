@@ -19,7 +19,7 @@ public class LeftBox {
    */
   public static VBox getLeftBox() {
     var leftBox = new VBox(10);// 10 pixels separation
-    leftBox.setPadding(new Insets(0, 0, 0, 30)); // 15 pixels border
+    leftBox.setPadding(new Insets(0, 0, 100, 30)); // 15 pixels border
     leftBox.setAlignment(Pos.BASELINE_CENTER);
     leftBox.getChildren().add(DesignFactory.getTitleLabel("Operations"));
     leftBox.getChildren().add(addButton());
@@ -46,7 +46,7 @@ public class LeftBox {
    */
   private static Button addButton() {
     var button = DesignFactory.getButton1();
-    button.setText("ADD ( □ + □ )");
+    button.setText("ADD ( \u25A1 + \u25A1 )");
     button.setOnAction(event -> InsertOperations.addOperation());
     return button;
 
@@ -59,7 +59,7 @@ public class LeftBox {
    */
   private static Button subtButton() {
     var button = DesignFactory.getButton1();
-    button.setText("SUBTRACT ( □ - □ )");
+    button.setText("SUBTRACT ( \u25A1 - \u25A1 )");
     button.setOnAction(event -> InsertOperations.subtOperation());
     return button;
   }
@@ -71,7 +71,7 @@ public class LeftBox {
    */
   private static Button multButton() {
     var button = DesignFactory.getButton1();
-    button.setText("MULTIPLY ( □ × □ )");
+    button.setText("MULTIPLY ( \u25A1 \u00D7 \u25A1 )");
     button.setOnAction(event -> InsertOperations.multOperation());
     return button;
   }
@@ -83,7 +83,7 @@ public class LeftBox {
    */
   private static Button divButton() {
     var button = DesignFactory.getButton1();
-    button.setText("DIVIDE ( □ ÷ □ )");
+    button.setText("DIVIDE ( \u25A1 \u00F7 \u25A1 )");
     button.setOnAction(event -> InsertOperations.divOperation());
     return button;
   }
@@ -96,7 +96,7 @@ public class LeftBox {
    */
   private static Button andButton() {
     var button = DesignFactory.getButton1();
-    button.setText("AND ( □ ∧ □ )");
+    button.setText("AND ( \u25A1 \u2227 \u25A1 )");
     button.setOnAction(event -> InsertOperations.andOperation());
     return button;
   }
@@ -109,7 +109,7 @@ public class LeftBox {
    */
   private static Button orButton() {
     var button = DesignFactory.getButton1();
-    button.setText("OR ( □ ∨ □ )");
+    button.setText("OR ( \u25A1 \u2228 \u25A1 )");
     button.setOnAction(event -> InsertOperations.orOperation());
     return button;
   }
@@ -121,7 +121,7 @@ public class LeftBox {
    */
   private static Button negateButton() {
     var button = DesignFactory.getButton1();
-    button.setText("NEGATE ( ¬ □ )");
+    button.setText("NEGATE ( \u00AC \u25A1 )");
     button.setOnAction(event -> InsertOperations.negateOperation());
     return button;
   }
@@ -134,7 +134,7 @@ public class LeftBox {
    */
   private static Button asStringButton() {
     var button = DesignFactory.getButton1();
-    button.setText("TO STRING ( □ )");
+    button.setText("TO STRING ( \u25A1 )");
     button.setOnAction(event -> InsertOperations.asStringOperation());
     return button;
   }
@@ -147,7 +147,7 @@ public class LeftBox {
    */
   private static Button asIntButton() {
     var button = DesignFactory.getButton1();
-    button.setText("TO INT ( □ )");
+    button.setText("TO INT ( \u25A1 )");
     button.setOnAction(event -> InsertOperations.asIntOperation());
     return button;
   }
@@ -160,7 +160,7 @@ public class LeftBox {
    */
   private static Button asFloatButton() {
     var button = DesignFactory.getButton1();
-    button.setText("TO FLOAT ( □ )");
+    button.setText("TO FLOAT ( \u25A1 )");
     button.setOnAction(event -> InsertOperations.asFloatOperation());
     return button;
   }
@@ -173,7 +173,7 @@ public class LeftBox {
    */
   private static Button asBinaryButton() {
     var button = DesignFactory.getButton1();
-    button.setText("TO BINARY ( □ )");
+    button.setText("TO BINARY ( \u25A1 )");
     button.setOnAction(event -> InsertOperations.asBinaryOperation());
     return button;
   }
@@ -186,7 +186,7 @@ public class LeftBox {
    */
   private static Button asBooleanButton() {
     var button = DesignFactory.getButton1();
-    button.setText("TO BOOLEAN ( □ )");
+    button.setText("TO BOOLEAN ( \u25A1 )");
     button.setOnAction(event -> InsertOperations.asBooleanOperation());
     return button;
   }

@@ -93,7 +93,7 @@ public class InsertOperations {
     Notifications.showLastMessage();
     Operations.addOperationSign("(");
     Operations.leaveSignInQueue(")");
-    Operations.leaveSignInQueue("×");
+    Operations.leaveSignInQueue("\u25A1");
   }
 
   /**
@@ -119,7 +119,7 @@ public class InsertOperations {
     Notifications.showLastMessage();
     Operations.addOperationSign("(");
     Operations.leaveSignInQueue(")");
-    Operations.leaveSignInQueue("÷");
+    Operations.leaveSignInQueue("\u25A1");
   }
 
   /**
@@ -145,7 +145,7 @@ public class InsertOperations {
     Notifications.showLastMessage();
     Operations.addOperationSign("(");
     Operations.leaveSignInQueue(")");
-    Operations.leaveSignInQueue("∧");
+    Operations.leaveSignInQueue("\u2227");
 
   }
 
@@ -172,7 +172,7 @@ public class InsertOperations {
     Notifications.showLastMessage();
     Operations.addOperationSign("(");
     Operations.leaveSignInQueue(")");
-    Operations.leaveSignInQueue("∨");
+    Operations.leaveSignInQueue("\u2228");
 
   }
 
@@ -196,7 +196,7 @@ public class InsertOperations {
     }
     Notifications.addMessage("Insert the first logic element or an operation");
     Notifications.showLastMessage();
-    Operations.addOperationSign("( ¬");
+    Operations.addOperationSign("( \u00AC");
     Operations.leaveSignInQueue(")");
 
   }
