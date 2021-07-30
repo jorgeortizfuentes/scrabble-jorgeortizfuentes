@@ -12,28 +12,47 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Class with Operation Box and actions to insert values to operations
+ */
 public class InsertValues {
 
+  /**
+   * Choice Box to select an object type
+   */
   private static ChoiceBox valueTypeBox;
+
+  /**
+   * Text Field to insert an object value
+   */
   private static TextField valueText;
 
+  /**
+   * Get a Vertical Box with the form to insert values
+   *
+   * @return a Vertical Box with buttons and a title
+   */
   public static VBox getValuesBox() {
     var valuesBox = new VBox();
 
     var title = DesignFactory.getTitleLabel("Insert values");
     valuesBox.getChildren().add(title);
-    valuesBox.getChildren().add(buttonsBar());
+    valuesBox.getChildren().add(getButtonsBar());
 
     valuesBox.setAlignment(Pos.BOTTOM_CENTER);
     valuesBox.setPadding(new Insets(75, 0, 0, 0));
     return valuesBox;
   }
 
-  private static HBox buttonsBar() {
+  /**
+   * Get a Horizontal Box with the buttons
+   *
+   * @return a horizontal box
+   */
+  private static HBox getButtonsBar() {
     var buttonBar = new HBox(10);
     buttonBar.setAlignment(Pos.CENTER);
 
-    // Create the buttons to go into the ButtonBar
     valueTypeBox = DesignFactory.getChoiceBox();
 
     valueTypeBox.setValue("Select a type");
@@ -45,6 +64,11 @@ public class InsertValues {
     return buttonBar;
   }
 
+  /**
+   * Get Insert Button with the method sendValue of action
+   *
+   * @return an insert button
+   */
   public static Button getInsertButton() {
     var button = DesignFactory.getButton2();
     button.setText("INSERT");
@@ -54,6 +78,14 @@ public class InsertValues {
 
   }
 
+  /**
+   * Sends the inserted value to the operation in memory
+   * <p>
+   * If there is no operation, returns error. If it is possible to insert a value, then it checks
+   * the type of the value, constructs it and adds it to both the operation and the display field.
+   *
+   * @param event
+   */
   public static void sendValue(ActionEvent event) {
     var inputType = valueTypeBox.getValue().toString();
     var inputValue = valueText.getCharacters().toString();

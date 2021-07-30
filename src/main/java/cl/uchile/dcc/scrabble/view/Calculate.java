@@ -7,11 +7,24 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
+/**
+ * Class to calculate operations and get the Calculate Box
+ *
+ * @author Jorge Luis Ortiz Fuentes
+ */
 public class Calculate {
 
+  /**
+   * HorizontalBox to insert the buttons for calculating
+   */
   private static HBox calculateBox;
 
 
+  /**
+   * Get Calculate Box with buttons for calculating
+   *
+   * @return an horizontal box with buttons
+   */
   public static HBox getCalculateBox() {
     calculateBox = new HBox(10);// 10 pixels separation
     calculateBox.setPadding(new Insets(15)); // 15 pixels border
@@ -22,6 +35,11 @@ public class Calculate {
 
   }
 
+  /**
+   * Get a button to calculate. Executes as an action the method calculate
+   *
+   * @return calculate button
+   */
   public static Button getCalculateButton() {
     var button = DesignFactory.getHighlightButton();
     button.setText("CALCULATE");
@@ -30,6 +48,11 @@ public class Calculate {
 
   }
 
+  /**
+   * Get a button to clean. Executes as an action the method clean
+   *
+   * @return clean button
+   */
   public static Button getCleanButton() {
     var button = DesignFactory.getButton2();
     button.setText("CLEAN");
@@ -38,19 +61,29 @@ public class Calculate {
 
   }
 
+  /**
+   * Execute the calculate method
+   *
+   * @param event Event that initializes this operation
+   */
   public static void calculate(ActionEvent event) {
     Calculate.calculate();
   }
 
+  /**
+   * Calculate operation
+   * <p>
+   * If the operation has all the arguments, then evaluate and display the result. If the evaluation
+   * is a Null, it indicates that the operation is invalid. If the operation is missing arguments,
+   * it indicates an error.
+   */
   public static void calculate() {
     if (!Operations.isNull() && Operations.isComplete()) {
       var result = (Operation) Operations.evaluate();
       Result.setResult(result);
 
-      //Notifications.cleanMessage();
       Notifications.addMessage("Operation completed");
       Notifications.showLastMessage();
-      //Operations.cleanOperation();
 
     } else if (Operations.isNull()) {
       Notifications.addMessage("Invalid operation");
@@ -67,6 +100,13 @@ public class Calculate {
     }
   }
 
+  /**
+   * Clean operation
+   * <p>
+   * Clears the notification tray, the result and the operation
+   *
+   * @param event Event that initializes this operation
+   */
   public static void clean(ActionEvent event) {
     Notifications.cleanMessage();
     Operations.cleanOperation();

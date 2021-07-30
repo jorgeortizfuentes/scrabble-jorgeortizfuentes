@@ -11,7 +11,7 @@ import cl.uchile.dcc.scrabble.controller.Subt;
 import javafx.event.ActionEvent;
 
 /**
- * LeftBox button actions for inserting operations and transformations
+ * Insert operations actions for inserting operations and transformations
  *
  * @author Jorge Luis Ortiz Fuentes
  */

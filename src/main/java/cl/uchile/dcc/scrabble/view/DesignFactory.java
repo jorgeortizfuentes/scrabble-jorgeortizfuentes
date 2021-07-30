@@ -7,11 +7,28 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
+/**
+ * Factory to create the buttons and form fields with the defined aesthetic specifications.
+ *
+ * @author Jorge Luis Ortiz Fuentes
+ */
 public class DesignFactory {
 
-  public static final String mainColor = "#97CAEF"; // #AFBBF2
+  /**
+   * Main color of design
+   */
+  public static final String mainColor = "#97CAEF";
+
+  /**
+   * Highlight color of design
+   */
   public static final String highlightColor = "#55BCC9";
 
+  /**
+   * Get a button with predefined width for the left box with main color
+   *
+   * @return designed button
+   */
   public static Button getButton1() {
     var button = new Button();
     button.setFocusTraversable(false);
@@ -24,6 +41,11 @@ public class DesignFactory {
     return button;
   }
 
+  /**
+   * Get a button without predefined width with main color
+   *
+   * @return designed button
+   */
   public static Button getButton2() {
     var button = DesignFactory.getButton1();
     String style = button.getStyle();
@@ -33,6 +55,11 @@ public class DesignFactory {
 
   }
 
+  /**
+   * Get a button without predefined width with highlight color
+   *
+   * @return designed button
+   */
   public static Button getHighlightButton() {
     var button = new Button();
     button.setFocusTraversable(false);
@@ -45,6 +72,11 @@ public class DesignFactory {
 
   }
 
+  /**
+   * Get a text layout with main color border
+   *
+   * @return designed text field
+   */
   public static TextField getTextField() {
     var tf = new TextField();
     tf.setStyle("-fx-background-color: transparent; "
@@ -59,6 +91,11 @@ public class DesignFactory {
 
   }
 
+  /**
+   * Get a choice box with main color border
+   *
+   * @return designed choice box
+   */
   public static ChoiceBox getChoiceBox() {
     var cb = new ChoiceBox();
     cb.setStyle("-fx-background-color: transparent; "
@@ -72,6 +109,11 @@ public class DesignFactory {
     return cb;
   }
 
+  /**
+   * Get a title label for sections
+   *
+   * @return designed title label
+   */
   public static Label getTitleLabel(String s) {
     var title = new Label(s);
     title.setAlignment(Pos.CENTER);
@@ -83,6 +125,11 @@ public class DesignFactory {
 
   }
 
+  /**
+   * Get a label for notifications
+   *
+   * @return designed notification label
+   */
   public static Label getNotificationLabel() {
     var l = new Label("Select an operation");
     l.setAlignment(Pos.CENTER);
@@ -93,6 +140,11 @@ public class DesignFactory {
 
   }
 
+  /**
+   * Get a label for operations
+   *
+   * @return designed operation label
+   */
   public static Label getValueOperationLabel(String s) {
     var l = new Label(s);
     l.setStyle("-fx-font-size: 22px;"
@@ -101,6 +153,14 @@ public class DesignFactory {
 
   }
 
+
+  /**
+   * Get a label for types objects
+   *
+   * @param tag   String with tag name
+   * @param color String with color in CSS format
+   * @return designed type object label
+   */
   public static Label getTypeObjectLabel(String tag, String color) {
     var opType = new Label(tag);
     opType.setTextFill(Color.WHITE);
